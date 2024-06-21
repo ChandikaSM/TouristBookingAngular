@@ -1,0 +1,305 @@
+.homePage {
+    margin: 1;
+    padding: 0;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    overflow-y: hidden;
+    .flex {
+      display: flex;
+    
+      .aboutTripura {
+        margin-left: 2rem;
+        padding: 6rem 1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        padding-left: 2rem;
+        p {
+          text-align: justify;
+          font-size: 1.5rem;
+          line-height: 2rem;
+          font-weight: 100;
+          font-family: Arial, Helvetica, sans-serif;
+        }
+        form {
+          // background: yellow;
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          .searchSpan {
+            display: flex;
+            align-items: center;
+            
+          }
+          input[type="search"] {
+            padding: 1.3rem 3.5rem;
+            border: 1px solid #ccc;
+            border-radius: 25px;
+            font-size: 16px;
+            width: 700px;
+            max-width: 100%;
+            box-shadow: none;
+          }
+          .search {
+            position: absolute;
+            padding: 1rem;
+            font-size: 2rem;
+            color: #666;
+            cursor: pointer;
+          }
+        }
+      }
+      .behindDiv {
+        position: absolute;
+        opacity: 0.4;
+        top: 45rem;
+        right: 0;
+        left: 53rem;
+        width: 350px;
+      }
+    }
+  }
+  
+
+  
+  .middle {
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+    padding-bottom: 0;
+    h2 {
+      font-size: 25px;
+      line-height: 1;
+      // margin-bottom: 30px;
+      letter-spacing: 5px;
+      font-family: designFont;
+      font-weight: 400;
+    }
+   
+  }
+ 
+  
+  .districtGrid {
+    gap: 2rem;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    margin: 0rem 16rem;
+    grid-template-columns: repeat(3, 1fr);
+    .card {
+      height: 30vh;
+      width: 40vh;
+      border-radius: 30px;
+      margin-bottom: 1rem;
+      img {
+        width: 100%;
+        height: 100%;
+        border: 1pxsolid rgb(0, 0, 0, 0.4);
+        background-blend-mode: darken rgba(0, 0, 0, 0.8);
+        transition: 0.6s;
+      }
+      &:hover img {
+        transform: scale(1.1);
+      }
+      .imageOverlay {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        bottom: 30px;
+        left: 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        transition: 0.5s;
+        z-index: 1;
+        h5 {
+          color: aliceblue;
+        }
+      }
+      &:hover .imageOverlay {
+        top: -10px;
+        right: -10px;
+        bottom: -10px;
+        left: -10px;
+        background: rgba(183, 176, 176, 0.6);
+        opacity: 0.3;
+      }
+      &:hover .imageOverlay h5 {
+        color: black;
+        font-weight: 500;
+        font-size: 2rem;
+      }
+    }
+  }
+  
+
+  
+  .homePageGrid {
+    gap: 2rem;
+    margin: 3rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    img {
+      aspect-ratio: 16 / 12;
+      padding: 0.2rem;
+      height: 30vh;
+      width: 100%;
+      object-fit: fill;
+      border: 1px solid rgb(0, 0, 0, 0.4);
+    }
+  }
+
+  
+  .imgOverlay {
+    position: absolute;
+  }
+  
+  .explore {
+    position: relative;
+    padding: 1rem;
+  
+    .sideDiv,
+    .rightDiv {
+      flex: 1;
+      border-radius: 20px;
+    }
+    .sideDiv {
+      border-radius: 25px;
+    }
+    .box {
+      position: absolute;
+      width: 300px;
+      height: 100px;
+      background-color: #ccc;
+      border: 1px solid #000;
+    }
+    #divOne {
+      top: 0;
+      right: 3rem;
+      opacity: 0.8;
+    }
+    #divTwo {
+      top: 40px;
+      right: 24rem;
+      opacity: 0.7;
+    }
+    #divThree {
+      top: 120px;
+      right: 12rem;
+      opacity: 1;
+    }
+    &:hover #divOne {
+      transform: scale(0.9);
+    }
+    &:hover #divTwo {
+      transform: scale(1.1);
+    }
+    &:hover #divThree {
+      transform: scale(1.2);
+    }
+  }
+  @media screen and (max-width: 768px) {
+
+    .homePage {
+        .flex {
+          flex-direction: column-reverse;
+          gap: 0rem;
+    
+          .imageFront{
+            padding: 0;
+            width: 600px;
+            position: relative;
+            z-index: 1000;
+            // background: yellow;
+        }
+          .aboutTripura {
+            padding: 3rem 1rem;
+            position: absolute;
+            // align-items: center;
+    
+            p {
+              // padding-right: 2rem;
+              font-size: .7rem;
+              line-height: 1rem;
+            }
+          }
+    
+          .imageFront {
+            justify-content: center;
+    
+            img {
+              width: 90%;
+            }
+          }
+        }
+
+    .districtGrid {
+        display: flex;
+       
+      }
+   .behindDiv {
+    display: none;
+   
+   }
+    .explore {
+      display: flex;
+      flex-direction: column;
+      .box {
+        display: none;
+      }
+      .rightDiv {
+        display: none;
+      }
+      .sideDiv img:nth-child(1) {
+        padding-right: 1rem;
+        
+      }
+      .sideDiv img:nth-child(2) {
+        width: 100%;
+        padding: 1rem;
+        display: none;
+      }
+    }
+   
+    
+  }}
+ 
+ 
+
+
+@media screen and (min-width: 769x) {
+    .flex {
+      display: flex;
+      flex-direction: column-reverse;
+      .aboutTripura {
+        p {
+          font-weight: 500;
+          color: black;
+          padding-right: 2rem;
+        }
+      }
+      .imageFront {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+  
+        img {
+          width: 90%;
+        }
+      }
+    }
+    .behindDiv {
+        top: 77rem;
+        left: 10rem;
+        img {
+          width: 100%;
+        }
+      }
+      .districtGrid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+  }

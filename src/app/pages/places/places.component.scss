@@ -1,0 +1,20 @@
+.homePageGrid {
+    gap: 2rem;
+    margin: 3rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    img {
+      aspect-ratio: 16 / 12;
+      padding: 0.2rem;
+      height: 30vh;
+      width: 100%;
+      object-fit: fill;
+      border: 1px solid rgb(0, 0, 0, 0.4);
+    }
+  }
+  @media screen and (max-width: 768px) {
+    .homePageGrid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  

@@ -1,0 +1,135 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+    padding: 0;
+    margin: 0;
+    overflow-x: hidden;
+    font-family: "Poppins", sans-serif;
+}
+
+.navBar {
+    background: rgba(68, 68, 68, 0.1);
+    height: 10vh;
+    overflow-y: hidden;
+    padding: 1rem 4rem 1rem 2.5rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+    .spaceAround {
+        flex: 1 1 auto;
+    }
+
+    .spacingElement button {
+        padding: 1.5rem;
+    }
+
+    img {
+        padding: 1rem 0rem;
+        width: 100%;
+        height: 100px;
+    }
+
+    button {
+        font-size: 1.3rem;
+        color: #8d6260;
+        font-weight: bolder;
+        letter-spacing: 1px;
+    }
+}
+
+footer {
+    position: relative;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 2rem 0rem 0rem;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.9);
+
+    h2 {
+        font-size: 1.7rem;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    span {
+        font-size: 1rem;
+    }
+
+    .icons {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .flexSpan {
+        display: flex;
+        flex-direction: column;
+        text-align: justify;
+        .flex {
+            display: flex;
+            align-items: center;
+            gap: .2rem;
+
+            .icon {
+                width: 25px;
+            }
+           
+        }
+        .imgAG {
+            display: flex;
+            flex-direction: column;
+            padding: 1rem;
+            gap: 1rem;
+            .gpAp {
+                width: 300px;
+            }
+        }
+        
+    }
+
+    .footerFlex {
+        padding: 2rem;
+        display: flex;
+        justify-content: center;
+        gap: 5rem;
+    }
+    .innerIcon {
+        display: flex;
+        align-items: center;
+        gap: 3rem;
+        // background: yellow;
+        .icon {
+            width: 50px;
+            height: 50px;
+            &:last-child {
+                width: 100px;
+                height: 90px;
+            }
+        }
+
+    }
+
+
+    .iconText {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        .icon {
+            width: 50px;
+            color: white;
+            // background: orange;
+        }
+    }
+    
+
+    .lastCopy {
+        padding: 1rem;
+        margin-top: 5rem;
+        display: flex;
+        justify-content: center;
+        color: white;
+        background: rgba(183, 176, 176, 0.6);
+    }
+}
+
+

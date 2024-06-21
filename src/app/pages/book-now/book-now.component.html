@@ -1,0 +1,82 @@
+<section class="bookNow">
+    <div class="formField">
+      <div class="name">
+        <mat-label> Name: </mat-label>
+        <input mat-input type="text" />
+      </div>
+  
+      <div class="mobile">
+        <mat-label> Mobile: </mat-label>
+        <input mat-input type="number" />
+      </div>
+  
+      <div class="email">
+        <mat-label> Email </mat-label>
+        <input mat-input type="email" />
+      </div>
+  
+      <!-- <div class="date">
+        <mat-form-field>
+          <mat-label>Choose a date</mat-label>
+          <input matInput [matDatepicker]="picker" />
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matIconSuffix [for]="picker">
+            <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+          </mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div> -->
+  
+      <div>
+        {{ "date" }}
+      </div>
+      <div class="select">
+        select:
+        <div class="space">
+          child
+        <span class="quantity">
+            <span
+              class="material-symbols-outlined"
+              id="childRemove"
+              (click)="decreaseChildQuantity()"
+            >
+              remove
+            </span>
+            <span>{{ childQuantity }}</span>
+            <span
+              class="material-symbols-outlined"
+              id="childAdd"
+              (click)="increaseChildQuantity()"
+            >
+              add
+            </span>
+          </span> 
+  
+          Adult
+          <!-- <span class="quantity">
+                      
+                      <span class="material-symbols-outlined" id="adultRemove" (click)="adultQuantity()">
+                          remove
+                          </span>
+                      <span>{{adultQuantity}}</span>
+                      <span class="material-symbols-outlined" id="adultAdd" (click)="adultQuantity()">
+                          add
+                          </span>
+                  </span> -->
+        </div>
+  
+        <hr />
+      </div>
+  
+      <hr />
+      <div class="payButton">
+        <button
+          mat-button
+          (click)="snackBar()"
+          class="pay"
+        >
+          Pay
+        </button>
+      </div>
+    </div>
+  </section>
