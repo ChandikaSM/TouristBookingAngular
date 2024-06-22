@@ -1,8 +1,8 @@
 <section class="homePage">
   <section class="flex">
     <div class="aboutTripura">
-      <section>
-        <h2>
+      <section class="middle">
+        <h1>
           <span style="color: #518117">T</span>
           <span style="color: #067c67">R</span>
           <span style="color: #0e538d">I</span>
@@ -10,7 +10,7 @@
           <span style="color: #f48c18">U</span>
           <span style="color: #d12150">R</span>
           <span style="color: #0e538d">A</span>
-        </h2>
+        </h1>
       </section>
       <h4>Located in INDIA</h4>
       <p>
@@ -40,7 +40,7 @@
   </section>
 
   <section class="middle">
-    <h2>
+    <h1>
       <span style="color: #518117">D</span>
       <span style="color: #067c67">I</span>
       <span style="color: #0e538d">S</span>
@@ -48,7 +48,7 @@
       <span style="color: #f48c18">R</span>
       <span style="color: #d12150">I</span>
       <span style="color: #0e538d">CT</span>
-    </h2>
+    </h1>
   </section>
 
   <section class="districtGrid" #districtGrid>
@@ -111,7 +111,7 @@
   </section>
 
   <section class="middle">
-    <h2>
+    <h1>
       <span style="color: #518117">Ex</span>
       <span style="color: #067c67">Pl</span>
       <span style="color: #0e538d">o</span>
@@ -119,7 +119,7 @@
       <span style="color: #f48c18">Tr</span>
       <span style="color: #d12150">ipu</span>
       <span style="color: #0e538d">ra</span>
-    </h2>
+    </h1>
   </section>
 
   <section class="explore">
@@ -128,6 +128,9 @@
       <img src="assets/five.png" alt="" />
     </div>
     <div class="rightDiv">
+      @for(data of datas; track data){
+       
+
       <div class="box" id="divOne">
         <mat-card>
           <img
@@ -157,7 +160,7 @@
         <mat-card>
           <img
             mat-card-image
-            src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+            [src]="data.images[0]?.link"
             alt="Photo of a Shiba Inu"
           />
           <mat-card-header>
@@ -202,11 +205,13 @@
         </mat-card>
         <br />
       </div>
+    }
     </div>
+  
   </section>
 
   <section class="middle">
-    <h2>
+    <h1>
       <span style="color: #518117">Most </span>
       <span style="color: #067c67">Vi</span>
       <span style="color: #0e538d">si</span>
@@ -214,26 +219,26 @@
       <span style="color: #f48c18">ed </span>
       <span style="color: #d12150">pla</span>
       <span style="color: #0e538d">ces</span>
-    </h2>
+    </h1>
   </section>
 
   <section>
     <div class="homePageGrid">
+      @for(data of datas; track data){
       <mat-card>
-        <img mat-card-image src="assets/five.png" alt="Photo" />
+        <img mat-card-image [src]="data.images[0]?.link" alt="Photo" />
         <mat-card-header>
-          <mat-card-title>hello</mat-card-title>
-          <mat-card-subtitle>location</mat-card-subtitle>
+          <mat-card-title>{{ data.name }}</mat-card-title>
+          <mat-card-subtitle>{{ data.category }}</mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>
-          <p>hello</p>
+          <p>{{ data.description.slice(0, 80) }}</p>
         </mat-card-content>
-        <mat-card-actions>
-          <button mat-button>LIKE</button>
-          <button mat-button>SHARE</button>
+        <mat-card-actions class="btn">
+          <button mat-button (click)="onClickPlaces(data._id)" routerLinkActive="router-link-active" >Book Now</button>
         </mat-card-actions>
       </mat-card>
-
+      }
 
       <br />
     </div>

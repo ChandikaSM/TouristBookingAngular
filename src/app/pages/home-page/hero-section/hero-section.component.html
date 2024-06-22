@@ -1,99 +1,58 @@
-<section class="gridDetails" >
-    <!-- @for(item of items; track item){ -->
-     
-    <div class="images flex">
-        <div class="mainImage">
-            <!-- <img [src]="items[0].photos?.photo1" alt="" />
-              -->
-            <img src="assets/five.png" alt="img"/>
-        </div>
-        <div class="innerDiv flex-reverse">
-            <img src="assets/five.png" alt="img"/>
-            <img src="assets/five.png" alt="img"/>
-            <!-- <img [src]="items[0].photos?.photo2" alt="" />
-            <img [src]="items[0].photos?.photo3" alt="" /> -->
-        </div>
-        <!-- <div class="innerDiv flex-reverse">
-            <img src="assets/five.png" alt="" />
-            <img src="assets/five.png" alt="" />
-        </div> -->
-
+ <section class="gridDetails">
+  <div class="images flex">
+    <div class="mainImage">
+      <img [src]="datas?.images[1]?.link" alt="Main Image" />
     </div>
-    
+    <div class="innerDiv flex-reverse">
+      <img [src]="datas?.images[0]?.link" alt="Image 2" />
+      <img [src]="datas?.images[2]?.link" alt="Image 3" />
+    </div>
+  </div>
 
   <div class="detailsHeading">
+    <h1>{{ datas.name }}</h1>
+    <span>
+      <h3>{{ datas.location }}</h3>
+      <span>{{datas.rating}}</span>
+    </span>
 
-        <h1>name
-            <!-- {{items[0].name}} -->
+    <p>{{ datas.description }}</p>
+    
+    <div>
+      <div style="display: flex; justify-content: space-around">
+        <span>Adult: {{ datas.entry_fee.adult }}</span>
+        <span>Child: {{ datas.entry_fee.child }}</span>
+      </div>
+      <span>Visiting hours</span>
+      <div>
+        Monday: {{ datas.visiting_hours.monday }}
+      </div>
+      <div>
+        Tuesday: {{ datas.visiting_hours.tuesday }}
+      </div>
+      <div>
+        Wednesday: {{ datas.visiting_hours.wednesday }}
+      </div>
+      <div>
+        Thursday: {{ datas.visiting_hours.thursday }}
+      </div>
+      <div>
+        Friday: {{ datas.visiting_hours.friday }}
+      </div>
+      <div>
+        Saturday: {{ datas.visiting_hours.saturday }}
+      </div>
+      <div>
+        Sunday: {{ datas.visiting_hours.sunday }}
+      </div>
+    </div>
+    
+    <div style="display: flex; justify-content: center">
+      <button mat-button class="btn" [routerLink]="['/booknow']" routerLinkActive="router-link-active">
+        Book Now
+      </button>
+    </div>
+    <br />
+  </div>
+</section> 
 
-        </h1>
-        <h3>
-            <!-- {{items[0].location}} --> location
-        </h3>
-        <p>
-            <!-- {{items[0].description}}  -->
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, quisquam? Corrupti obcaecati asperiores nobis delectus similique distinctio ipsam officia molestiae eaque, et, dolor blanditiis molestias beatae accusamus numquam itaque sed! Cupiditate architecto, officia ea exercitationem voluptatem quod nobis soluta eveniet. Beatae, mollitia tempore sunt libero excepturi voluptatibus aspernatur odio atque.
-        </p>
-        <div>
-            <div style="display: flex; justify-content: space-around;">
-                <span>Adult: 
-                    <!-- {{items[0].entry_fee.adult}} -->
-                </span>
-                <span>Child: 
-                    <!-- {{items[0].entry_fee.child}} -->
-                </span>
-            </div>
-            <span>Visiting hours</span>
-            <div>
-                Monday: 
-                <!-- {{items[0].visiting_hours.monday}} -->
-            </div>
-            <div>
-                Tuesday: 
-                <!-- {{ -->
-                    <!-- items[1].visiting_hours.tuesday -->
-                <!-- }} -->
-            </div>
-            <div>
-                Wednesday: 
-                <!-- {{items[0].visiting_hours.wednesday }} -->
-            </div>
-            <div>
-                Thursday: 
-                <!-- {{
-                    items[0].visiting_hours.thursday}} -->
-            </div>
-            <div>
-                friday
-                <!-- Friday: {{
-                    items[0].visiting_hours.friday
-                }} -->
-            </div>
-            <div>
-                Saturday:
-                 <!-- {{
-                    items[0].visiting_hours.saturday
-                }} -->
-            </div>
-            <div>
-                   Sunday:
-                    <!-- {{
-                    items[0].visiting_hours.sunday
-                }} -->
-            </div>
-            
-        </div>
-        <div style="display: flex; justify-content: center;">
-            <!-- <a href="/booknow"> -->
-                <button mat-button class="btn" [routerLink]="['/booknow']" routerLinkActive="router-link-active" >
-                    Book Now
-                </button>
-            <!-- </a> -->
-           
-        </div>
-<br />
-
-  
-  </div> 
-<!-- } -->
-</section>

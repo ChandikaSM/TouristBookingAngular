@@ -1,18 +1,58 @@
 .example-container {
     width: auto;
     height: 100vh;
-    margin: 10px;
+    // margin: 10px;
     // border: 1px solid #555;
     /* The background property is added to clearly distinguish the borders between drawer and main
        content */
     background: #eee;
     .firstDrawer {
-         width: 20%;
+      scroll-behavior: smooth;
+      
+         ul {
+          li {
+            padding: .9rem;
+            font-size: 1rem;
+            cursor: pointer;
+            ol {
+              li{
+                padding: .5rem;
+              }
+            }&:hover{
+              font-size: 1.3rem;
+            }
+          }
+          
+         }
+
+         .status{
+          padding: .5rem;
+          height: 10vh;
+          display: flex;
+          justify-content: center;
+          color: #eee;
+          background: rgba(0, 0, 0, 0.5);
+          h5{
+            font-size: 1.5rem;
+          }
+         }
     }
 
     .secondDrawer {
         // padding-left: 21%;
+      .searchStatus {
+      mat-chip{
+        padding: .7rem;
+        // width: 40%;
+      }
+      .icon {
+      // background: red;
+      justify-content: space-around;
+      text-align: center;
+      // display: flex;
+      }}
        .secondDrawerSub1 {
+        padding: 0 1rem;
         
         
         table {

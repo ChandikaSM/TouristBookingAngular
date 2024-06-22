@@ -1,5 +1,11 @@
+
+
+
+
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { MatChip, MatChipSet } from '@angular/material/chips';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIcon } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -39,7 +45,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
 @Component({
   selector: 'app-status-user',
   standalone: true,
-  imports: [MatSidenavModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatTableModule, MatIcon],
+  imports: [MatSidenavModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatTableModule, MatIcon, MatChipSet, MatChip, CommonModule],
   templateUrl: './status-user.component.html',
   styleUrl: './status-user.component.scss'
 })
@@ -49,7 +55,32 @@ const ELEMENT_DATA: PeriodicElement[] = [
 export class StatusUserComponent {
   displayedColumns: string[] = ['Order Id', 'name', 'place', 'ticket', 'price', 'date', 'download'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+ upComingEvents: any[] = [];
+ completedEvents: any[] = [];
+ showUpComingEvents = false;
+  toggleUpcomingEvents() {
+    this.showUpComingEvents = !this.showUpComingEvents;
+  }
 
+  toggleCompletedUpcomingEvents() {
+    this.showUpComingEvents = false;
+  }
+ constructor(){
+  this.categorizeEvents();
+ }
+
+
+ categorizeEvents() {
+  const currentDate = new Date();
+  this.dataSource.data.forEach((event: PeriodicElement) => {
+    const eventDate = new Date(event.date);
+    if (eventDate > currentDate) {
+      this.upComingEvents.push(event);
+    } else {
+      this.completedEvents.push(event);
+    }
+  });
+}
   
   downloadItem(element: PeriodicElement){
     console.log('Download clicked for:', element);

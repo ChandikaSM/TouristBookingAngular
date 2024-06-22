@@ -1,38 +1,49 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatButton } from '@angular/material/button';
-// import { HomePageService } from '../home-page/home-page.service';
-// import { Interface } from '';
-import { NgIf } from '@angular/common';
-import { RouterLink } from '@angular/router';
+
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { DataPlacesService } from '../../data-places.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-details',
   standalone: true,
-  imports: [MatButton, NgIf, RouterLink],
+  imports: [MatButton, RouterLink, HttpClientModule],
   templateUrl: './hero-section.component.html',
-  styleUrl: './hero-section.component.scss'
+  styleUrl: './hero-section.component.scss',
 })
-export class HeroSectionComponent {
-// items: any[] = [];
-// trackBy(index:number , item:any): number {
-//   return item.id;
-// }
-// constructor(private dataService: HomePageService){}
-// ngOnInit(): void {
-//   // this.dataService.getData().subscribe((items: any)=>{
-//   //   console.log(items);
-//   //   this.items = items.result;
+export class HeroSectionComponent implements OnInit {
+  datas: any;
+  heroId: any;
+  constructor(
+    private dataService: DataPlacesService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
 
-//   // }, (error) => {
-//   //   console.error ('Error Fetching data:', error);
-//   // });
-// }
+  ngOnInit(): void {
+    this.route.paramMap.subscribe((params) => {
+      this.heroId = params.get('id');
+    });
+    console.log(this.heroId);
+    // Alternatively, use HeroService to get the id
+    this.getPlaceIdWise();
+  }
 
-// hasEntryFee(item: Interface): boolean {
-//   return !!item.entry_fee;
-// }
-
-// hasPhotos(item: Interface):boolean {
-//   return !!item.photos;
-// }
+  getPlaceIdWise(): void {
+    const urlParam = {
+      spotId: this.heroId
+    }
+    this.dataService.getDataWithId(urlParam).subscribe(
+      (success) => {
+        console.log(success)
+        // console.log(places)
+        this.datas = success.result[0];
+        console.log(this.datas)
+      },
+      (error) => {
+        console.error('Error fetching place details', error);
+      }
+    );
+  }
 }

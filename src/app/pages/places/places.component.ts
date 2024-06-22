@@ -1,4 +1,10 @@
-import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  OnInit,
+  Renderer2,
+  ViewChild,
+} from '@angular/core';
 import { MatButton } from '@angular/material/button';
 import {
   MatCard,
@@ -8,9 +14,9 @@ import {
   MatCardSubtitle,
   MatCardTitle,
 } from '@angular/material/card';
-import { RouterLink } from '@angular/router';
-
-
+import { Router, RouterLink } from '@angular/router';
+import { DataPlacesService } from '../data-places.service';
+import { CommonModule } from '@angular/common';
 
 export interface cardItem {
   title: string;
@@ -30,40 +36,46 @@ export interface cardItem {
     MatCardActions,
     MatButton,
     RouterLink,
+    CommonModule,
   ],
   templateUrl: './places.component.html',
   styleUrl: './places.component.scss',
+  providers: [DataPlacesService],
 })
-export class PlacesComponent {
+export class PlacesComponent implements OnInit {
+  datas: any[] = [];
+  trackBy(index: number, data: any): number {
+    return data.id;
+  }
 
+  constructor(private dataService: DataPlacesService, public router: Router) {}
 
-  // onInit: void {
-  //   loopCard()
+  ngOnInit(): void {
+    // this.dataService.getDatas().subscribe((datas) => {
+    //   this.datas = datas;
+    //   console.log('All datas from api line no 49, place.components.ts', datas);
+    // });
+    this.getSpots();
+  }
 
-  // }
+  getSpots(): void {
+    this.dataService.getData().subscribe(
+      (datas: any) => {
+        console.log(datas);
+        this.datas = datas.result;
+        console.log(
+          'All datas from api line no 68, place.components.ts',
+          datas
+        );
+      },
+      (error) => {
+        console.error('Error fetching  data', error);
+      }
+    );
+  }
 
-  // loopCard(): void {
-
-  // }
-  // @ViewChild('districtGrid') districtGrid: ElementRef | undefined;
-
-  // constructor(private renderer: Renderer2) {}
-
-  // moveSepahijalaItems(): void {
-  //   if (!this.districtGrid) {
-  //     return;
-  //   }
-  //   const gridElement = this.districtGrid.nativeElement;
-  //   const cards = gridElement.querySelectorAll('.card');
-
-  //   cards.forEach((card: HTMLElement) => {
-  //     const overlayElement = card.querySelector('.imageOverlay');
-  //     if (overlayElement) {
-  //       const overlayText = overlayElement.textContent?.trim();
-  //       if (overlayText === 'Sepahijala') {
-  //         console.log(card.innerHTML);
-  //       }
-  //     }
-  //   });
-  // }
+  onClickPlaces(id: string): void {
+    console.log(id)
+    this.router.navigate(['/herodetails', id]);
+  }
 }

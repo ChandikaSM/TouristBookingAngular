@@ -17,7 +17,9 @@
     .spaceAround {
         flex: 1 1 auto;
     }
-
+    .menubar {
+        display: none;
+    }
     .spacingElement button {
         padding: 1.5rem;
     }
@@ -36,8 +38,31 @@
     }
 }
 
+
+
+@media  screen and (max-width: 676px) {
+    .navBar {
+        // overflow-x: hidden;
+        // display: none;
+        button {
+            display: none;
+    
+        }
+        .menubar{
+            display: flex;
+            font-size: 2rem;
+            overflow-y: hidden;
+            color: grey;
+        }
+        }
+
+   
+    }
+
+
 footer {
     position: relative;
+    
 
     left: 0;
     right: 0;
@@ -90,8 +115,7 @@ footer {
     .footerFlex {
         padding: 2rem;
         display: flex;
-        justify-content: center;
-        gap: 5rem;
+        justify-content:space-evenly;
     }
     .innerIcon {
         display: flex;
@@ -132,4 +156,16 @@ footer {
     }
 }
 
+
+@media screen and (max-width: 768px) {
+    .footerFlex{
+        // justify-content:flex-;
+        text-align: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 2rem;
+        
+    }
+    
+}
 
