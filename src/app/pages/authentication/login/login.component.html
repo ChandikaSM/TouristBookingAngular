@@ -1,60 +1,40 @@
+<!-- login.component.html -->
 <div class="modal loginModal">
-    <div class="signup-container">
-      <div class="img">
-        <img src="assets/login.png" alt="img" />
-      </div>
-      <mat-card class="signup-card">
-        <div class="signup">
-          <form formGroup="signUpForm">
-            <mat-form-field class="signMat">
-              <h2>Login</h2>
-  
-              <div class="field">
-                <label for="email">Email<span>*</span></label>
-                <input type="email" matInput formControlName="email" id="email" />
-                <!-- <div
-                  *ngIf="signUpForm.get('email').invalid && signUpForm.get('email').touched"
-                  class="error-message"
-                >
-                  Email is required and must be a valid email address.
-                </div> -->
-              </div>
-  
-              <div class="field">
-                <label for="password">Password<span>*</span></label>
-                <input
-                  type="password"
-                  matInput
-                  formControlName="password"
-                  id="password"
-                />
-              </div>
-  
-              <div class="buttonSubmit">
-                <button
-                  type="submit"
-                  mat-raised-button
-                  color="primary"
-                  class="submit-button"
-                >
-                  Signup
-                </button>
-              </div>
-  
-              <div class="login-link">
-                <span>Don't have an account?</span>
-                <a
-                  mat-button
-                  [routerLink]="['/signup']"
-                  routerLinkActive="router-link-active"
-                >
-                  Signup
-                </a>
-              </div>
-            </mat-form-field>
-          </form>
-        </div>
-      </mat-card>
+  <div class="signup-container">
+    <div class="img">
+      <img src="assets/login.png" alt="img" />
     </div>
+    <mat-card class="signup-card">
+      <div class="signup">
+        <form [formGroup]="loginForm" (ngSubmit)="login()">
+          <mat-form-field class="full-width">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" id="email" type="email" required>
+            <mat-error *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+              Please enter a valid email.
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="full-width">
+            <mat-label>Password</mat-label>
+            <input matInput formControlName="password" id="password" type="password" required>
+            <mat-error *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+              Please enter your password.
+            </mat-error>
+          </mat-form-field>
+
+          <div class="buttonSubmit">
+            <button type="submit" mat-raised-button color="primary" class="submit-button" [disabled]="loginForm.invalid">
+              Login
+            </button>
+          </div>
+
+          <div class="login-link">
+            <span>Don't have an account?</span>
+            <a mat-button routerLink="/signup" routerLinkActive="router-link-active">Signup</a>
+          </div>
+        </form>
+      </div>
+    </mat-card>
   </div>
-  
+</div>
