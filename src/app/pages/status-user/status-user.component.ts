@@ -89,12 +89,14 @@ export class StatusUserComponent {
        console.log("upcoming 2 items line 83", this.upComing);
       }
 
-      toggleItems(showCompleted: boolean):void {
+      toggleItems(showCompleted: boolean, showUpcoming: boolean):void {
         if(showCompleted){
           this.dataSource.data = this.completedItems;
 
-        } else {
+        } else if(showUpcoming){
           this.dataSource.data = this.upComing;
+        } else {
+          this.dataSource.data = ELEMENT_DATA;
         }
       }
 

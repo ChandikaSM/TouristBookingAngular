@@ -93,13 +93,18 @@
     <mat-drawer-content class="secondDrawer">
         <mat-chip-set class="searchStatus">
             
-            <mat-chip (click)="toggleItems(false)">
+            <mat-chip (click)="toggleItems(false, false)">
+                Total place Booked
+                
+            </mat-chip>
+            <mat-chip (click)="toggleItems(false, true)">
                 Upcoming Events
             </mat-chip>
            
-            <mat-chip (click)="toggleItems(true)">
+            <mat-chip (click)="toggleItems(true, false)">
                 Completed
             </mat-chip>
+            
           </mat-chip-set>
             
           
