@@ -25,10 +25,13 @@
       </p>
       <form>
         <span class="searchSpan">
-          <input type="search" placeholder="Search" />
-          <span class="material-symbols-outlined search">search</span>
+          <input type="search" [(ngModel)]="searchTerm" [ngModelOptions]="{standalone: true}" placeholder="Search" (input)="search()"/>
+          <span class="material-symbols-outlined search" (click)="search()">search</span>
         </span>
       </form>
+      <app-places-list filteredItems="filteredItems"></app-places-list>
+
+
     </div>
 
     <div class="imageFront">

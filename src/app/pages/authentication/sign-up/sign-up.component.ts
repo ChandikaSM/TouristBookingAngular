@@ -11,7 +11,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 @Component({
   selector: 'app-sign-up',
   standalone: true,
-  imports: [MatCardModule, MatButtonModule, MatIconModule, MatFormFieldModule, RouterLink],
+  imports: [MatCardModule, MatButtonModule, MatIconModule, MatFormFieldModule, RouterLink,],
   templateUrl: './sign-up.component.html',
   styleUrl: './sign-up.component.scss'
 })
@@ -26,6 +26,20 @@ export class SignUpComponent {
       password: ['', Validators.required],
       confirm_password: ['', Validators.required]
     });
+  }
+  signup() {
+    if(this.signUpForm.valid) {
+      const name = this.signUpForm.value.name;
+      const phone = this.signUpForm.value.phone;
+      const email = this.signUpForm.value.email;
+      const password = this.signUpForm.value.password;
+      const confirm_password = this.signUpForm.value.confirm_password;
+
+
+      // if(email === 'sushmaj2347@gmail.com' && name === 'sushmita' && phone === '6009031334' && password=== "password"){
+      //   this.
+      // }
+    }
   }
 
   onSubmit(): void {
@@ -45,3 +59,4 @@ export class SignUpComponent {
     this.route.navigate(['/'])
   }
 }
+ 

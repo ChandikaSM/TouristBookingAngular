@@ -46,7 +46,6 @@ export class LoginComponent {
 
 
   logout() {
-    // Handle logout logic
     this.loginService.logout();
   }
   
