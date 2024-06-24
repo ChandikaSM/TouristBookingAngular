@@ -14,7 +14,7 @@ import { PlacesListComponent } from './pages/home-page/search/places-list/places
 export const routes: Routes = [
     // { path: '', component: AppComponent },
     { path: '', component: HomePageComponent },
-    { path: 'places', component: PlacesComponent },
+    { path: 'places/:location', component: PlacesComponent },
     // { path: 'herodetails', component: HeroSectionComponent },
     { path: 'herodetails/:id', component: HeroSectionComponent},
     { path: 'booknow', component: BookNowComponent},

@@ -25,4 +25,19 @@ export class DataPlacesService {
       params: urlParam,
     });
   }
+
+  getPlacesByDistrict(district: string):Observable<any> {
+    const url = `http://10.10.10.114/web/district?district=West Tripura`;
+    return this.http.get<any>(url);
+  }
+
+  // getDistrictList(): Observable<any> {
+  //   return this.http.get<any>('http://10.10.10.114/web/district',);
+  // }
+
+  getDistrictDetails(urlParams: any): Observable<any> {
+    return this.http.get<any>('http://10.10.10.114/web/district',{
+      params: urlParams,
+    });
+  }
 }

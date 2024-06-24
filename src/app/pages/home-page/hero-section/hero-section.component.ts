@@ -4,21 +4,31 @@ import { MatButton } from '@angular/material/button';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { DataPlacesService } from '../../data-places.service';
 import { HttpClientModule } from '@angular/common/http';
+import { LoginService } from '../../authentication/login/login.service';
+import { LoginComponent } from '../../authentication/login/login.component';
+import { MatDialog } from '@angular/material/dialog';
+import { CommonModule } from '@angular/common';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-details',
   standalone: true,
-  imports: [MatButton, RouterLink, HttpClientModule],
+  imports: [MatButton, RouterLink, HttpClientModule, CommonModule, MatIcon],
   templateUrl: './hero-section.component.html',
   styleUrl: './hero-section.component.scss',
 })
 export class HeroSectionComponent implements OnInit {
   datas: any;
   heroId: any;
+  daysOfWeek: string[] = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+
+
   constructor(
     private dataService: DataPlacesService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    public loginService: LoginService,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -26,8 +36,27 @@ export class HeroSectionComponent implements OnInit {
       this.heroId = params.get('id');
     });
     console.log(this.heroId);
-    // Alternatively, use HeroService to get the id
     this.getPlaceIdWise();
+  }
+  scroll(direction: number): void {
+    const container = document.querySelector('.slider') as HTMLElement;
+    if (container) {
+      const amount = direction * 120; 
+      container.scrollLeft += amount;
+    }
+  }
+  showLoginDialog(): void {
+    const dialogRef = this.dialog.open(LoginComponent, {
+      width: '300px',
+      data: {}
+    });
+
+    dialogRef.afterClosed().subscribe((result: any) => { // Explicitly type 'result' as 'any'
+      console.log("the dialog closed");
+      if(result === 'success') {
+        this.router.navigate(['/booknow']);
+      }
+    });
   }
 
   getPlaceIdWise(): void {
@@ -36,10 +65,10 @@ export class HeroSectionComponent implements OnInit {
     }
     this.dataService.getDataWithId(urlParam).subscribe(
       (success) => {
-        console.log(success)
-        // console.log(places)
+        console.log(success);
+        // this.datas = success.result.filter((spot: any) => spot._id === urlParam.spotId)[0];
         this.datas = success.result[0];
-        console.log(this.datas)
+       
       },
       (error) => {
         console.error('Error fetching place details', error);

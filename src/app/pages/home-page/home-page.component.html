@@ -25,13 +25,19 @@
       </p>
       <form>
         <span class="searchSpan">
-          <input type="search" [(ngModel)]="searchTerm" [ngModelOptions]="{standalone: true}" placeholder="Search" (input)="search()"/>
-          <span class="material-symbols-outlined search" (click)="search()">search</span>
+          <input
+            type="search"
+            [(ngModel)]="searchTerm"
+            [ngModelOptions]="{ standalone: true }"
+            placeholder="Search"
+            (input)="search()"
+          />
+          <span class="material-symbols-outlined search" (click)="search()"
+            >search</span
+          >
         </span>
       </form>
       <app-places-list filteredItems="filteredItems"></app-places-list>
-
-
     </div>
 
     <div class="imageFront">
@@ -55,62 +61,14 @@
   </section>
 
   <section class="districtGrid" #districtGrid>
-    <mat-card class="card">
-      <img
-        mat-card-lg-image
-        src="https://www.myindiamyglory.com/wp-content/uploads/2017/09/Chobimura-Sculpture-Cover.jpg"
-        alt="logo"
-      />
-      <div class="imageOverlay">
-        <h5>South</h5>
-      </div>
-    </mat-card>
-
-    <mat-card class="card">
-      <img
-        mat-card-lg-image
-        src="https://www.tripuraindia.in/assets/upload_images/news_images/udaipur-matabari-700-tripura-india2.jpg"
-        alt="logo"
-      />
-      <div class="imageOverlay">Gomati</div>
-    </mat-card>
-
-    <mat-card class="card">
-      <img
-        mat-card-lg-image
-        src="https://i.ytimg.com/vi/958m6F5s5a8/maxresdefault.jpg"
-        alt="logo"
-      />
-      <div class="imageOverlay">Sepahijala</div>
-    </mat-card>
-  </section>
-
-  <section class="districtGrid">
-    <mat-card class="card">
-      <img
-        mat-card-lg-image
-        src="https://hblimg.mmtcdn.com/content/hubble/img/tvdestinationimages/mmt/activities/m_Agartala_tv_destination_img_7_l_750_1000.jpg"
-        alt="logo"
-      />
-      <div class="imageOverlay">West Tripura</div>
-    </mat-card>
-    <mat-card class="card">
-      <img
-        mat-card-lg-image
-        src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Unakoti_3.jpg/800px-Unakoti_3.jpg"
-        alt="logo"
-      />
-      <div class="imageOverlay">Unakoti</div>
-    </mat-card>
-
-    <mat-card class="card">
-      <img
-        mat-card-lg-image
-        src="https://pincodepostal.in/wp-content/uploads/2023/09/Dhalai.webp"
-        alt="logo"
-      />
-      <div class="imageOverlay">Dhalai</div>
-    </mat-card>
+    <div *ngFor="let district of districtShow">
+      <mat-card class="card" (click)="onClickDistrict(district.value)">
+        <img mat-card-lg-image [src]="district.img" alt="District Image" />
+        <div class="imageOverlay">
+          <h5>{{ district.name }}</h5>
+        </div>
+      </mat-card>
+    </div>
   </section>
 
   <section class="middle">
@@ -131,86 +89,19 @@
       <img src="assets/five.png" alt="" />
     </div>
     <div class="rightDiv">
-      @for(data of datas; track data){
-       
+      <div class="box">
+        <div>
+          <div class="one">
+            <img src="assets/five.png" alt="img" />
+          </div>
+          <div class="two"><img src="assets/five.png" alt="img" /></div>
+        </div>
 
-      <div class="box" id="divOne">
-        <mat-card>
-          <img
-            mat-card-image
-            src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-            alt="Photo of a Shiba Inu"
-          />
-          <mat-card-header>
-            <mat-card-title>Actions Buttons</mat-card-title>
-            <mat-card-subtitle>Start</mat-card-subtitle>
-          </mat-card-header>
-          <mat-card-content
-            >Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat
-            beatae consequuntur nesciunt veniam laboriosam, facilis, illo labore
-            dolore dolorem, asperiores velit similique? repudiandae
-            reprehenderit quod unde?</mat-card-content
-          >
-          <mat-card-actions>
-            <button mat-button>LIKE</button>
-            <button mat-button>SHARE</button>
-          </mat-card-actions>
-        </mat-card>
-        <br />
+        <!-- <div class="three">
+            <img src="assets/five.png" alt="img"/>
+          </div> -->
       </div>
-
-      <div class="box" id="divTwo">
-        <mat-card>
-          <img
-            mat-card-image
-            [src]="data.images[0]?.link"
-            alt="Photo of a Shiba Inu"
-          />
-          <mat-card-header>
-            <mat-card-title>Actions Buttons</mat-card-title>
-            <mat-card-subtitle>Start</mat-card-subtitle>
-          </mat-card-header>
-          <mat-card-content
-            >Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat
-            beatae consequuntur nesciunt veniam laboriosam, facilis, illo labore
-            dolore dolorem, asperiores velit similique? repudiandae
-            reprehenderit quod unde?</mat-card-content
-          >
-          <mat-card-actions>
-            <button mat-button>LIKE</button>
-            <button mat-button>SHARE</button>
-          </mat-card-actions>
-        </mat-card>
-        <br />
-      </div>
-
-      <div class="box" id="divThree">
-        <mat-card>
-          <img
-            mat-card-image
-            src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-            alt="Photo of a Shiba Inu"
-          />
-          <mat-card-header>
-            <mat-card-title>Actions Buttons</mat-card-title>
-            <mat-card-subtitle>Start</mat-card-subtitle>
-          </mat-card-header>
-          <mat-card-content
-            >Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat
-            beatae consequuntur nesciunt veniam laboriosam, facilis, illo labore
-            dolore dolorem, asperiores velit similique? repudiandae
-            reprehenderit quod unde?</mat-card-content
-          >
-          <mat-card-actions>
-            <button mat-button>LIKE</button>
-            <button mat-button>SHARE</button>
-          </mat-card-actions>
-        </mat-card>
-        <br />
-      </div>
-    }
     </div>
-  
   </section>
 
   <section class="middle">
@@ -225,7 +116,7 @@
     </h1>
   </section>
 
-  <section>
+  <!-- <section>
     <div class="homePageGrid">
       @for(data of datas; track data){
       <mat-card>
@@ -238,13 +129,18 @@
           <p>{{ data.description.slice(0, 80) }}</p>
         </mat-card-content>
         <mat-card-actions class="btn">
-          <button mat-button (click)="onClickPlaces(data._id)" routerLinkActive="router-link-active" >Book Now</button>
+          <button
+            mat-button
+            (click)="onClickPlaces(data._id)"
+            routerLinkActive="router-link-active"
+          >
+            Book Now
+          </button>
         </mat-card-actions>
       </mat-card>
       }
 
       <br />
     </div>
-
-  </section>
+  </section> -->
 </section>

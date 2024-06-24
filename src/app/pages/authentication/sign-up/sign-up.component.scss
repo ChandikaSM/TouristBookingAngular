@@ -153,4 +153,13 @@
   
   }
   
-  
+  // login
+  .loginDiv {
+    display: flex;
+    justify-content: center;
+    background: grey;
+    margin-bottom: 2rem;
+    .loginButton {
+      background: orange;
+    }
+  }

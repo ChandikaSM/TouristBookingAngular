@@ -1,22 +1,109 @@
 <section class="bookNow">
-    <div class="formField">
-      <div class="name">
-        <mat-label> Name: </mat-label>
-        <input mat-input type="text" />
-      </div>
-  
-      <div class="mobile">
-        <mat-label> Mobile: </mat-label>
-        <input mat-input type="number" />
-      </div>
-  
-      <div class="email">
-        <mat-label> Email </mat-label>
-        <input mat-input type="email" />
-      </div>
-  
-      <!-- <div class="date">
+  <!-- <div class="example-input-wrapper">
+    <label for="duration">Animation duration:</label>
+    <input id="duration" value="2000" type="number" min="0" step="100" #duration>
+  </div> -->
+
+  <mat-vertical-stepper [linear]="false" #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Fill out your name</ng-template>
         <mat-form-field>
+          <input
+            matInput
+            placeholder="First name - Last name"
+            formControlName="firstCtrl"
+            required
+          />
+        </mat-form-field>
+        <div>
+          <button
+            mat-button
+            matStepperNext
+            [disabled]="!isFormValid(firstFormGroup)"
+          >
+            Next
+          </button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup">
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Fill out your Number</ng-template>
+        <mat-form-field>
+          <input
+            matInput
+            placeholder="Phone Number"
+            formControlName="secondCtrl"
+            required
+          />
+        </mat-form-field>
+        <div>
+          <button
+            mat-button
+            matStepperNext
+            [disabled]="!isFormValid(secondFormGroup)"
+          >
+            Next
+          </button>
+        </div>
+        <!-- <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div> -->
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="thirdFormGroup">
+      <form [formGroup]="thirdFormGroup">
+        <ng-template matStepLabel>Fill out your Email</ng-template>
+        <mat-form-field>
+          <input
+            matInput
+            placeholder="xlayer@gmail.com"
+            formControlName="thirdCtrl"
+            required
+          />
+        </mat-form-field>
+        <div>
+          <button
+            mat-button
+            matStepperNext
+            [disabled]="!isFormValid(thirdFormGroup)"
+          >
+            Next
+          </button>
+        </div>
+        <!-- <div>
+          <button mat-button matStepperPrevio <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Fill out your name</ng-template>
+        <mat-form-field>
+          <input matInput placeholder="First name - Last name" formControlName="firstCtrl" required>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form> <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Fill out your name</ng-template>
+        <mat-form-field>
+          <input matInput placeholder="First name - Last name" formControlName="firstCtrl" required>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+          <button mat-button matStepperNext>Next</button>
+        </div> -->
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="fourthFormGroup">
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Choose Your Date:</ng-template>
+        <mat-form-field class="example-full-width">
           <mat-label>Choose a date</mat-label>
           <input matInput [matDatepicker]="picker" />
           <mat-hint>MM/DD/YYYY</mat-hint>
@@ -25,15 +112,122 @@
           </mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
-      </div> -->
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+        <!-- <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div> -->
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="fifthFormGroup">
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Select:</ng-template>
+        <div class="space">
+          <h5>Child</h5>
+          <span class="quantity">
+            <span
+              class="material-symbols-outlined"
+              id="childRemove"
+              (click)="decreaseChildQuantity()"
+            >
+              remove
+            </span>
+            <span>{{ childQuantity }}</span>
+            <span
+              class="material-symbols-outlined"
+              id="childAdd"
+              (click)="increaseChildQuantity()"
+            >
+              add
+            </span>
+          </span>
+          <h5>Adult</h5>
+
+          <span class="quantity">
+            <span
+              class="material-symbols-outlined"
+              id="adultRemove"
+              (click)="decreaseAdultQuantity()"
+            >
+              remove
+            </span>
+            <span>{{ adultQuantity }}</span>
+            <span
+              class="material-symbols-outlined"
+              id="adultAdd"
+              (click)="increaseAdultQuantity()"
+            >
+              add
+            </span>
+          </span>
+        </div>
+
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      You are now done.
+      <div class="snack">
+        <button mat-stroked-button (click)="snackBar()">Next</button>
+      </div>
+    </mat-step>
+  </mat-vertical-stepper>
+
+  <!-- <div class="formField">
+      <mat-form-field>add
+
+        <mat-label>Name</mat-label>
+        <input matInput>
+      </mat-form-field>
   
-      <div>
-        {{ "date" }}
+      <div class="mobile">
+        <mat-label> Mobile: </mat-label>
+        <input mat-input type="number" /> <mat-step [stepControl]="thirdFormGroup">
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Fill out your Email</ng-template>
+        <mat-form-field>
+          <input matInput placeholder="xlayer@gmail.com" formControlName="secondCtrl" required>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+      </div>
+  
+      <div class="email">
+        <mat-label> Email </mat-label>
+        <input mat-input type="email" />
+      </div>
+  
+     <div class="date">
+
+     </div>
+  
+      <div class="date">
+        <mat-form-field class="example-full-width">
+          <mat-label>Choose a date</mat-label>
+          <input matInput [matDatepicker]="picker">
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matIconSuffix [for]="picker">
+            <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+          </mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
       </div>
       <div class="select">
         select:
         <div class="space">
-          child
+          <h5>child</h5>
         <span class="quantity">
             <span
               class="material-symbols-outlined"
@@ -51,18 +245,25 @@
               add
             </span>
           </span> 
+          <h5>Adult</h5>
   
-          Adult
-          <!-- <span class="quantity">
-                      
-                      <span class="material-symbols-outlined" id="adultRemove" (click)="adultQuantity()">
-                          remove
-                          </span>
-                      <span>{{adultQuantity}}</span>
-                      <span class="material-symbols-outlined" id="adultAdd" (click)="adultQuantity()">
-                          add
-                          </span>
-                  </span> -->
+          <span class="quantity">
+            <span
+              class="material-symbols-outlined"
+              id="adultRemove"
+              (click)="decreaseAdultQuantity()"
+            >
+              remove
+            </span>
+            <span>{{ adultQuantity }}</span>
+            <span
+              class="material-symbols-outlined"
+              id="adultAdd"
+              (click)="increaseAdultQuantity()"
+            >
+              add
+            </span>
+          </span> 
         </div>
   
         <hr />
@@ -79,5 +280,5 @@
           
         </button>
       </div>
-    </div>
-  </section>
+    </div> -->
+</section>

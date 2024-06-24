@@ -3,7 +3,7 @@
     <div class="mainImage">
       <img [src]="datas?.images[1]?.link" alt="Main Image" />
     </div>
-    <div class="innerDiv flex-reverse">
+    <div class="innerDiv">
       <img [src]="datas?.images[0]?.link" alt="Image 2" />
       <img [src]="datas?.images[2]?.link" alt="Image 3" />
     </div>
@@ -11,47 +11,114 @@
 
   <div class="detailsHeading">
     <h1>{{ datas.name }}</h1>
-    <span>
-      <h3>{{ datas.location }}</h3>
-      <span>{{datas.rating}}</span>
+    <span class="allign">
+      <span class="material-symbols-outlined">
+        location_on
+        </span>
+      <h3>{{ datas.location }}
+        <div class="district">
+          District:
+          {{datas.district}}
+        </div>
+      </h3>
+    
     </span>
-
+    <div>
+      
+      <span class="category">Category: {{datas.category}}</span>
+    </div>
     <p>{{ datas.description }}</p>
     
-    <div>
-      <div style="display: flex; justify-content: space-around">
-        <span>Adult: {{ datas.entry_fee.adult }}</span>
-        <span>Child: {{ datas.entry_fee.child }}</span>
+    <div class="taggingSpan">
+      <h4>Entry Fee:</h4>
+      <div class="ticket">
+        <span class="btnNot">
+          Adult: 
+          <h2>{{ datas.entry_fee.adult }}</h2>
+        </span>
+        <span class="btnNot">Child: 
+          <h2>
+            {{ datas.entry_fee.child }}
+          </h2>
+        </span>
+       
       </div>
-      <span>Visiting hours</span>
-      <div>
-        Monday: {{ datas.visiting_hours.monday }}
+      <div class="available">
+        <h4>Available Capacity: </h4>
+        <span class="capacity">{{datas.available_capacity}}</span>
       </div>
-      <div>
-        Tuesday: {{ datas.visiting_hours.tuesday }}
+      <div class="hours">
+        Visiting hours
+
+
+       <!-- <div class="listWiseTiming">
+        <span class="timing">
+          <span class="day">Monday</span>
+          <span> {{ datas.visiting_hours.monday }}</span>
+          
+        </span>
+
+        <span class="timing">
+          <span class="day">Tuesday</span>
+          <span> {{ datas.visiting_hours.tuesday}}</span>
+          
+        </span>
+
+        <span class="timing">
+          <span class="day">Wednesday</span>
+          <span> {{ datas.visiting_hours.wednesday }}</span>
+          
+        </span>
+
+       </div> -->
+       <!-- <div class="listWiseTiming">
+        <div class="slider-container">
+          <div class="slider">
+            <span class="timing" *ngFor="let day of daysOfWeek">
+              <span class="day">{{ day }}</span>
+              <span>{{ datas.visiting_hours[day.toLowerCase()] }}</span>
+            </span>
+          </div>
+        </div>
+      </div> -->
+      <div class="slider-container">
+        <button class="arrow left" (click)="scroll(-1)">
+          <mat-icon>keyboard_arrow_left</mat-icon>
+        </button>
+        <div class="slider">
+          <div class="timing" *ngFor="let day of daysOfWeek">
+            <span class="day">{{ day }}</span>
+            <span>{{ datas.visiting_hours[day.toLowerCase()] }}</span>
+          </div>
+        </div>
+        <button class="arrow right" (click)="scroll(1)">
+          <mat-icon>keyboard_arrow_right</mat-icon>
+        </button>
       </div>
-      <div>
-        Wednesday: {{ datas.visiting_hours.wednesday }}
+      
+
       </div>
-      <div>
-        Thursday: {{ datas.visiting_hours.thursday }}
-      </div>
-      <div>
-        Friday: {{ datas.visiting_hours.friday }}
-      </div>
-      <div>
-        Saturday: {{ datas.visiting_hours.saturday }}
-      </div>
-      <div>
-        Sunday: {{ datas.visiting_hours.sunday }}
-      </div>
+     
     </div>
     
-    <div style="display: flex; justify-content: center">
-      <button mat-button class="btn" [routerLink]="['/booknow']" routerLinkActive="router-link-active">
+    <div class="buttonDiv">
+      <button mat-button class="btn"  [routerLink]="['/booknow']" routerLinkActive="router-link-active">
         Book Now
       </button>
     </div>
+
+    <!-- <div class="buttonDiv">
+      <button mat-button class="btn" *ngIf="loginService.getIsLoggedIn(); else loginDialog" [routerLink]="['/booknow']" routerLinkActive="router-link-active">
+        Book Now
+      </button>
+    </div>
+    
+    <ng-template #loginDialog>
+      <button mat-button class="btn" (click)="showLoginDialog()">
+        Login to Book Now
+      </button>
+    </ng-template> -->
+    
     <br />
   </div>
 </section> 
