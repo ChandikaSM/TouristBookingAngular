@@ -1,146 +1,143 @@
-<section class="homePage">
-  <section class="flex">
-    <div class="aboutTripura">
-      <section class="middle">
-        <h1>
-          <span style="color: #518117">T</span>
-          <span style="color: #067c67">R</span>
-          <span style="color: #0e538d">I</span>
-          <span style="color: #874784">P</span>
-          <span style="color: #f48c18">U</span>
-          <span style="color: #d12150">R</span>
-          <span style="color: #0e538d">A</span>
-        </h1>
-      </section>
-      <h4>Located in INDIA</h4>
-      <p>
-        Tripura is a state in Northeast India. The third-smallest state in the
-        country, it covers 10,491 km square. It is the seventh-least populous
-        state with a population of 3.67 million. It is bordered by Assam and
-        Mizoram to the east and by Bangladesh to the North, south and west.
-        Tripura is divided into 8 districts and 23 sub-divisions, where Agartala
-        is the capital and the largest city in the state. Tripura has 19
-        different tribal communities with a majority Bengali population.
-        Bengali, English and kokborok are the state's official languages.
-      </p>
-      <form>
-        <span class="searchSpan">
-          <input
-            type="search"
-            [(ngModel)]="searchTerm"
-            [ngModelOptions]="{ standalone: true }"
-            placeholder="Search"
-            (input)="search()"
-          />
-          <span class="material-symbols-outlined search" (click)="search()"
-            >search</span
-          >
-        </span>
-      </form>
-      <app-places-list filteredItems="filteredItems"></app-places-list>
-    </div>
-
-    <div class="imageFront">
-      <img src="assets/one.png" alt="img" />
-    </div>
-    <div class="behindDiv">
-      <img src="assets/back.png" alt="img" />
-    </div>
-  </section>
-
-  <section class="middle">
-    <h1>
-      <span style="color: #518117">D</span>
-      <span style="color: #067c67">I</span>
-      <span style="color: #0e538d">S</span>
-      <span style="color: #874784">T</span>
-      <span style="color: #f48c18">R</span>
-      <span style="color: #d12150">I</span>
-      <span style="color: #0e538d">CT</span>
-    </h1>
-  </section>
-
-  <section class="districtGrid" #districtGrid>
-    <div *ngFor="let district of districtShow">
-      <mat-card class="card" (click)="onClickDistrict(district.value)">
-        <img mat-card-lg-image [src]="district.img" alt="District Image" />
-        <div class="imageOverlay">
-          <h5>{{ district.name }}</h5>
-        </div>
-      </mat-card>
-    </div>
-  </section>
-
-  <section class="middle">
-    <h1>
-      <span style="color: #518117">Ex</span>
-      <span style="color: #067c67">Pl</span>
-      <span style="color: #0e538d">o</span>
-      <span style="color: #874784">re</span>
-      <span style="color: #f48c18">Tr</span>
-      <span style="color: #d12150">ipu</span>
-      <span style="color: #0e538d">ra</span>
-    </h1>
-  </section>
-
-  <section class="explore">
-    <div class="sideDiv">
-      <img src="assets/images.png" class="imgOverlay" />
-      <img src="assets/five.png" alt="" />
-    </div>
-    <div class="rightDiv">
-      <div class="box">
-        <div>
-          <div class="one">
-            <img src="assets/five.png" alt="img" />
-          </div>
-          <div class="two"><img src="assets/five.png" alt="img" /></div>
-        </div>
-
-        <!-- <div class="three">
-            <img src="assets/five.png" alt="img"/>
-          </div> -->
+<section class="overAllHomepage">
+  <section class="homePage">
+    <section class="flexItems">
+      <div class="aboutTripura">
+        <section class="middle">
+          <h1>
+            <span style="color: #518117">T</span>
+            <span style="color: #067c67">R</span>
+            <span style="color: #0e538d">I</span>
+            <span style="color: #874784">P</span>
+            <span style="color: #f48c18">U</span>
+            <span style="color: #d12150">R</span>
+            <span style="color: #0e538d">A</span>
+          </h1>
+        </section>
+        <h4>Located in INDIA</h4>
+        <p class="para">
+          Tripura is a state in Northeast India. The third-smallest state in the
+          country, it covers 10,491 km square. It is the seventh-least populous
+          state with a population of 3.67 million. It is bordered by Assam and
+          Mizoram to the east and by Bangladesh to the North, south and west.
+          Tripura is divided into 8 districts and 23 sub-divisions, where Agartala
+          is the capital and the largest city in the state. Tripura has 19
+          different tribal communities with a majority Bengali population.
+          Bengali, English and kokborok are the state's official languages.
+        </p>
+        <form>
+          <span class="searchSpan">
+            <input
+              type="search"
+              [(ngModel)]="searchTerm"
+              [ngModelOptions]="{ standalone: true }"
+              placeholder="Search"
+              (input)="search()"
+            />
+            <span class="material-symbols-outlined search" (click)="search()"
+              >search</span
+            >
+          </span>
+        </form>
+        <app-places-list filteredItems="filteredItems"></app-places-list>
       </div>
-    </div>
+  
+      <div class="imageFront">
+        <img src="assets/one.png" alt="img" />
+      </div>
+    
+    </section>
+  
+    <section class="middle">
+      <h1>
+        <span style="color: #518117">D</span>
+        <span style="color: #067c67">I</span>
+        <span style="color: #0e538d">S</span>
+        <span style="color: #874784">T</span>
+        <span style="color: #f48c18">R</span>
+        <span style="color: #d12150">I</span>
+        <span style="color: #0e538d">CT</span>
+      </h1>
+    </section>
+  
+    <section class="districtGrid" #districtGrid>
+        <div class="behindDiv">
+        <img src="assets/back.png" alt="img" class="backImage"/>
+      </div>
+      <div *ngFor="let district of districtShow">
+        <mat-card class="card" (click)="onClickDistrict(district.value)">
+          <img mat-card-lg-image [src]="district.img" alt="District Image" />
+          <div class="imageOverlay">
+            <h5>{{ district.name }}</h5>
+          </div>
+        </mat-card>
+      </div>
+    </section>
+  
+    <section class="middle">
+      <h1>
+        <span style="color: #518117">Ex</span>
+        <span style="color: #067c67">Pl</span>
+        <span style="color: #0e538d">o</span>
+        <span style="color: #874784">re</span>
+        <span style="color: #f48c18">Tr</span>
+        <span style="color: #d12150">ipu</span>
+        <span style="color: #0e538d">ra</span>
+      </h1>
+    </section>
+  
+    <section class="explore">
+      <div class="sideDiv">
+        <img src="assets/images.png" class="imgOverlay" />
+        <img src="assets/five.png" class="imgOne"/>
+      </div>
+      <div class="rightDiv">
+        <div class="box">
+            
+  <app-slider></app-slider>
+         
+        </div>
+      </div>
+    </section>
+  
+    <section class="middle">
+      <h1>
+        <span style="color: #518117">Most </span>
+        <span style="color: #067c67">Vi</span>
+        <span style="color: #0e538d">si</span>
+        <span style="color: #874784">t</span>
+        <span style="color: #f48c18">ed </span>
+        <span style="color: #d12150">pla</span>
+        <span style="color: #0e538d">ces</span>
+      </h1>
+    </section>
+  
+    <section>
+      <div class="homePageGrid">
+        @for(data of datas; track data){
+        <mat-card>
+          <img mat-card-image [src]="data.images[0]?.link" alt="Photo" />
+          <mat-card-header>
+            <mat-card-title>{{ data.name }}</mat-card-title>
+            <mat-card-subtitle>{{ data.category }}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <p>{{ data.description.slice(0, 80) }}</p>
+          </mat-card-content>
+          <mat-card-actions class="btn">
+            <button
+              mat-button
+              (click)="onClickPlaces(data._id)"
+              routerLinkActive="router-link-active"
+            >
+              Book Now
+            </button>
+          </mat-card-actions>
+        </mat-card>
+        }
+  
+        <br />
+      </div>
+    </section>
   </section>
-
-  <section class="middle">
-    <h1>
-      <span style="color: #518117">Most </span>
-      <span style="color: #067c67">Vi</span>
-      <span style="color: #0e538d">si</span>
-      <span style="color: #874784">t</span>
-      <span style="color: #f48c18">ed </span>
-      <span style="color: #d12150">pla</span>
-      <span style="color: #0e538d">ces</span>
-    </h1>
-  </section>
-
-  <!-- <section>
-    <div class="homePageGrid">
-      @for(data of datas; track data){
-      <mat-card>
-        <img mat-card-image [src]="data.images[0]?.link" alt="Photo" />
-        <mat-card-header>
-          <mat-card-title>{{ data.name }}</mat-card-title>
-          <mat-card-subtitle>{{ data.category }}</mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-content>
-          <p>{{ data.description.slice(0, 80) }}</p>
-        </mat-card-content>
-        <mat-card-actions class="btn">
-          <button
-            mat-button
-            (click)="onClickPlaces(data._id)"
-            routerLinkActive="router-link-active"
-          >
-            Book Now
-          </button>
-        </mat-card-actions>
-      </mat-card>
-      }
-
-      <br />
-    </div>
-  </section> -->
+  
 </section>

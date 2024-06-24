@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { HomePageService } from './home-page.service';
@@ -9,13 +9,13 @@ import { DataPlacesService } from '../data-places.service';
 import { FormsModule } from '@angular/forms';
 import { MatChip, MatChipSet } from '@angular/material/chips';
 import { PlacesListComponent } from './search/places-list/places-list.component';
-
+import { SliderComponent } from '../slider/slider.component';
 interface districtStatic {
   img: string;
   name: string;
   value: string;
 }
-
+declare var $: any; 
 @Component({
   selector: 'app-home-page',
   standalone: true,
@@ -28,6 +28,7 @@ interface districtStatic {
     MatChipSet,
     MatChip,
     PlacesListComponent,
+    SliderComponent
   ],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss',
@@ -82,6 +83,11 @@ export class HomePageComponent implements OnInit {
       location: 'sabroom',
     },
   ];
+  images: string[] = [
+    'assets/five.png',
+    'assets/five.png',
+    'assets/five.png',
+  ];
   filteredItems: any[] = [];
 
   constructor(private dataService: DataPlacesService, public router: Router) {}
@@ -122,4 +128,5 @@ export class HomePageComponent implements OnInit {
     console.log(value);
     this.router.navigate(['/places', location]);
   }
+
 }

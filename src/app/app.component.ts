@@ -5,18 +5,24 @@ import { MatButtonModule } from '@angular/material/button';
 import { LoginService } from './pages/authentication/login/login.service';
 import { CommonModule } from '@angular/common';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatMenu } from '@angular/material/menu';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, MatToolbarModule, RouterLink, MatButtonModule, CommonModule, MatDialogModule],
+  imports: [RouterOutlet, MatToolbarModule, RouterLink, MatButtonModule, CommonModule, MatDialogModule, MatMenu],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
   constructor(public loginService: LoginService, private router: Router, private dialog: MatDialog) {}
   title = 'tourism';
+  showMenu: boolean = false;
    
+   toggleMenu(){
+      this.showMenu = !this.showMenu;
+    
+   }
 
   logout() {
     this.loginService.logout().subscribe(result => {

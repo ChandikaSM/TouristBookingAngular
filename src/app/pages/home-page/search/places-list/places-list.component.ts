@@ -5,7 +5,7 @@ import {MatChipsModule} from "@angular/material/chips"
 @Component({
   selector: 'app-places-list',
   standalone: true,
-  imports: [MatCard, MatCardHeader, MatCardTitle, MatCardContent, MatChipsModule, MatCardFooter, MatCardModule],
+  imports: [MatCard, MatCardHeader, MatCardTitle, MatCardContent, MatChipsModule, MatCardFooter, MatCardModule,],
   templateUrl: './places-list.component.html',
   styleUrl: './places-list.component.scss'
 })

@@ -1,0 +1,11 @@
+<!-- Add to your index.html -->
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+<swiper-container navigation="true" slides-per-view="3" speed="500" loop="true" css-mode="true" pagination="true">
+    <swiper-slide *ngFor="let image of images">
+      <img [src]="image" alt="Slide">
+    </swiper-slide>
+    
+  </swiper-container>
+  

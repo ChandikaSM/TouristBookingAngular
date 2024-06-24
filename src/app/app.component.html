@@ -12,33 +12,61 @@
 
     <div class="spaceAround"></div>
     <div class="spacingElement">
-      <span class="material-symbols-outlined menubar">
+      <span class="material-symbols-outlined menubar" (click)="toggleMenu()">
         menu
         </span>
 
-        <button mat-button routerLink="/">Home</button>
+
+  <button mat-button routerLink="/">Home</button>
  
 
-        <button  mat-button routerLink="/places">Places</button>
+  <button  mat-button routerLink="/places">Places</button>
 
-        <button routerLink='/signup' mat-button routerLinkActive="router-link-active">Signup</button>
+  <button routerLink='/signup' mat-button routerLinkActive="router-link-active">Signup</button>
 <!-- 
-        <button routerLink='/login' mat-button routerLinkActive="router-link-active" (click)="loginService.login()">
-          login
-        </button> -->
+  <button routerLink='/login' mat-button routerLinkActive="router-link-active" (click)="loginService.login()">
+    login
+  </button> -->
 
-        <button *ngIf="!loginService.getIsLoggedIn()" routerLink='/login' mat-button routerLinkActive="router-link-active" (click)="loginService.login()">
-          Login
-        </button>
-        
-        <button *ngIf="loginService.getIsLoggedIn()" mat-button (click)="loginService.logout()">
-          Logout
-        </button>
+  <button *ngIf="!loginService.getIsLoggedIn()" routerLink='/login' mat-button routerLinkActive="router-link-active" (click)="loginService.login()">
+    Login
+  </button>
+  
+  <button *ngIf="loginService.getIsLoggedIn()" mat-button (click)="loginService.logout()">
+    Logout
+  </button>
+  <button mat-button *ngIf="loginService.getIsLoggedIn()" (click)="myAccount()">My Account</button>
+
+     
+
         
 
-        <button mat-button *ngIf="loginService.getIsLoggedIn()" (click)="myAccount()">My Account</button>
+
     </div>
   </mat-toolbar>
+  <div class="menuList" *ngIf="!showMenu">
+    
+    <button mat-button routerLink="/">Home</button>
+   
+  <hr />
+    <button  mat-button routerLink="/places">Places</button>
+     <hr />
+    <button routerLink='/signup' mat-button routerLinkActive="router-link-active">Signup</button>
+  <!-- 
+    <button routerLink='/login' mat-button routerLinkActive="router-link-active" (click)="loginService.login()">
+      login
+    </button> -->
+  <hr/>
+    <button *ngIf="!loginService.getIsLoggedIn()" routerLink='/login' mat-button routerLinkActive="router-link-active" (click)="loginService.login()">
+      Login
+    </button>
+    <hr/>
+    <button *ngIf="loginService.getIsLoggedIn()" mat-button (click)="loginService.logout()">
+      Logout
+    </button>
+    <button mat-button *ngIf="loginService.getIsLoggedIn()" (click)="myAccount()">My Account</button>
+  </div>
+       
 </section>
 
 
