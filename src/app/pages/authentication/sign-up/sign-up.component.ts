@@ -27,21 +27,6 @@ export class SignUpComponent {
       confirm_password: ['', Validators.required]
     });
   }
-  signup() {
-    if(this.signUpForm.valid) {
-      const name = this.signUpForm.value.name;
-      const phone = this.signUpForm.value.phone;
-      const email = this.signUpForm.value.email;
-      const password = this.signUpForm.value.password;
-      const confirm_password = this.signUpForm.value.confirm_password;
-
-
-      // if(email === 'sushmaj2347@gmail.com' && name === 'sushmita' && phone === '6009031334' && password=== "password"){
-      //   this.
-      // }
-    }
-  }
-
   onSubmit(): void {
     if (this.signUpForm.valid) {
       console.log('Form submitted:', this.signUpForm.value);

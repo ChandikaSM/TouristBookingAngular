@@ -1,4 +1,3 @@
-<!-- login.component.html -->
 <div class="modal loginModal">
   <div class="signup-container">
     <div class="img">
@@ -12,29 +11,62 @@
         <form [formGroup]="loginForm" (ngSubmit)="login()">
           <mat-form-field class="full-width">
             <mat-label>Email</mat-label>
-            <input matInput formControlName="email" id="email" type="email" required>
-            <mat-error *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+            <input
+              matInput
+              formControlName="email"
+              id="email"
+              type="email"
+              required
+            />
+            <mat-error
+              *ngIf="
+                loginForm.get('email')?.invalid &&
+                loginForm.get('email')?.touched
+              "
+            >
               Please enter a valid email.
             </mat-error>
           </mat-form-field>
 
           <mat-form-field class="full-width">
             <mat-label>Password</mat-label>
-            <input matInput formControlName="password" id="password" type="password" required>
-            <mat-error *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+            <input
+              matInput
+              formControlName="password"
+              id="password"
+              type="password"
+              required
+            />
+            <mat-error
+              *ngIf="
+                loginForm.get('password')?.invalid &&
+                loginForm.get('password')?.touched
+              "
+            >
               Please enter your password.
             </mat-error>
           </mat-form-field>
 
           <div class="buttonSubmit">
-            <button type="submit" mat-raised-button color="primary" class="submit-button loginButton" [disabled]="loginForm.invalid">
+            <button
+              type="submit"
+              mat-raised-button
+              color="primary"
+              class="submit-button loginButton"
+              [disabled]="loginForm.invalid"
+            >
               Login
             </button>
           </div>
 
           <div class="login-link">
             <span>Don't have an account?</span>
-            <a mat-button routerLink="/signup" routerLinkActive="router-link-active">Signup</a>
+            <a
+              mat-button
+              routerLink="/signup"
+              routerLinkActive="router-link-active"
+              >Signup</a
+            >
           </div>
         </form>
       </div>
