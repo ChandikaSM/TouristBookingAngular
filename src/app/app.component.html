@@ -1,8 +1,7 @@
-<!-- all necessary links are here source:  https://fonts.google.com/icons?selected=Material+Symbols+Outlined:home:FILL@0;wght@400;GRAD@0;opsz@24&icon.size=24&icon.color=%235f6368-->
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-
-
-
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+/>
 
 <section>
   <mat-toolbar class="navBar">
@@ -14,74 +13,97 @@
     <div class="spacingElement">
       <span class="material-symbols-outlined menubar" (click)="toggleMenu()">
         menu
-        </span>
+      </span>
 
+      <button mat-button routerLink="/">Home</button>
 
-  <button mat-button routerLink="/">Home</button>
- 
+      <button mat-button routerLink="/places">Places</button>
 
-  <button  mat-button routerLink="/places">Places</button>
+      <button
+        routerLink="/signup"
+        mat-button
+        routerLinkActive="router-link-active"
+      >
+        Signup
+      </button>
 
-  <button routerLink='/signup' mat-button routerLinkActive="router-link-active">Signup</button>
-<!-- 
-  <button routerLink='/login' mat-button routerLinkActive="router-link-active" (click)="loginService.login()">
-    login
-  </button> -->
+      <button
+        *ngIf="!loginService.getIsLoggedIn()"
+        routerLink="/login"
+        mat-button
+        routerLinkActive="router-link-active"
+        (click)="loginService.login()"
+      >
+        Login
+      </button>
 
-  <button *ngIf="!loginService.getIsLoggedIn()" routerLink='/login' mat-button routerLinkActive="router-link-active" (click)="loginService.login()">
-    Login
-  </button>
-  
-  <button *ngIf="loginService.getIsLoggedIn()" mat-button (click)="loginService.logout()">
-    Logout
-  </button>
-  <button mat-button *ngIf="loginService.getIsLoggedIn()" (click)="myAccount()">My Account</button>
-
-     
-
-        
-
-
+      <button
+        *ngIf="loginService.getIsLoggedIn()"
+        mat-button
+        (click)="loginService.logout()"
+      >
+        Logout
+      </button>
+      <button
+        mat-button
+        *ngIf="loginService.getIsLoggedIn()"
+        (click)="myAccount()"
+      >
+        My Account
+      </button>
     </div>
   </mat-toolbar>
-  <div class="menuList" *ngIf="!showMenu">
-    
+  <div class="menuList" [class.open]="isMenuOpen">
+    <div class="spaceAround"></div>
     <button mat-button routerLink="/">Home</button>
-   
-  <hr />
-    <button  mat-button routerLink="/places">Places</button>
-     <hr />
-    <button routerLink='/signup' mat-button routerLinkActive="router-link-active">Signup</button>
-  <!-- 
-    <button routerLink='/login' mat-button routerLinkActive="router-link-active" (click)="loginService.login()">
-      login
-    </button> -->
-  <hr/>
-    <button *ngIf="!loginService.getIsLoggedIn()" routerLink='/login' mat-button routerLinkActive="router-link-active" (click)="loginService.login()">
+
+    <hr />
+    <button mat-button routerLink="/places">Places</button>
+    <hr />
+    <button
+      routerLink="/signup"
+      mat-button
+      routerLinkActive="router-link-active"
+    >
+      Signup
+    </button>
+    <hr />
+    <button
+      *ngIf="!loginService.getIsLoggedIn()"
+      routerLink="/login"
+      mat-button
+      routerLinkActive="router-link-active"
+      (click)="loginService.login()"
+    >
       Login
     </button>
-    <hr/>
-    <button *ngIf="loginService.getIsLoggedIn()" mat-button (click)="loginService.logout()">
+    <hr />
+    <button
+      *ngIf="loginService.getIsLoggedIn()"
+      mat-button
+      (click)="loginService.logout()"
+    >
       Logout
     </button>
-    <button mat-button *ngIf="loginService.getIsLoggedIn()" (click)="myAccount()">My Account</button>
+    <button
+      mat-button
+      *ngIf="loginService.getIsLoggedIn()"
+      (click)="myAccount()"
+    >
+      My Account
+    </button>
   </div>
-       
 </section>
-
-
 
 <router-outlet></router-outlet>
 
-
 <footer>
   <div class="icons">
-      <span class="innerIcon">
-        <!-- <img src="assets/meta.jpg" class="icon" alt="twitter" /> -->
-        <img src="assets/fb.jpg" class="icon" alt="facebook" />
-        <img src="assets/you.jpg" class="icon" alt="youtube" />
-        <img src="assets/ins.jpg" class="icon" alt="instagram" />
-      </span>
+    <span class="innerIcon">
+      <img src="assets/fb.jpg" class="icon" alt="facebook" />
+      <img src="assets/you.jpg" class="icon" alt="youtube" />
+      <img src="assets/ins.jpg" class="icon" alt="instagram" />
+    </span>
   </div>
   <div class="footerFlex">
     <div>
@@ -115,26 +137,23 @@
         <span> 5th Floor, IT Bhavan Agartala, Tripura 799006 </span>
         <span class="flex">
           <span>
-            <img src="assets/call.jpg" alt="call" class="icon"/>
+            <img src="assets/call.jpg" alt="call" class="icon" />
           </span>
           <span>+91 9233107174</span>
           <span>
-            <img src="assets/call.jpg" alt="call" class="icon"/>
+            <img src="assets/call.jpg" alt="call" class="icon" />
           </span>
           <span>contact&#64;xlayer.in</span>
         </span>
 
-
-          <span class="imgAG">
-            <img src="assets/gp.jpg" alt="call" class="gpAp"/>
-            <img src="assets/app.jpg" alt="call" class="gpAp"/>
-          </span>
-
+        <span class="imgAG">
+          <img src="assets/gp.jpg" alt="call" class="gpAp" />
+          <img src="assets/app.jpg" alt="call" class="gpAp" />
+        </span>
       </p>
     </div>
-
-
-
   </div>
-  <span class="lastCopy">Copyright©xLayer Technologies Private Limited 2024</span>
+  <span class="lastCopy"
+    >Copyright©xLayer Technologies Private Limited 2024</span
+  >
 </footer>

@@ -10,12 +10,13 @@ import { FormsModule } from '@angular/forms';
 import { MatChip, MatChipSet } from '@angular/material/chips';
 import { PlacesListComponent } from './search/places-list/places-list.component';
 import { SliderComponent } from '../slider/slider.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
 interface districtStatic {
   img: string;
   name: string;
   value: string;
 }
-declare var $: any; 
+declare var $: any;
 @Component({
   selector: 'app-home-page',
   standalone: true,
@@ -28,7 +29,8 @@ declare var $: any;
     MatChipSet,
     MatChip,
     PlacesListComponent,
-    SliderComponent
+    SliderComponent,
+    MatPaginatorModule,
   ],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss',
@@ -37,6 +39,8 @@ export class HomePageComponent implements OnInit {
   datas: any[] = [];
   districtList: any;
   searchTerm: string = '';
+  currentPage: number = 1;
+  itemsPerPage: number = 4;
 
   districtShow: districtStatic[] = [
     {
@@ -47,7 +51,7 @@ export class HomePageComponent implements OnInit {
     {
       img: 'https://www.tripuraindia.in/assets/upload_images/news_images/udaipur-matabari-700-tripura-india2.jpg',
       name: 'GOMATI',
-      value: 'Goumati',
+      value: 'Gomati',
     },
     {
       img: 'https://i.ytimg.com/vi/958m6F5s5a8/maxresdefault.jpg',
@@ -71,48 +75,21 @@ export class HomePageComponent implements OnInit {
     },
   ];
 
-  items: any[] = [
-    {
-      id: 1,
-      name: 'ITEM1',
-      location: 'agartala',
-    },
-    {
-      id: 2,
-      name: 'Item2',
-      location: 'sabroom',
-    },
-  ];
-  images: string[] = [
-    'assets/five.png',
-    'assets/five.png',
-    'assets/five.png',
-  ];
+  trackById(index: number, item: any): any {
+    return item.id;
+  }
   filteredItems: any[] = [];
 
   constructor(private dataService: DataPlacesService, public router: Router) {}
 
-  search(): void {
-    if (this.searchTerm.trim() !== '') {
-      console.log(this.searchTerm, 'displaying search item is filtered or not');
-      this.filteredItems = this.items.filter((item) =>
-        item.name.toLowerCase().includes(this.searchTerm.toLowerCase())
-      );
-    } else {
-      this.filteredItems = this.items;
-    }
-  }
-
   ngOnInit(): void {
-    this.filteredItems = this.items;
-    console.log('59', this.filteredItems);
     this.getSpots();
   }
 
   getSpots(): void {
     this.dataService.getData().subscribe(
       (datas: any) => {
-        this.datas = datas.result.slice(0, 6);
+        this.datas = datas.result;
       },
       (error) => {
         console.error('Error fetching  data', error);
@@ -125,8 +102,16 @@ export class HomePageComponent implements OnInit {
   }
 
   onClickDistrict(value: string): void {
-    console.log(value);
-    this.router.navigate(['/places', location]);
+    this.router.navigate(['/places', value]);
   }
-
+  updateItemsPerPage(value: number): void {
+    this.itemsPerPage = value;
+  }
+  onPageChanged(event: any): void {
+    this.currentPage = event.pageIndex + 1;
+  }
+  getDisplayedItems(): any[] {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    return this.datas.slice(startIndex, startIndex + this.itemsPerPage);
+  }
 }

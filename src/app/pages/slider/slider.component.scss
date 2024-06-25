@@ -1,10 +1,15 @@
-swiper-slide{
-    background: pink;
-    // gap: 2rem;
-    width: 100;
+swiper-slide {
+  gap: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
 
-    img{
-        width: 500px;
-        
-    }
+  img {
+    padding: 1rem;
+    margin: 1rem;
+    width: 300px;
+    border-radius: 40px;
+    height: 45vh;
+  }
 }

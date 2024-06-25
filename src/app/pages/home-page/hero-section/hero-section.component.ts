@@ -20,8 +20,15 @@ import { MatIcon } from '@angular/material/icon';
 export class HeroSectionComponent implements OnInit {
   datas: any;
   heroId: any;
-  daysOfWeek: string[] = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-
+  daysOfWeek: string[] = [
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+    'Sunday',
+  ];
 
   constructor(
     private dataService: DataPlacesService,
@@ -35,25 +42,22 @@ export class HeroSectionComponent implements OnInit {
     this.route.paramMap.subscribe((params) => {
       this.heroId = params.get('id');
     });
-    console.log(this.heroId);
     this.getPlaceIdWise();
   }
   scroll(direction: number): void {
     const container = document.querySelector('.slider') as HTMLElement;
     if (container) {
-      const amount = direction * 120; 
+      const amount = direction * 120;
       container.scrollLeft += amount;
     }
   }
   showLoginDialog(): void {
     const dialogRef = this.dialog.open(LoginComponent, {
-      width: '300px',
-      data: {}
+      width: '300px'
     });
 
-    dialogRef.afterClosed().subscribe((result: any) => { // Explicitly type 'result' as 'any'
-      console.log("the dialog closed");
-      if(result === 'success') {
+    dialogRef.afterClosed().subscribe((result: any) => {
+      if (result === 'success') {
         this.router.navigate(['/booknow']);
       }
     });
@@ -61,14 +65,11 @@ export class HeroSectionComponent implements OnInit {
 
   getPlaceIdWise(): void {
     const urlParam = {
-      spotId: this.heroId
-    }
+      spotId: this.heroId,
+    };
     this.dataService.getDataWithId(urlParam).subscribe(
       (success) => {
-        console.log(success);
-        // this.datas = success.result.filter((spot: any) => spot._id === urlParam.spotId)[0];
         this.datas = success.result[0];
-       
       },
       (error) => {
         console.error('Error fetching place details', error);

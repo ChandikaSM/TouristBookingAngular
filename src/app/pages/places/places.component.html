@@ -1,6 +1,5 @@
- <section class="homePageGrid" onchange="onDistrictChange()">
-  @for(data of datas; track data) {
-  <div class="box">
+<section class="homePageGrid" onchange="onDistrictChange()">
+  <div class="box" *ngFor="let data of districtName ? districtList : datas">
     <mat-card>
       <img mat-card-image [src]="data.images[0].link" alt="Photo of place" />
       <mat-card-header>
@@ -20,15 +19,10 @@
       <mat-card-actions style="display: flex; justify-content: center">
         <button mat-button (click)="onClickPlaces(data._id)">
           <span *ngIf="!loading">Details</span>
-          <mat-spinner *ngIf="loading" diameter="20"></mat-spinner>
+          <mat-spinner *ngIf="loading" diameter="32"></mat-spinner>
         </button>
       </mat-card-actions>
     </mat-card>
-
     <br />
   </div>
-  }
-</section> 
-
-
-
+</section>

@@ -49,6 +49,7 @@ export class PlacesComponent implements OnInit {
   loading: boolean = false;
   selectedDistrict: string = '';
   districtName: any;
+  districtList: any[] = [];
 
   trackBy(index: number, data: any): number {
     return data.id;
@@ -62,8 +63,7 @@ export class PlacesComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
-      this.districtName = params.get('location');
-      console.log(this.districtName);
+      this.districtName = params.get('value');
     });
     this.getSpots();
     this.getSpotsDetails();
@@ -72,12 +72,7 @@ export class PlacesComponent implements OnInit {
   getSpots(): void {
     this.dataService.getData().subscribe(
       (datas: any) => {
-        console.log(datas);
         this.datas = datas.result;
-        console.log(
-          'All datas from api line no 68, place.components.ts',
-          datas
-        );
       },
       (error) => {
         console.error('Error fetching  data', error);
@@ -91,7 +86,7 @@ export class PlacesComponent implements OnInit {
     };
     this.dataService.getDistrictDetails(urlParam).subscribe(
       (success: any) => {
-        console.log('success', success);
+        this.districtList = success.result;
       },
       (error) => {
         console.error('Error fetching  data', error);
@@ -102,28 +97,5 @@ export class PlacesComponent implements OnInit {
   onClickPlaces(id: string): void {
     this.loading = true;
     this.router.navigate(['/herodetails', id]);
-  }
-
-  getPlacesByDistrict(district: string): void {
-    this.loading = true;
-    this.dataService.getPlacesByDistrict(district).subscribe(
-      (datas: any) => {
-        this.datas = datas.result;
-        this.loading = false;
-      },
-      (error) => {
-        console.error(`Error fetching ${district} district data`, error);
-        this.loading = false;
-      }
-    );
-  }
-
-  onDistrictChange(district: string): void {
-    this.selectedDistrict = district;
-    if (district === 'Dhalai') {
-      this.getSpots();
-    } else {
-      this.getPlacesByDistrict(district);
-    }
   }
 }
