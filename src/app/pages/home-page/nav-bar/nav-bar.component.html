@@ -15,19 +15,23 @@
 
     <button mat-button (click)="openDialogSign()">Signup</button>
 
-    <button mat-button (click)="myAccount()">My Account</button>
+    <button mat-button (click)="myAccount()">
+      <select class="select">
+        <option>MyStatus</option>
+        <option>Profile</option>
+      </select>
+    </button>
   </div>
 </mat-toolbar>
 <div class="menuList" [class.open]="isMenuOpen">
   <div class="spaceAround"></div>
   <button mat-button routerLink="/" (click)="closeMenu()">Home</button>
-  <hr/>
+  <hr />
   <button mat-button routerLink="/places" (click)="closeMenu()">Places</button>
   <hr />
-  <button mat-button  routerLink="/auth">Signup</button>
-  <hr/>
-  <div *ngIf="isLoggedIn()">
-    <button mat-button (click)="myAccount()">My Account</button>
-    <button mat-button (click)="logOut()">Logout</button>
-  </div>
+
+  <button mat-button routerLink="/auth">Signup</button>
+  <hr />
+  {{ loggedUser?.email }}
+  <button mat-button (click)="logOut()">Log Out</button>
 </div>

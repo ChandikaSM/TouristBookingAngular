@@ -1,4 +1,3 @@
-
 import { Component, HostListener, OnInit, inject } from '@angular/core';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -26,16 +25,18 @@ import { AuthComponent } from './pages/authentication/auth/auth.component';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   isOffline = false;
 
   ngOnInit(): void {
     this.isOffline = !navigator.onLine;
 
     window.addEventListener('online', () => this.handleConnectionChange(true));
-    window.addEventListener('offline', () => this.handleConnectionChange(false));
-  } private handleConnectionChange(online: boolean): void {
+    window.addEventListener('offline', () =>
+      this.handleConnectionChange(false)
+    );
+  }
+  private handleConnectionChange(online: boolean): void {
     this.isOffline = !online;
   }
-
 }

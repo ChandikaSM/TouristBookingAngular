@@ -11,7 +11,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { RouterLink } from '@angular/router';
 import { Router } from '@angular/router';
-import { NavBarComponent } from '../nav-bar/nav-bar.component';
+import { NavBarComponent } from '../home-page/nav-bar/nav-bar.component';
 
 export interface PeriodicElement {
   name: string;
@@ -26,9 +26,10 @@ export interface PeriodicElement {
   downloadUrl: string;
 }
 export interface placeList {
-   name: string;
-   link: string;
-   value: string;
+  id: number;
+  name: string;
+  link: string;
+  value: string;
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
@@ -40,9 +41,9 @@ const ELEMENT_DATA: PeriodicElement[] = [
     price: 78,
     date: new Date('2023-07-12'),
     downloadUrl: 'assets/testing.pdf',
-    checkIn: "yes",
-  checkOut: "yes",
-  status: "pending"
+    checkIn: 'yes',
+    checkOut: 'yes',
+    status: 'pending',
   },
   {
     orderId: 2,
@@ -52,9 +53,9 @@ const ELEMENT_DATA: PeriodicElement[] = [
     price: 89,
     date: new Date('2024-07-12'),
     downloadUrl: 'assets/testing.pdf',
-    checkIn: "yes",
-  checkOut: "yes",
-  status: "pending"
+    checkIn: 'yes',
+    checkOut: 'yes',
+    status: 'pending',
   },
   {
     orderId: 3,
@@ -64,9 +65,9 @@ const ELEMENT_DATA: PeriodicElement[] = [
     price: 90,
     date: new Date('2025-07-12'),
     downloadUrl: 'assets/testing.pdf',
-    checkIn: "yes",
-  checkOut: "yes",
-  status: "pending"
+    checkIn: 'yes',
+    checkOut: 'yes',
+    status: 'pending',
   },
 ];
 @Component({
@@ -85,7 +86,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
     RouterLink,
     MatAutocompleteModule,
     FormsModule,
-    NavBarComponent
+    NavBarComponent,
   ],
   templateUrl: './status-user.component.html',
   styleUrl: './status-user.component.scss',
@@ -106,18 +107,60 @@ export class StatusUserComponent {
   ];
 
   displayPlaces: placeList[] = [
+    { id: 1, name: 'West Tripura', link: 'WEST', value: 'West Tripura' },
     {
-      name: 'West Tripura',
+      id: 2,
+      name: 'South Tripura',
       link: 'SOUTH',
-      value: 'South',
-    }
+      value: 'South Tripura',
+    },
+    {
+      id: 3,
+      name: 'North Tripura',
+      link: 'North',
+      value: 'North Tripura',
+    },
+    {
+      id: 4,
+      name: 'Dhalai',
+      link: 'DHALAI',
+      value: 'Dhalai',
+    },
+    {
+      id: 5,
+      name: 'Sipahijala',
+      link: 'SIPAHIJALA',
+      value: 'Sipahijala',
+    },
+    {
+      id: 6,
+      name: 'Unakoti',
+      link: 'UNAKOTI',
+      value: 'Unakoti',
+    },
+    {
+      id: 7,
+      name: 'Khowai',
+      link: 'Khowai',
+      value: 'Khowai',
+    },
+    {
+      id: 8,
+      name: 'Gomati',
+      link: 'Gomati',
+      value: 'Gomati',
+    },
   ];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
-  filterValue: string = '';
+  filterValue = {
+    name: '',
+    place: '',
+    date: '',
+    price: '',
+  };
   completedItems: PeriodicElement[] = [];
   upComing: PeriodicElement[] = [];
   myControl = new FormControl('');
-  options: string[] = ['One', 'Two', 'Three'];
 
   ngOnInit(): void {
     this.showCompleted();
@@ -138,7 +181,6 @@ export class StatusUserComponent {
   showUpcoming(): void {
     const today = new Date();
     this.upComing = ELEMENT_DATA.filter((item) => item.date > today);
-   
   }
 
   toggleItems(showCompleted: boolean, showUpcoming: boolean): void {
@@ -150,11 +192,26 @@ export class StatusUserComponent {
       this.dataSource.data = ELEMENT_DATA;
     }
   }
+  searchQuery: string = '';
 
-  applyFilter(event: Event): void {
-    event.preventDefault();
-    const filterValue = this.filterValue.trim().toLowerCase();
-    this.dataSource.filter = filterValue;
+  applyFilter(event?: Event): void {
+    if (event) {
+      event.preventDefault();
+    }
+
+    const filterValue = this.searchQuery.trim().toLowerCase();
+
+    if (filterValue) {
+      this.dataSource.data = ELEMENT_DATA.filter(
+        (item) =>
+          item.name.toLowerCase().includes(filterValue) ||
+          item.place.toLowerCase().includes(filterValue) ||
+          item.date.toDateString().toLowerCase().includes(filterValue) ||
+          item.price.toString().toLowerCase().includes(filterValue)
+      );
+    } else {
+      this.dataSource.data = ELEMENT_DATA;
+    }
   }
 
   autoComplete(): void {

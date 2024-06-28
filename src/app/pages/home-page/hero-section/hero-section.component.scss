@@ -203,7 +203,6 @@
   }
 }
 
-
 .slider-container {
   display: flex;
   align-items: center;
@@ -228,7 +227,6 @@
     }
   }
 
- 
   .arrow {
     background: none;
     border: none;
@@ -244,16 +242,16 @@
   }
   .cardBox {
     display: flex;
-  // background: rgb(229, 229, 224);
-  flex-direction: column;
-  justify-content: center;
-  padding: 1rem;
-  margin: 1rem;
-  width: 80px;
-  border-radius: 15px;
-  border: 1px solid rgb(70, 69, 69);
+    // background: rgb(229, 229, 224);
+    flex-direction: column;
+    justify-content: center;
+    padding: 1rem;
+    margin: 1rem;
+    width: 80px;
+    border-radius: 15px;
+    border: 1px solid rgb(70, 69, 69);
 
-    span{
+    span {
       text-align: center;
     }
   }

@@ -1,0 +1,137 @@
+.swiper-container {
+  width: 100%;
+  height: 400px;
+}
+
+.swiper-slide {
+  position: relative;
+  text-align: center;
+}
+
+.bg {
+  width: 100%;
+  height: 50vh;
+  object-fit: cover;
+  background-size: cover;
+  background-image: url("../../../../../public/assets/three.jpg");
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60%;
+    background-color: rgba(0, 0, 0, 0.5);
+    mix-blend-mode: darken;
+  }
+}
+
+.overlay {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  text-align: center;
+  color: rgb(3, 3, 3);
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  .bgCenter {
+    display: flex;
+    justify-content: center;
+    h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+      color: rgb(246, 244, 242);
+    }
+    .searchSpan {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      margin-top: 20px;
+    }
+  }
+  input[type="search"] {
+    padding: 1.4rem;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    margin-left: 10px;
+    width: 50%;
+    border-radius: 1rem;
+  }
+  button {
+    padding: 1.4rem;
+    font-size: 16px;
+    background-color: #b3b4b6;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-radius: 1rem;
+  }
+}
+
+.searchSpan button:hover {
+  background-color: #c1c1c14f;
+}
+
+@media screen and (max-width: 649px) {
+  .bg {
+    width: 100%;
+    height: 50vh;
+    object-fit: cover;
+    background-size: cover;
+    &::before {
+      width: 100%;
+      transform: translateY(-280px);
+      filter: blur(10px);
+      opacity: 0.2;
+      z-index: 0;
+      background: linear-gradient(to bottom, rgba(98, 97, 97, 0) 50%);
+    }
+  }
+  .overlay {
+    top: 30%;
+    .bgCenter {
+      h1 {
+        font-size: 2rem;
+      }
+    }
+    .searchSpan {
+      background-color: rgba(0, 0, 0, 0.1);
+      padding: 1rem;
+      input[type="search"] {
+        width: 70%;
+        padding: 0.8rem;
+      }
+      button {
+        padding: 0.8rem;
+      }
+    }
+  }
+}
+
+mat-option {
+  cursor: pointer;
+}
+
+.search-results {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.column {
+  width: 200px;
+  padding: 10px;
+  margin: 5px;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  text-align: center;
+  color: #000;
+}

@@ -8,19 +8,25 @@ import { MatDialog } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
 import { MatIcon } from '@angular/material/icon';
 import { AuthComponent } from '../../authentication/auth/auth.component';
-import { NavBarComponent } from '../../nav-bar/nav-bar.component';
-interface dates  {
+import { NavBarComponent } from '../nav-bar/nav-bar.component';
+interface dates {
   month: string;
   date: Number;
   day: string;
   selected: boolean;
-
 }
 
 @Component({
   selector: 'app-details',
   standalone: true,
-  imports: [MatButton, RouterLink, HttpClientModule,NavBarComponent, CommonModule, MatIcon],
+  imports: [
+    MatButton,
+    RouterLink,
+    HttpClientModule,
+    NavBarComponent,
+    CommonModule,
+    MatIcon,
+  ],
   templateUrl: './hero-section.component.html',
   styleUrl: './hero-section.component.scss',
 })
@@ -37,32 +43,32 @@ export class HeroSectionComponent implements OnInit {
     'Saturday',
     'Sunday',
   ];
-  dates: dates[]= [{
-    month: 'june',
-    date: 15,
-    day: 'tues',
-    selected: false
-  },
-  {
-    month: 'june',
-    date: 15,
-    day: 'tues',
-    selected: false
-  },
-  {
-    month: 'june',
-    date: 15,
-    day: 'tues',
-    selected: false
-  },
-  {
-    month: 'june',
-    date: 15,
-    day: 'tues',
-    selected: false
-  },
-
-];
+  dates: dates[] = [
+    {
+      month: 'june',
+      date: 15,
+      day: 'tues',
+      selected: false,
+    },
+    {
+      month: 'june',
+      date: 15,
+      day: 'tues',
+      selected: false,
+    },
+    {
+      month: 'june',
+      date: 15,
+      day: 'tues',
+      selected: false,
+    },
+    {
+      month: 'june',
+      date: 15,
+      day: 'tues',
+      selected: false,
+    },
+  ];
 
   constructor(
     private dataService: DataPlacesService,
@@ -84,18 +90,6 @@ export class HeroSectionComponent implements OnInit {
       container.scrollLeft += amount;
     }
   }
-  showLoginDialog(): void {
-    const dialogRef = this.dialog.open(AuthComponent, {
-      width: window.innerWidth < 768 ? '100%' : '1000px',
-   maxWidth: '90%',
-    });
-
-    dialogRef.afterClosed().subscribe((result: any) => {
-      if (result === 'success') {
-        this.router.navigate(['/booknow']);
-      }
-    });
-  }
 
   getPlaceIdWise(): void {
     const urlParam = {
@@ -111,12 +105,7 @@ export class HeroSectionComponent implements OnInit {
     );
   }
   selectDate(selectDate: dates): void {
-    this.dates.forEach(date => date.selected = false);
+    this.dates.forEach((date) => (date.selected = false));
     selectDate.selected = true;
-
   }
-
-
-  }
- 
-
+}

@@ -1,44 +1,94 @@
-
 <section>
   <body>
     <div class="container" active id="container">
-      <div class="form-container sign-up-container" >
+      <div class="form-container sign-up-container">
         <form (ngSubmit)="onSignUp()">
           <h1>Create Account</h1>
-          <input type="text" placeholder="Name" [(ngModel)]="name" name="name" required>
-          <input type="email" placeholder="Email" [(ngModel)]="email" name="email" required>
-          <input type="tel" placeholder="Phone Number" [(ngModel)]="mobile" name="mobile">
-          <input type="text" placeholder="Address" [(ngModel)]="address" name="address">
-            <input type="password" id="password" placeholder="Password" [(ngModel)]="password" name="password" required minlength="8">
-          <input type="password" id="confirmPassword" placeholder="Confirm Password" [(ngModel)]="confirmPassword" name="confirmPassword" required>
-          
+          <input
+            type="text"
+            placeholder="Name"
+            [(ngModel)]="name"
+            name="name"
+            required
+          />
+          <input
+            type="email"
+            placeholder="Email"
+            [(ngModel)]="email"
+            name="email"
+            required
+          />
+          <input
+            type="tel"
+            placeholder="Phone Number"
+            [(ngModel)]="mobile"
+            name="mobile"
+          />
+          <input
+            type="text"
+            placeholder="Address"
+            [(ngModel)]="address"
+            name="address"
+          />
+          <input
+            type="password"
+            id="password"
+            placeholder="Password"
+            [(ngModel)]="password"
+            name="password"
+            required
+            minlength="8"
+          />
+          <input
+            type="password"
+            id="confirmPassword"
+            placeholder="Confirm Password"
+            [(ngModel)]="confirmPassword"
+            name="confirmPassword"
+            required
+          />
+
           <div *ngIf="password !== confirmPassword">
             <div>Passwords do not match.</div>
           </div>
-    
+
           <button type="submit" [disabled]="!passwordMatch()">Sign Up</button>
         </form>
       </div>
-    
-      <div class="form-container sign-in-container" >
+
+      <div class="form-container sign-in-container">
         <form (ngSubmit)="onSignIn(email, password)">
           <h1 (click)="showSignIn()">Sign in</h1>
           <span>or use your account</span>
-          <input type="email" placeholder="Email" [(ngModel)]="email" name="email" required>
-  
-            <input type="password" placeholder="Password" [(ngModel)]="password" name="password" required class="password-input">
-         
-          
+          <input
+            type="email"
+            placeholder="Email"
+            [(ngModel)]="email"
+            name="email"
+            required
+          />
+
+          <input
+            type="password"
+            placeholder="Password"
+            [(ngModel)]="password"
+            name="password"
+            required
+            class="password-input"
+          />
+
           <a href="#">Forgot your password?</a>
           <button type="submit">Sign In</button>
         </form>
       </div>
-    
+
       <div class="overlay-container">
         <div class="overlay">
           <div class="overlay-panel overlay-left">
             <h1>Welcome Back!</h1>
-            <p>To keep connected with us please login with your personal info</p>
+            <p>
+              To keep connected with us please login with your personal info
+            </p>
             <button class="ghost" (click)="showSignIn()">Sign In</button>
           </div>
           <div class="overlay-panel overlay-right">
@@ -49,6 +99,5 @@
         </div>
       </div>
     </div>
-    
   </body>
 </section>

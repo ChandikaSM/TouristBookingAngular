@@ -1,0 +1,28 @@
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+<section class="bg">
+  <div class="overlay">
+    <div class="bgCenter">
+      <h1>Where do you want To go ?</h1>
+    </div>
+    
+    <form class="">
+      <div class="searchSpan">
+        <input
+          type="search"
+          placeholder="Search for a street"
+          [formControl]="control"
+          [matAutocomplete]="auto"
+          class="example-input"
+        />
+        <button type="submit" (click)="searchItem($event)">Search</button>
+      </div>
+      <mat-autocomplete #auto="matAutocomplete">
+        @for (search of filteredSearch | async; track search) {
+        <mat-option [value]="search">{{ search }}</mat-option>
+        }
+      </mat-autocomplete>
+    </form>
+  </div>
+</section>

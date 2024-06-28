@@ -15,9 +15,8 @@ register();
   styleUrl: './slider.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class SliderComponent implements OnInit{
-  constructor(private router: Router, private dataService: DataPlacesService
-  ){}
+export class SliderComponent implements OnInit {
+  constructor(private router: Router, private dataService: DataPlacesService) {}
   images: any[] = [];
   trackById(index: number, item: any): any {
     return item.id;
@@ -25,12 +24,12 @@ export class SliderComponent implements OnInit{
   ngOnInit(): void {
     this.getSpots();
   }
-  
+
   getSpots(): void {
     this.dataService.getData().subscribe(
       (images: any) => {
         this.images = images.result;
-        console.log(images, "images")
+        console.log(images, 'images');
       },
       (error) => {
         console.error('Error fetching  data', error);
@@ -40,6 +39,4 @@ export class SliderComponent implements OnInit{
   onClickPlaces(id: string): void {
     this.router.navigate(['/herodetails', id]);
   }
-  
-  
 }

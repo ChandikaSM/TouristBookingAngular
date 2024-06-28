@@ -5,17 +5,21 @@ import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { DataPlacesService } from '../data-places.service';
 import { MatChip, MatChipSet } from '@angular/material/chips';
-import { PlacesListComponent } from './search/places-list/places-list.component';
-import { SliderComponent } from '../slider/slider.component';
+
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
 import { MatOption } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
-import { MatDatepicker, MatDatepickerModule, MatDatepickerToggleIcon } from '@angular/material/datepicker';
+import {
+  MatDatepicker,
+  MatDatepickerModule,
+  MatDatepickerToggleIcon,
+} from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
-import { NavBgComponent } from '../nav-bg/nav-bg.component';
-import { NavBarComponent } from '../nav-bar/nav-bar.component';
+import { NavBgComponent } from './nav-bg/nav-bg.component';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { SliderComponent } from '../slider/slider.component';
 interface districtStatic {
   img: string;
   name: string;
@@ -36,13 +40,16 @@ declare var $: any;
     CommonModule,
     MatChipSet,
     MatChip,
-    PlacesListComponent,
     SliderComponent,
     MatPaginatorModule,
     MatFormFieldModule,
-    MatSelectModule, CommonModule, MatInputModule, MatDatepickerModule, MatIconModule,
+    MatSelectModule,
+    CommonModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatIconModule,
     NavBgComponent,
-     NavBarComponent
+    NavBarComponent,
   ],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss',
@@ -89,26 +96,26 @@ export class HomePageComponent implements OnInit {
   ];
   displayOption: options[] = [
     {
-      name: 'West Tripura'
+      name: 'West Tripura',
     },
     {
-      name: 'South Tripura'
+      name: 'South Tripura',
     },
     {
-      name: 'North Tripura'
+      name: 'North Tripura',
     },
     {
-      name: 'Unakoti'
+      name: 'Unakoti',
     },
     {
-      name: 'Sepahijala'
+      name: 'Sepahijala',
     },
     {
-      name: 'Gomati'
+      name: 'Gomati',
     },
     {
-      name: 'Khowai'
-    }
+      name: 'Khowai',
+    },
   ];
 
   trackById(index: number, item: any): any {
@@ -149,7 +156,6 @@ export class HomePageComponent implements OnInit {
   getDisplayedItems(): any[] {
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
     return this.datas.slice(startIndex, startIndex + this.itemsPerPage);
-   
   }
 
   decreaseChildQuantity() {

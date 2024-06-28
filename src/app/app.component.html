@@ -4,20 +4,17 @@
 />
 
 <div *ngIf="isOffline" class="offline">
-  <img src="assets/of.png" alt="Offline Image">
+  <img src="assets/of.png" alt="Offline Image" />
   <p>
-    <span class="material-symbols-outlined">
-      wifi_off
-      </span>
-    
-    Currently offline. Please check your internet connection.</p>
+    <span class="material-symbols-outlined"> wifi_off </span>
+
+    Currently offline. Please check your internet connection.
+  </p>
 </div>
 
 <div *ngIf="!isOffline">
   <router-outlet></router-outlet>
 </div>
-
-
 
 <footer>
   <div class="icons">

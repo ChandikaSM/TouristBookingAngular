@@ -67,28 +67,31 @@
         Selected:
 
         <div class="slider-container">
-          <span class="cardBox" *ngFor="let date of dates" [class.selected]="date.selected" (click)="selectDate(date)">
+          <span
+            class="cardBox"
+            *ngFor="let date of dates"
+            [class.selected]="date.selected"
+            (click)="selectDate(date)"
+          >
             <span>
-                  {{date.month}}
+              {{ date.month }}
             </span>
             <span>
-                 {{date.date}}
+              {{ date.date }}
             </span>
             <span>
-                   {{date.day}}
+              {{ date.day }}
             </span>
           </span>
         </div>
-        
       </div>
-
     </div>
 
     <div class="buttonDiv">
       <button
         mat-button
         class="btn"
-        (click)="showLoginDialog()"
+        routerLink="/booknow"
         routerLinkActive="router-link-active"
       >
         Book Now

@@ -12,7 +12,7 @@ export class DataPlacesService {
   constructor(private http: HttpClient) {}
 
   getData(): Observable<any> {
-    if(!navigator.onLine){
+    if (!navigator.onLine) {
       return throwError('Offline');
     }
     return this.http.get<any[]>(`${this.apiUrl}/web/spots`).pipe(
@@ -24,50 +24,54 @@ export class DataPlacesService {
   }
 
   getDataWithId(urlParam: any): Observable<any> {
-    if(!navigator.onLine){
+    if (!navigator.onLine) {
       return throwError('Offline');
     }
-    return this.http.get<any>(`${this.apiUrl}/web/spots`, {
-      params: urlParam,
-    }).pipe(
-      catchError((error: HttpErrorResponse) => {
-        console.error('Error fetching data with ID:', error);
-        return throwError(error);
+    return this.http
+      .get<any>(`${this.apiUrl}/web/spots`, {
+        params: urlParam,
       })
-    );
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          console.error('Error fetching data with ID:', error);
+          return throwError(error);
+        })
+      );
   }
 
-
   getDistrictDetails(urlParams: any): Observable<any> {
-    if(!navigator.onLine){
+    if (!navigator.onLine) {
       return throwError('Offline');
     }
-    return this.http.get<any>(`${this.apiUrl}/web/district`,{
-      params: urlParams,
-    }).pipe(
-      catchError((error: HttpErrorResponse) => {
-        console.error('Error fetching district details:', error);
-        return throwError(error);
+    return this.http
+      .get<any>(`${this.apiUrl}/web/district`, {
+        params: urlParams,
       })
-    );
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          console.error('Error fetching district details:', error);
+          return throwError(error);
+        })
+      );
   }
   searchDistrictsByName(query: string): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/web/search`, {
       params: { name: query },
     });
   }
-  getDistrictId(urlParam: any):Observable<any> {
-    if(navigator.onLine)     {
+  getDistrictId(urlParam: any): Observable<any> {
+    if (navigator.onLine) {
       return throwError('Offline');
     }
-    return this.http.get<any>(`${this.apiUrl}/web/`, {
-      params: urlParam,
-    }).pipe(
-      catchError((error: HttpErrorResponse) => {
-        console.error('Error fetching district details:', error);
-        return throwError(error);
+    return this.http
+      .get<any>(`${this.apiUrl}/web/`, {
+        params: urlParam,
       })
-    );
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          console.error('Error fetching district details:', error);
+          return throwError(error);
+        })
+      );
   }
-  
 }

@@ -11,12 +11,5 @@ export class NavBgService {
   private apiUrl = "http://10.10.10.114/web/search";
 
   constructor(private http: HttpClient) { }
-  // postSearch(): Observable<any>{
-  //   return this.http.post<any[]>(`${this.apiUrl}/search`).pipe(
-  //     catchError((error) => {
-  //       console.error('Error fetching data:', error);
-  //       return throwError(error);
-  //     }
-  //   ))
-  // }
+
 }
