@@ -1,20 +1,29 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { HomePageService } from './home-page.service';
-import { Interface } from './interface';
 import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { DataPlacesService } from '../data-places.service';
-import { FormsModule } from '@angular/forms';
 import { MatChip, MatChipSet } from '@angular/material/chips';
 import { PlacesListComponent } from './search/places-list/places-list.component';
 import { SliderComponent } from '../slider/slider.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
+import { MatOption } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDatepicker, MatDatepickerModule, MatDatepickerToggleIcon } from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { NavBgComponent } from '../nav-bg/nav-bg.component';
+import { NavBarComponent } from '../nav-bar/nav-bar.component';
 interface districtStatic {
   img: string;
   name: string;
   value: string;
+}
+
+interface options {
+  name: string;
 }
 declare var $: any;
 @Component({
@@ -24,13 +33,16 @@ declare var $: any;
     MatButtonModule,
     MatCardModule,
     RouterLink,
-    FormsModule,
     CommonModule,
     MatChipSet,
     MatChip,
     PlacesListComponent,
     SliderComponent,
     MatPaginatorModule,
+    MatFormFieldModule,
+    MatSelectModule, CommonModule, MatInputModule, MatDatepickerModule, MatIconModule,
+    NavBgComponent,
+     NavBarComponent
   ],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss',
@@ -38,9 +50,10 @@ declare var $: any;
 export class HomePageComponent implements OnInit {
   datas: any[] = [];
   districtList: any;
-  searchTerm: string = '';
   currentPage: number = 1;
   itemsPerPage: number = 4;
+  childQuantity = 1;
+  adultQuantity = 1;
 
   districtShow: districtStatic[] = [
     {
@@ -73,6 +86,29 @@ export class HomePageComponent implements OnInit {
       name: 'DHALAI',
       value: 'Dhalai',
     },
+  ];
+  displayOption: options[] = [
+    {
+      name: 'West Tripura'
+    },
+    {
+      name: 'South Tripura'
+    },
+    {
+      name: 'North Tripura'
+    },
+    {
+      name: 'Unakoti'
+    },
+    {
+      name: 'Sepahijala'
+    },
+    {
+      name: 'Gomati'
+    },
+    {
+      name: 'Khowai'
+    }
   ];
 
   trackById(index: number, item: any): any {
@@ -113,5 +149,35 @@ export class HomePageComponent implements OnInit {
   getDisplayedItems(): any[] {
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
     return this.datas.slice(startIndex, startIndex + this.itemsPerPage);
+   
+  }
+
+  decreaseChildQuantity() {
+    console.log('true');
+    if (this.childQuantity > 0) {
+      this.childQuantity--;
+    }
+  }
+  decreaseAdultQuantity() {
+    if (this.adultQuantity > 0) {
+      this.adultQuantity--;
+    }
+  }
+
+  increaseChildQuantity() {
+    console.log('true');
+    if (this.childQuantity < 10) {
+      this.childQuantity++;
+    } else {
+      alert('Maximum Limit Reached');
+    }
+  }
+
+  increaseAdultQuantity() {
+    if (this.adultQuantity < 10) {
+      this.adultQuantity++;
+    } else {
+      alert('max');
+    }
   }
 }

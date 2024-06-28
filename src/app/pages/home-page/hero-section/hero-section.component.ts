@@ -4,22 +4,30 @@ import { MatButton } from '@angular/material/button';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { DataPlacesService } from '../../data-places.service';
 import { HttpClientModule } from '@angular/common/http';
-import { LoginService } from '../../authentication/login/login.service';
-import { LoginComponent } from '../../authentication/login/login.component';
 import { MatDialog } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
 import { MatIcon } from '@angular/material/icon';
+import { AuthComponent } from '../../authentication/auth/auth.component';
+import { NavBarComponent } from '../../nav-bar/nav-bar.component';
+interface dates  {
+  month: string;
+  date: Number;
+  day: string;
+  selected: boolean;
+
+}
 
 @Component({
   selector: 'app-details',
   standalone: true,
-  imports: [MatButton, RouterLink, HttpClientModule, CommonModule, MatIcon],
+  imports: [MatButton, RouterLink, HttpClientModule,NavBarComponent, CommonModule, MatIcon],
   templateUrl: './hero-section.component.html',
   styleUrl: './hero-section.component.scss',
 })
 export class HeroSectionComponent implements OnInit {
   datas: any;
   heroId: any;
+  date: any;
   daysOfWeek: string[] = [
     'Monday',
     'Tuesday',
@@ -29,12 +37,37 @@ export class HeroSectionComponent implements OnInit {
     'Saturday',
     'Sunday',
   ];
+  dates: dates[]= [{
+    month: 'june',
+    date: 15,
+    day: 'tues',
+    selected: false
+  },
+  {
+    month: 'june',
+    date: 15,
+    day: 'tues',
+    selected: false
+  },
+  {
+    month: 'june',
+    date: 15,
+    day: 'tues',
+    selected: false
+  },
+  {
+    month: 'june',
+    date: 15,
+    day: 'tues',
+    selected: false
+  },
+
+];
 
   constructor(
     private dataService: DataPlacesService,
     private route: ActivatedRoute,
     private router: Router,
-    public loginService: LoginService,
     private dialog: MatDialog
   ) {}
 
@@ -52,8 +85,9 @@ export class HeroSectionComponent implements OnInit {
     }
   }
   showLoginDialog(): void {
-    const dialogRef = this.dialog.open(LoginComponent, {
-      width: '300px'
+    const dialogRef = this.dialog.open(AuthComponent, {
+      width: window.innerWidth < 768 ? '100%' : '1000px',
+   maxWidth: '90%',
     });
 
     dialogRef.afterClosed().subscribe((result: any) => {
@@ -76,4 +110,13 @@ export class HeroSectionComponent implements OnInit {
       }
     );
   }
-}
+  selectDate(selectDate: dates): void {
+    this.dates.forEach(date => date.selected = false);
+    selectDate.selected = true;
+
+  }
+
+
+  }
+ 
+

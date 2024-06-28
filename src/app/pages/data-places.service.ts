@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
@@ -7,11 +7,14 @@ import { catchError } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class DataPlacesService {
-  private apiUrl = 'http://10.10.10.114';
+  private apiUrl = 'http://10.10.10.132';
 
   constructor(private http: HttpClient) {}
 
   getData(): Observable<any> {
+    if(!navigator.onLine){
+      return throwError('Offline');
+    }
     return this.http.get<any[]>(`${this.apiUrl}/web/spots`).pipe(
       catchError((error) => {
         console.error('Error fetching data:', error);
@@ -21,29 +24,50 @@ export class DataPlacesService {
   }
 
   getDataWithId(urlParam: any): Observable<any> {
-    return this.http.get<any>('http://10.10.10.114/web/spots', {
+    if(!navigator.onLine){
+      return throwError('Offline');
+    }
+    return this.http.get<any>(`${this.apiUrl}/web/spots`, {
       params: urlParam,
-    });
+    }).pipe(
+      catchError((error: HttpErrorResponse) => {
+        console.error('Error fetching data with ID:', error);
+        return throwError(error);
+      })
+    );
   }
 
-  // getPlacesByDistrict(district: string):Observable<any> {
-  //   const url = `http://10.10.10.114/web/district?district=West Tripura`;
-  //   return this.http.get<any>(url);
-  // }
-
-  // getDistrictList(): Observable<any> {
-  //   return this.http.get<any>('http://10.10.10.114/web/district',);
-  // }
 
   getDistrictDetails(urlParams: any): Observable<any> {
-    return this.http.get<any>('http://10.10.10.114/web/district',{
+    if(!navigator.onLine){
+      return throwError('Offline');
+    }
+    return this.http.get<any>(`${this.apiUrl}/web/district`,{
       params: urlParams,
+    }).pipe(
+      catchError((error: HttpErrorResponse) => {
+        console.error('Error fetching district details:', error);
+        return throwError(error);
+      })
+    );
+  }
+  searchDistrictsByName(query: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/web/search`, {
+      params: { name: query },
     });
   }
   getDistrictId(urlParam: any):Observable<any> {
-    return this.http.get<any>('http://10.10.10.114/web/', {
+    if(navigator.onLine)     {
+      return throwError('Offline');
+    }
+    return this.http.get<any>(`${this.apiUrl}/web/`, {
       params: urlParam,
-    });
+    }).pipe(
+      catchError((error: HttpErrorResponse) => {
+        console.error('Error fetching district details:', error);
+        return throwError(error);
+      })
+    );
   }
   
 }

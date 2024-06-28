@@ -1,129 +1,90 @@
-<section class="bookNow">
-  <mat-vertical-stepper [linear]="false" #stepper>
-    <mat-step [stepControl]="firstFormGroup">
-      <form [formGroup]="firstFormGroup">
-        <ng-template matStepLabel>Fill out your name</ng-template>
-        <mat-form-field>
-          <input
-            matInput
-            placeholder="First name - Last name"
-            formControlName="firstCtrl"
-            required
-          />
-        </mat-form-field>
-        <div>
-          <button
-            mat-button
-            matStepperNext
-            [disabled]="!isFormValid(firstFormGroup)"
-          >
-            Next
-          </button>
-        </div>
-      </form>
-    </mat-step>
-    <mat-step [stepControl]="secondFormGroup">
-      <form [formGroup]="secondFormGroup">
-        <ng-template matStepLabel>Fill out your Number</ng-template>
-        <mat-form-field>
-          <input
-            matInput
-            placeholder="Phone Number"
-            formControlName="secondCtrl"
-            required
-          />
-        </mat-form-field>
-        <div>
-          <button
-            mat-button
-            matStepperNext
-            [disabled]="!isFormValid(secondFormGroup)"
-          >
-            Next
-          </button>
-        </div>
-      </form>
-    </mat-step>
+<!-- booking.component.html -->
 
-    <mat-step [stepControl]="thirdFormGroup">
-      <form [formGroup]="thirdFormGroup">
-        <ng-template matStepLabel>Fill out your Email</ng-template>
-        <mat-form-field>
-          <input
-            matInput
-            placeholder="xlayer@gmail.com"
-            formControlName="thirdCtrl"
-            required
-          />
-        </mat-form-field>
-        <div>
-          <button
-            mat-button
-            matStepperNext
-            [disabled]="!isFormValid(thirdFormGroup)"
-          >
-            Next
-          </button>
-        </div>
-      </form>
-    </mat-step>
+<div class="container">
+  <h2>Book Your Tourist Spot</h2>
+  <form (ngSubmit)="onSubmit()" #bookingForm="ngForm">
+    <!-- Name -->
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" class="form-control" id="name" name="name" [(ngModel)]="name" required>
+    </div>
 
-    <mat-step [stepControl]="fifthFormGroup">
-      <form [formGroup]="secondFormGroup">
-        <ng-template matStepLabel>Select:</ng-template>
-        <div class="space">
-          <h5>Child</h5>
-          <span class="quantity">
-            <span
-              class="material-symbols-outlined"
-              id="childRemove"
-              (click)="decreaseChildQuantity()"
-            >
-              remove
-            </span>
-            <span>{{ childQuantity }}</span>
-            <span
-              class="material-symbols-outlined"
-              id="childAdd"
-              (click)="increaseChildQuantity()"
-            >
-              add
-            </span>
-          </span>
-          <h5>Adult</h5>
+    <!-- Email -->
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" class="form-control" id="email" name="email" [(ngModel)]="email" required>
+    </div>
 
-          <span class="quantity">
-            <span
-              class="material-symbols-outlined"
-              id="adultRemove"
-              (click)="decreaseAdultQuantity()"
-            >
-              remove
-            </span>
-            <span>{{ adultQuantity }}</span>
-            <span
-              class="material-symbols-outlined"
-              id="adultAdd"
-              (click)="increaseAdultQuantity()"
-            >
-              add
-            </span>
-          </span>
-        </div>
+    <!-- Phone Number -->
+    <div class="form-group">
+      <label for="phone">Phone Number</label>
+      <input type="tel" class="form-control" id="phone" name="phone" [(ngModel)]="phone" required>
+    </div>
 
-        <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Next</button>
-        </div>
-      </form>
-    </mat-step>
+    <!-- Date -->
+    <div class="form-group">
+      <label for="date">Date</label>
+      <input type="date" class="form-control" id="date" name="date" [(ngModel)]="date" required>
+    </div>
 
-    <mat-step>
-      <ng-template matStepLabel>Done</ng-template>
-      You are now done.
-      <div class="snack">
-        <button mat-stroked-button (click)="snackBar()">Next</button>
-      </div>
-    </mat-step>
-  </mat-vertical-stepper>
-</section>
+    <div class="space">
+      <h5>Child</h5>
+      <span class="quantity">
+        <span
+          class="material-symbols-outlined icon"
+          id="childRemove"
+          (click)="decreaseChildQuantity()"
+          
+        >
+          remove
+        </span>
+        <span>{{ childQuantity }}</span>
+        <span
+          class="material-symbols-outlined icon"
+          id="childAdd"
+          (click)="increaseChildQuantity()"
+        >
+          add
+        </span>
+      </span>
+      <h5>Adult</h5>
+
+      <span class="quantity">
+        <span
+          class="material-symbols-outlined icon"
+          id="adultRemove"
+          (click)="decreaseAdultQuantity()"
+        >
+          remove
+        </span>
+        <span>{{ adultQuantity }}</span>
+        <span
+          class="material-symbols-outlined icon"
+          id="adultAdd"
+          (click)="increaseAdultQuantity()"
+        >
+          add
+        </span>
+      </span>
+    </div>
+
+  <div class="show">
+    total: {{sum}}
+
+  </div>
+    <!-- Payment Option -->
+    <div class="form-group">
+      <label for="payment">Payment Option</label>
+      <select class="form-control" id="payment" name="payment" [(ngModel)]="paymentOption" required>
+        <option value="">Select Payment Option</option>
+        <option value="credit">Credit Card</option>
+        <option value="debit">Debit Card</option>
+        <option value="paypal">PayPal</option>
+        <option value="bank">Bank Transfer</option>
+      </select>
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" class="btn btn-primary" [disabled]="!bookingForm.valid">Book Now</button>
+  </form>
+</div>

@@ -1,3 +1,4 @@
+<app-nav-bar></app-nav-bar>
 <section class="gridDetails">
   <div class="images flex">
     <div class="mainImage">
@@ -45,7 +46,7 @@
         <span class="capacity">{{ datas.available_capacity }}</span>
       </div>
       <div class="hours">
-        Visiting hours
+        Available
 
         <div class="slider-container">
           <button class="arrow left" (click)="scroll(-1)">
@@ -62,13 +63,32 @@
           </button>
         </div>
       </div>
+      <div class="hours">
+        Selected:
+
+        <div class="slider-container">
+          <span class="cardBox" *ngFor="let date of dates" [class.selected]="date.selected" (click)="selectDate(date)">
+            <span>
+                  {{date.month}}
+            </span>
+            <span>
+                 {{date.date}}
+            </span>
+            <span>
+                   {{date.day}}
+            </span>
+          </span>
+        </div>
+        
+      </div>
+
     </div>
 
     <div class="buttonDiv">
       <button
         mat-button
         class="btn"
-        [routerLink]="['/booknow']"
+        (click)="showLoginDialog()"
         routerLinkActive="router-link-active"
       >
         Book Now

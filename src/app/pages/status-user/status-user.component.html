@@ -1,53 +1,37 @@
+<app-nav-bar></app-nav-bar>
+
+
+
 <mat-drawer-container class="example-container">
   <mat-drawer mode="side" opened class="firstDrawer">
     <div class="status">
     <h5>Places</h5>
     </div>
-    <ul>
-    <li>
-        West District
-        <ol>
-        <li
-            [routerLink]="['/herosection']"
-            routerLinkActive="router-link-active"
-        >
-            Bashgram
+
+        <ul>
+        <li>
+          <button mat-button routerLink="/">
+            Home
+          </button>
         </li>
-        <li>Lakshmi Narayan Bari</li>
-        <li>DurgaBari</li>
-        <li>Ujjayanta Palace</li>
-        <li>Heritage park</li>
-        <li>Nehru Park</li>
-        <li>Rabindra Kanan</li>
-        </ol>
-    </li>
 
-    <li>
-        West District
-        <ol>
-        <li>Jagannath Mandir</li>
-        <li>Lakshmi Narayan Bari</li>
-        <li>DurgaBari</li>
-        <li>Ujjayanta Palace</li>
-        <li>Heritage park</li>
-        <li>Nehru Park</li>
-        <li>Rabindra Kanan</li>
-        </ol>
-      </li>
+        <li>
+          <button mat-button routerLink="/places">
+            Places
+          </button>
+        </li>
 
-      <li>
-        West District
-        <ol>
-          <li>Jagannath Mandir</li>
-          <li>Lakshmi Narayan Bari</li>
-          <li>DurgaBari</li>
-          <li>Ujjayanta Palace</li>
-          <li>Heritage park</li>
-          <li>Nehru Park</li>
-          <li>Rabindra Kanan</li>
-        </ol>
-      </li>
-    </ul>
+        <li>
+          Districts:
+           <ol *ngFor="let district of displayPlaces">
+             <li (click)="onClickDistrict(district.value)">
+                {{district.name}}
+             </li>
+
+           </ol>
+        </li>
+       
+      </ul>
   </mat-drawer>
   <mat-drawer-content class="secondDrawer">
     <mat-chip-set class="searchStatus">
@@ -103,6 +87,19 @@
         </td>
     </ng-container>
 
+    <ng-container matColumnDef="checkIn">
+      <th mat-header-cell *matHeaderCellDef>Check In</th>
+      <td mat-cell *matCellDef="let element">{{ element.checkIn }}</td>
+  </ng-container>
+  <ng-container matColumnDef="checkOut">
+    <th mat-header-cell *matHeaderCellDef>Check out</th>
+    <td mat-cell *matCellDef="let element">{{ element.checkOut }}</td>
+</ng-container>
+    
+<ng-container matColumnDef="status">
+  <th mat-header-cell *matHeaderCellDef>status</th>
+  <td mat-cell *matCellDef="let element">{{ element.status }}</td>
+</ng-container>
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
     </table>

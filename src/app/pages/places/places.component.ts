@@ -1,9 +1,7 @@
 import {
   Component,
   ElementRef,
-  OnInit,
-  Renderer2,
-  ViewChild,
+  OnInit
 } from '@angular/core';
 import { MatButton } from '@angular/material/button';
 import {
@@ -18,6 +16,7 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { DataPlacesService } from '../data-places.service';
 import { CommonModule } from '@angular/common';
 import { MatSpinner } from '@angular/material/progress-spinner';
+import { NavBarComponent } from '../nav-bar/nav-bar.component';
 
 export interface cardItem {
   title: string;
@@ -39,6 +38,7 @@ export interface cardItem {
     RouterLink,
     CommonModule,
     MatSpinner,
+    NavBarComponent
   ],
   templateUrl: './places.component.html',
   styleUrl: './places.component.scss',

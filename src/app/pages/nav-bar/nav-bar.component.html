@@ -1,0 +1,33 @@
+<mat-toolbar class="navBar">
+  <span>
+    <img src="assets/images.png" alt="img" />
+  </span>
+
+  <div class="spaceAround"></div>
+  <div class="spacingElement">
+    <span class="material-symbols-outlined menubar" (click)="toggleMenu()">
+      menu
+    </span>
+
+    <button mat-button routerLink="/">Home</button>
+
+    <button mat-button routerLink="/places">Places</button>
+
+    <button mat-button (click)="openDialogSign()">Signup</button>
+
+    <button mat-button (click)="myAccount()">My Account</button>
+  </div>
+</mat-toolbar>
+<div class="menuList" [class.open]="isMenuOpen">
+  <div class="spaceAround"></div>
+  <button mat-button routerLink="/" (click)="closeMenu()">Home</button>
+  <hr/>
+  <button mat-button routerLink="/places" (click)="closeMenu()">Places</button>
+  <hr />
+  <button mat-button  routerLink="/auth">Signup</button>
+  <hr/>
+  <div *ngIf="isLoggedIn()">
+    <button mat-button (click)="myAccount()">My Account</button>
+    <button mat-button (click)="logOut()">Logout</button>
+  </div>
+</div>

@@ -1,14 +1,16 @@
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
-<swiper-container
-  slides-per-view="3"
-  speed="500"
-  loop="true"
-  css-mode="true"
-  pagination="true"
->
-  <swiper-slide *ngFor="let image of images">
-    <img [src]="image" alt="Slide" />
+<swiper-container slides-per-view="5" 
+speed="500" loop="true" css-mode="true" >
+  <swiper-slide *ngFor="let image of images; trackBy: trackById">
+    <img [src]="image.images[1]?.link" alt="photo" />
+    <div class="overlay">
+        <div class="desc">{{image.name.slice(0,8)+ '...'}}</div>
+        <div class="btn">
+          <button mat-button (click)="onClickPlaces(image._id)">Book Now</button>
+        </div>
+    
+    </div>
   </swiper-slide>
 </swiper-container>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>

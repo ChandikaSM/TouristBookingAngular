@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import {
   MatCard,
   MatCardContent,
@@ -25,7 +25,5 @@ import { MatChipsModule } from '@angular/material/chips';
   styleUrl: './places-list.component.scss',
 })
 export class PlacesListComponent {
-  longText = `The Chihuahua is a Mexican breed of toy dog. It is named for the
-  Mexican state of Chihuahua and is among the smallest of all dog breeds. It is
-  usually kept as a companion animal or for showing.`;
+  @Input() district: any;
 }

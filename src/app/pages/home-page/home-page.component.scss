@@ -10,7 +10,6 @@
 
     .aboutTripura {
       margin-left: 2rem;
-      padding: 6rem 1rem;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
@@ -30,7 +29,6 @@
         font-size: 1.5rem;
         line-height: 2rem;
         font-weight: 100;
-        // background: orange;
         font-family: Arial, Helvetica, sans-serif;
         @media screen and (max-width: 768px) {
           font-size: 1.2rem;
@@ -38,48 +36,99 @@
         }
 
         @media screen and (max-width: 480px) {
-          font-size: 1rem; /* Further reduce font size for very small screens */
-          line-height: 1.3rem; /* Further reduce line height for very small screens */
-          // padding-right: 3rem;
+          font-size: 1rem;
+          line-height: 1.3rem;
         }
       }
-
-      form {
-        // background: yellow;
+    }
+    .imageFront {
+      img {
+        mix-blend-mode: darken;
         width: 100%;
-        display: flex;
-        justify-content: center;
-        .searchSpan {
+      }
+    }
+
+    .overlayCard {
+      position: absolute;
+      opacity: 1;
+      top: 15rem;
+      right: 33rem;
+      // left: rem;
+      width: 350px;
+      // z-index: 1000;
+      .cardPlace {
+        box-sizing: border-box;
+        background: white;
+        width: 500px;
+        border-radius: 25px;
+        box-shadow: 1px 2px 3px 3px rgba(0, 0, 0, 0.1);
+
+        .formField {
           display: flex;
-          align-items: center;
+          justify-content: center;
+          mat-form-field {
+            width: 80%;
+            padding: 2rem 4rem;
+          }
         }
-        input[type="search"] {
-          padding: 1.3rem 3.5rem;
-          border: 1px solid #ccc;
-          border-radius: 25px;
-          font-size: 16px;
-          width: 500px;
-          // background: yellow;
-          // max-width: 100%;
-          box-shadow: none;
-        }
-        .search {
-          position: absolute;
+        .Date {
+          font-size: 1.5rem;
           padding: 1rem;
-          font-size: 2rem;
-          color: #666;
-          cursor: pointer;
+          margin: 1rem;
+        }
+        .space {
+          display: flex;
+          justify-content: space-around;
+          background: rgb(243, 243, 243);
+          padding: 1rem 2rem;
+          // justify-content: space-between;
+          h5 {
+            font-size: 1rem;
+            font-weight: 500;
+          }
+          .quantity {
+            // background: yellow;
+            // display: flex;
+            justify-content: space-around;
+            width: 50%;
+
+            .icon {
+              // padding: 1rem;
+              margin: 1rem;
+              background: rgb(255, 255, 255);
+              border: 1px solid black;
+              border-radius: 25px;
+            }
+          }
+        }
+
+        .btn {
+          display: flex;
+          justify-content: center;
+          padding: 1rem;
+          // background: yellow;
+          button {
+            width: 60%;
+            background: rgb(133, 130, 130);
+            border-radius: 6px;
+            color: #fff;
+            font-size: 1.2rem;
+            padding: 1.8rem;
+          }
         }
       }
     }
   }
+}
+.mobile {
+  display: none;
 }
 
 .behindDiv {
   visibility: visible;
   position: absolute;
   opacity: 0.4;
-  top: 52rem;
+  top: 140vh;
   right: 0;
   left: 55rem;
   width: 350px;
@@ -101,6 +150,30 @@
     letter-spacing: 5px;
     font-weight: 600;
     font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  }
+}
+@media screen and (min-width: 300px) and (max-width: 649px) {
+  .aboutTripura {
+    width: 40vh;
+// background: yellow;
+    .middle {
+      padding: 1rem;
+      margin: 0;
+     
+    }
+    .para {
+      // padding-right: 3rem;
+      text-align: justify;
+    }
+    
+  }
+  .middle {
+    h1{
+      // padding: 1rem;
+      font-size: 2rem;
+      padding: 0;
+      margin: 0;
+    }
   }
 }
 
@@ -172,11 +245,6 @@
           font-size: 25px;
           font-weight: 400;
         }
-        form {
-          input[type="search"] {
-            width: 700px;
-          }
-        }
       }
       .imageFront {
         display: flex;
@@ -200,12 +268,9 @@
   }
 
   .explore {
-    grid-template-columns: repeat(1, fr);
-    .sideDiv {
-      border-radius: 25px;
-      .imgOne {
-        width: 700px;
-      }
+    .rightDiv {
+      display: flex;
+      position: absolute;
     }
   }
 }
@@ -218,6 +283,7 @@
         margin: 0;
         .para {
           font-size: 18px;
+          margin: 0;
         }
         form {
           input[type="search"] {
@@ -226,11 +292,10 @@
         }
       }
       .imageFront {
-        // display: flex;
-        // justify-content: flex-start;
-        width: 400px;
+        display: flex;
+        justify-content: center;
+        width: 450px;
         border-radius: 20px;
-        background: rgb(238, 236, 236);
         img {
           border-radius: 20px;
           width: 400px;
@@ -241,15 +306,8 @@
   }
   .districtGrid {
     grid-template-columns: repeat(1, 1fr);
-    margin: 0 25px;
-  }
-  .middle {
-    padding: 1rem;
     display: flex;
-    justify-content: center;
-    h1 {
-      font-size: 2.5rem;
-    }
+    flex-direction: column;
   }
 }
 
@@ -293,51 +351,14 @@
   left: 15rem;
 }
 
-.explore {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  padding: 1rem;
-
-  .sideDiv,
-  .rightDiv {
-    // flex: .3;
-
-    border-radius: 20px;
-  }
-  .sideDiv {
-    border-radius: 25px;
-
-    // width: 50%;
-    .imgOne {
-      width: 500px;
-      // background: yellow;
-    }
-  }
-  .rightDiv {
-    width: 100%;
-    // position:sticky;
-    .box {
-      // display: flex;
-      position: absolute;
-      width: 50%;
-      height: 50%;
-      // background: yellow;
-
-      div {
-        img {
-          width: 500px;
-        }
-      }
-      .three {
-        img {
-          height: 500px;
-        }
+@media screen and (min-width: 300px) and (max-width: 675px) {
+  .aboutTripura{
+    .imageFront{
+      img{
+        z-index: 100;
       }
     }
   }
-}
-
-@media screen and (max-width: 675px) {
   .imgOverlay {
     position: relative;
     // left: 25rem;
@@ -345,18 +366,39 @@
   }
   .explore {
     grid-template-columns: repeat(1, 1fr);
+    // position: absolute;
     .sideDiv {
-      // border-radius: 25px;
       display: flex;
       justify-content: center;
       .imgOne {
         width: 300px;
+        // height: 400px;
       }
     }
     .rightDiv {
+      width: 100%;
+      // padding: 2rem;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
       .box {
-        display: none;
+        width: 100%;
+        // height: 50vh;
       }
+    }
+  }
+  .mobile{
+    display: block;
+    position: absolute;
+    top: 60rem;
+    left: 2rem;
+    img{
+      position: relative;
+      opacity: .3;
+      width: 70%;
+      border-radius: 30px;
+      z-index: -1;
     }
   }
 }
@@ -364,16 +406,10 @@
   .explore {
     grid-template-columns: repeat(2, 1fr);
     .sideDiv {
-      // border-radius: 25px;
       .imgOne {
         width: 750px;
       }
     }
-    // .rightDiv{
-    //   .box{
-    //    display: none;
-    //   }
-    //  }
   }
 
   .imageOverlay {
@@ -381,15 +417,15 @@
   }
 }
 
-@media screen and (min-width: 960px) {
-  .explore {
-    rightDiv {
-      .box {
-        display: flex;
-      }
-    }
-  }
-}
+// @media screen and (min-width: 960px) {
+//   .explore {
+//     rightDiv {
+//       .box {
+//         display: flex;
+//       }
+//     }
+//   }
+// }
 .pagination-container {
   position: relative;
   display: flex;

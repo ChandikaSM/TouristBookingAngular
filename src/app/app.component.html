@@ -3,99 +3,21 @@
   href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
 />
 
-<section>
-  <mat-toolbar class="navBar">
-    <span>
-      <img src="assets/images.png" alt="img" />
-    </span>
-
-    <div class="spaceAround"></div>
-    <div class="spacingElement">
-      <span class="material-symbols-outlined menubar" (click)="toggleMenu()">
-        menu
+<div *ngIf="isOffline" class="offline">
+  <img src="assets/of.png" alt="Offline Image">
+  <p>
+    <span class="material-symbols-outlined">
+      wifi_off
       </span>
+    
+    Currently offline. Please check your internet connection.</p>
+</div>
 
-      <button mat-button routerLink="/">Home</button>
+<div *ngIf="!isOffline">
+  <router-outlet></router-outlet>
+</div>
 
-      <button mat-button routerLink="/places">Places</button>
 
-      <button
-        routerLink="/signup"
-        mat-button
-        routerLinkActive="router-link-active"
-      >
-        Signup
-      </button>
-
-      <button
-        *ngIf="!loginService.getIsLoggedIn()"
-        routerLink="/login"
-        mat-button
-        routerLinkActive="router-link-active"
-        (click)="loginService.login()"
-      >
-        Login
-      </button>
-
-      <button
-        *ngIf="loginService.getIsLoggedIn()"
-        mat-button
-        (click)="loginService.logout()"
-      >
-        Logout
-      </button>
-      <button
-        mat-button
-        *ngIf="loginService.getIsLoggedIn()"
-        (click)="myAccount()"
-      >
-        My Account
-      </button>
-    </div>
-  </mat-toolbar>
-  <div class="menuList" [class.open]="isMenuOpen">
-    <div class="spaceAround"></div>
-    <button mat-button routerLink="/">Home</button>
-
-    <hr />
-    <button mat-button routerLink="/places">Places</button>
-    <hr />
-    <button
-      routerLink="/signup"
-      mat-button
-      routerLinkActive="router-link-active"
-    >
-      Signup
-    </button>
-    <hr />
-    <button
-      *ngIf="!loginService.getIsLoggedIn()"
-      routerLink="/login"
-      mat-button
-      routerLinkActive="router-link-active"
-      (click)="loginService.login()"
-    >
-      Login
-    </button>
-    <hr />
-    <button
-      *ngIf="loginService.getIsLoggedIn()"
-      mat-button
-      (click)="loginService.logout()"
-    >
-      Logout
-    </button>
-    <button
-      mat-button
-      *ngIf="loginService.getIsLoggedIn()"
-      (click)="myAccount()"
-    >
-      My Account
-    </button>
-  </div>
-</section>
-
-<router-outlet></router-outlet>
 
 <footer>
   <div class="icons">

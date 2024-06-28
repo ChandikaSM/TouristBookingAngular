@@ -10,6 +10,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
+import { NavBarComponent } from '../nav-bar/nav-bar.component';
 
 export interface PeriodicElement {
   name: string;
@@ -18,7 +20,15 @@ export interface PeriodicElement {
   place: string;
   price: number;
   date: Date;
+  checkIn: string;
+  checkOut: string;
+  status: string;
   downloadUrl: string;
+}
+export interface placeList {
+   name: string;
+   link: string;
+   value: string;
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
@@ -30,6 +40,9 @@ const ELEMENT_DATA: PeriodicElement[] = [
     price: 78,
     date: new Date('2023-07-12'),
     downloadUrl: 'assets/testing.pdf',
+    checkIn: "yes",
+  checkOut: "yes",
+  status: "pending"
   },
   {
     orderId: 2,
@@ -39,6 +52,9 @@ const ELEMENT_DATA: PeriodicElement[] = [
     price: 89,
     date: new Date('2024-07-12'),
     downloadUrl: 'assets/testing.pdf',
+    checkIn: "yes",
+  checkOut: "yes",
+  status: "pending"
   },
   {
     orderId: 3,
@@ -48,6 +64,9 @@ const ELEMENT_DATA: PeriodicElement[] = [
     price: 90,
     date: new Date('2025-07-12'),
     downloadUrl: 'assets/testing.pdf',
+    checkIn: "yes",
+  checkOut: "yes",
+  status: "pending"
   },
 ];
 @Component({
@@ -66,11 +85,13 @@ const ELEMENT_DATA: PeriodicElement[] = [
     RouterLink,
     MatAutocompleteModule,
     FormsModule,
+    NavBarComponent
   ],
   templateUrl: './status-user.component.html',
   styleUrl: './status-user.component.scss',
 })
 export class StatusUserComponent {
+  constructor(private router: Router) {}
   displayedColumns: string[] = [
     'Order Id',
     'name',
@@ -78,7 +99,18 @@ export class StatusUserComponent {
     'ticket',
     'price',
     'date',
+    'checkIn',
+    'checkOut',
+    'status',
     'download',
+  ];
+
+  displayPlaces: placeList[] = [
+    {
+      name: 'West Tripura',
+      link: 'SOUTH',
+      value: 'South',
+    }
   ];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
   filterValue: string = '';
@@ -102,12 +134,11 @@ export class StatusUserComponent {
     console.log(this.dataSource);
     const today = new Date();
     this.completedItems = ELEMENT_DATA.filter((item) => item.date < today);
-    console.log('completed items', this.completedItems);
   }
   showUpcoming(): void {
     const today = new Date();
     this.upComing = ELEMENT_DATA.filter((item) => item.date > today);
-    console.log('upcoming 2 items line 83', this.upComing);
+   
   }
 
   toggleItems(showCompleted: boolean, showUpcoming: boolean): void {
@@ -128,5 +159,8 @@ export class StatusUserComponent {
 
   autoComplete(): void {
     this.myControl = new FormControl('');
+  }
+  onClickDistrict(value: string): void {
+    this.router.navigate(['/places', value]);
   }
 }

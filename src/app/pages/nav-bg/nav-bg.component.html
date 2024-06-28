@@ -1,0 +1,25 @@
+
+
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+    <section class="bg">
+      <div class="overlay">
+        <div class="bgCenter">
+          
+            <h1>
+              Where do you want To go ?
+            </h1>
+          </div>
+          <form>
+            <div class="searchSpan">
+              <input type="search" placeholder="Search..." [(ngModel)]="searchQuery" name="searchQuery" />
+              <button type="submit" (submit)="onSearch($event)">Search</button>
+            </div>
+          </form>
+        
+      </div>
+      <app-place-list [district]="district"></app-place-list>
+    </section>
+ 
+
