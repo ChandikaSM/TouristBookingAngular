@@ -1,0 +1,31 @@
+
+  <mat-drawer-container class="example-container">
+    <mat-drawer mode="side" opened>
+    <!-- @if (showFiller) { -->
+      <div class="itemStyle">
+        <div class="head">
+          <span class="material-symbols-outlined icon">
+            arrow_back
+            </span>
+          <span><h1>TOURISM</h1></span>
+        </div>
+         <div *ngFor="let i of item" class="center">
+          
+            <div class="button" [routerLink]="i.routing" routerLinkActive="router-link-active" >
+              <span class="material-symbols-outlined icon" >
+                {{i.icons}}
+                </span>
+              <span>
+                {{i.name}}
+              </span>
+            </div>
+          </div>
+
+      </div>
+    </mat-drawer>
+    <mat-drawer-content>
+      <router-outlet></router-outlet>
+    </mat-drawer-content>
+
+  </mat-drawer-container>
+  

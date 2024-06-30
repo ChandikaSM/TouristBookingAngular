@@ -16,10 +16,11 @@
     <button mat-button (click)="openDialogSign()">Signup</button>
 
     <button mat-button (click)="myAccount()">
-      <select class="select">
-        <option>MyStatus</option>
-        <option>Profile</option>
+      <select class="select" (change)="onChange($event)">
+        <option value="myStatus">MyStatus</option>
+        <option value="profile">Profile </option>
       </select>
+    
     </button>
   </div>
 </mat-toolbar>

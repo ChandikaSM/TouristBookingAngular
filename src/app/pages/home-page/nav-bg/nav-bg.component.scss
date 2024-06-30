@@ -14,6 +14,7 @@
   object-fit: cover;
   background-size: cover;
   background-image: url("../../../../../public/assets/three.jpg");
+  border-radius:0rem 0rem 2rem 2rem;
   &::before {
     content: "";
     position: absolute;
@@ -22,6 +23,7 @@
     width: 100%;
     height: 60%;
     background-color: rgba(0, 0, 0, 0.5);
+    border-radius:0rem 0rem 2rem 2rem;
     mix-blend-mode: darken;
   }
 }
@@ -86,6 +88,7 @@
     height: 50vh;
     object-fit: cover;
     background-size: cover;
+ 
     &::before {
       width: 100%;
       transform: translateY(-280px);

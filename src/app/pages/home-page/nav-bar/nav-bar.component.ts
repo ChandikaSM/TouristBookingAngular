@@ -69,6 +69,25 @@ export class NavBarComponent {
       this.router.navigate(['/status']);
     } else {
       console.log('User is not logged in');
+      this.openDialogSign();
+    }
+  }
+
+  profile() {
+    if (this.authen.isLoggedIn()) {
+      console.log('User is logged in');
+      this.router.navigate(['/profile']);
+    } else {
+      console.log('User is not logged in');
+      // this.openDialogSign();
+    }
+  }
+  onChange(event: Event) {
+    const selectedOption = (event.target as HTMLSelectElement).value;
+    if (selectedOption === 'myStatus') {
+      this.myAccount();
+    } else if (selectedOption === 'profile') {
+      this.profile();
     }
   }
   isLoggedIn(): boolean {

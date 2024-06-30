@@ -46,6 +46,7 @@ export class PlacesComponent implements OnInit {
   selectedDistrict: string = '';
   districtName: any;
   districtList: any[] = [];
+  errorMessage: string = '';
 
   trackBy(index: number, data: any): number {
     return data.id;
@@ -70,8 +71,9 @@ export class PlacesComponent implements OnInit {
       (datas: any) => {
         this.datas = datas.result;
       },
-      (error) => {
+      (error) => { 
         console.error('Error fetching  data', error);
+        this.errorMessage = "failed to load details .please try again";
       }
     );
   }

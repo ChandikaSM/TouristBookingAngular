@@ -48,69 +48,7 @@
       }
     }
 
-    .overlayCard {
-      position: absolute;
-      opacity: 1;
-      top: 15rem;
-      right: 33rem;
-      width: 350px;
-      .cardPlace {
-        box-sizing: border-box;
-        background: white;
-        width: 500px;
-        border-radius: 25px;
-        box-shadow: 1px 2px 3px 3px rgba(0, 0, 0, 0.1);
-
-        .formField {
-          display: flex;
-          justify-content: center;
-          mat-form-field {
-            width: 80%;
-            padding: 2rem 4rem;
-          }
-        }
-        .Date {
-          font-size: 1.5rem;
-          padding: 1rem;
-          margin: 1rem;
-        }
-        .space {
-          display: flex;
-          justify-content: space-around;
-          background: rgb(243, 243, 243);
-          padding: 1rem 2rem;
-          h5 {
-            font-size: 1rem;
-            font-weight: 500;
-          }
-          .quantity {
-            justify-content: space-around;
-            width: 50%;
-
-            .icon {
-              margin: 1rem;
-              background: rgb(255, 255, 255);
-              border: 1px solid black;
-              border-radius: 25px;
-            }
-          }
-        }
-
-        .btn {
-          display: flex;
-          justify-content: center;
-          padding: 1rem;
-          button {
-            width: 60%;
-            background: rgb(133, 130, 130);
-            border-radius: 6px;
-            color: #fff;
-            font-size: 1.2rem;
-            padding: 1.8rem;
-          }
-        }
-      }
-    }
+   
   }
 }
 .mobile {
@@ -121,7 +59,7 @@
   visibility: visible;
   position: absolute;
   opacity: 0.4;
-  top: 140vh;
+  top: 130vh;
   right: 0;
   left: 55rem;
   width: 350px;

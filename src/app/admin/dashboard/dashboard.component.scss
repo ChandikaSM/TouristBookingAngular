@@ -1,0 +1,47 @@
+.whole{
+    display: flex;
+   
+      
+      .example-card-footer {
+        padding: 16px;
+      }
+
+.middle {
+    display: flex;
+    flex-direction: column;
+   flex: 1;
+   .middleOne {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    
+    .space{
+        display: flex;
+        gap: 1rem;
+
+        .example-card{
+     width: 100%;
+    
+            }
+    }
+  
+   }
+   .middleTwo {
+    height: 400px;
+   }
+
+
+}
+
+
+
+
+
+
+.rightSide {
+    
+    .demo-inline-calendar-card {
+        width: 300px;
+      }
+}
+}
