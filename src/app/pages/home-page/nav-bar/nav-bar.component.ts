@@ -15,6 +15,7 @@ import {
 } from '@angular/material/form-field';
 import { MatSelect } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
+import { authConst } from '../../authentication/authConst';
 
 @Component({
   selector: 'app-nav-bar',
@@ -39,13 +40,12 @@ export class NavBarComponent {
   searchTerm: string = '';
   title = 'tourism';
   isMenuOpen = false;
-  loggedUser: any;
-  constructor(private router: Router, private authen: AuthService) {
-    this.authen = authen;
-    const localUser = localStorage.getItem('loggedUser');
-    if (localUser != null) {
-      this.loggedUser = JSON.parse(localUser);
-    }
+  headers: any;
+  constructor(private router: Router, authService: AuthService) {
+    const authToken = localStorage.getItem(authConst.authToken)
+    console.log(authToken)
+    this.headers = authToken
+   
   }
 
   toggleMenu() {
@@ -64,9 +64,9 @@ export class NavBarComponent {
   }
 
   myAccount() {
-    if (this.authen.isLoggedIn()) {
+    if (this.headers) {
       console.log('User is logged in');
-      this.router.navigate(['/status']);
+      // this.router.navigate(['/status']);
     } else {
       console.log('User is not logged in');
       this.openDialogSign();
@@ -74,12 +74,11 @@ export class NavBarComponent {
   }
 
   profile() {
-    if (this.authen.isLoggedIn()) {
+    if (this.headers) {
       console.log('User is logged in');
       this.router.navigate(['/profile']);
     } else {
       console.log('User is not logged in');
-      // this.openDialogSign();
     }
   }
   onChange(event: Event) {
@@ -91,13 +90,12 @@ export class NavBarComponent {
     }
   }
   isLoggedIn(): boolean {
-    return this.authen.isLoggedIn();
-  }
-  logOut(): void {
-    localStorage.removeItem('loggedUser');
-    this.router.navigate(['/auth']);
+    return this.headers.isLoggedIn();
   }
 
+logOut():void {
+   localStorage.clear();
+}
   openDialogSign() {
     const dialogRef = this.dialog.open(AuthComponent, {
       width: window.innerWidth < 768 ? '100%' : '1000px',

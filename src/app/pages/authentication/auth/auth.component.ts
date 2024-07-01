@@ -1,14 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './auth.service';
 import { HttpClient } from '@angular/common/http';
-import {
-  FormsModule,
-  ReactiveFormsModule,
-} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgIf } from '@angular/common';
 import { NavBarComponent } from '../../home-page/nav-bar/nav-bar.component';
 import { MatDialog } from '@angular/material/dialog';
+import { authConst } from '../authConst';
 
 @Component({
   selector: 'app-auth',
@@ -25,11 +23,10 @@ export class AuthComponent implements OnInit {
   password: string = '';
   confirmPassword: string = '';
   redirectUrl: string = '/';
-  public authTokenKey: any;
+  authTokenKey = authConst.authToken;
 
   constructor(
     private authService: AuthService,
-    private http: HttpClient,
     private router: Router,
     private dialog: MatDialog,
     private route: ActivatedRoute
@@ -87,11 +84,9 @@ export class AuthComponent implements OnInit {
     };
     this.authService.loginApi(loginData).subscribe(
       (response) => {
-        this.authTokenKey = localStorage.setItem(
-          this.authTokenKey,
-          response.result[0].token
-        );
-        const localUser = localStorage.getItem('authKey');
+        console.log(response);
+        localStorage.setItem(authConst.authToken, response.result[0].token);
+        const localUser = localStorage.getItem(this.authTokenKey);
         if (localUser != null) {
           const users = JSON.parse(localUser);
           const isUserPresent = users.find(

@@ -13,11 +13,9 @@
 
     <button mat-button routerLink="/places">Places</button>
 
-    <button mat-button (click)="openDialogSign()">Signup</button>
-
     <button mat-button (click)="myAccount()">
       <select class="select" (change)="onChange($event)">
-        <option value="myStatus">MyStatus</option>
+        <option value="myStatus">Login</option>
         <option value="profile">Profile </option>
       </select>
     
@@ -29,10 +27,8 @@
   <button mat-button routerLink="/" (click)="closeMenu()">Home</button>
   <hr />
   <button mat-button routerLink="/places" (click)="closeMenu()">Places</button>
+  
   <hr />
-
-  <button mat-button routerLink="/auth">Signup</button>
-  <hr />
-  {{ loggedUser?.email }}
-  <button mat-button (click)="logOut()">Log Out</button>
+  <!-- {{ loggedUser?.email }} -->
+  <!-- <button mat-button (click)="logOut()">Log Out</button> -->
 </div>

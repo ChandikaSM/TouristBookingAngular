@@ -5,6 +5,7 @@ import { DataPlacesService } from '../../data-places.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { Observable, map, startWith } from 'rxjs';
+import { NavBgService } from './nav-bg.service';
 
 @Component({
   selector: 'app-nav-bg',
@@ -23,16 +24,29 @@ import { Observable, map, startWith } from 'rxjs';
 })
 export class NavBgComponent implements OnInit {
   control = new FormControl('');
-  searchQuery: string[] = ['Bashgram', 'Udaipur', 'Ujjayanta Palace'];
+  searchQuery: string[] = [];
 
-  constructor(private dataService: DataPlacesService) {}
+  constructor(private dataService: NavBgService) {}
   filteredSearch: Observable<string[]> = new Observable<string[]>();
+
 
   ngOnInit(): void {
     this.filteredSearch = this.control.valueChanges.pipe(
       startWith(''),
-      map((value) => this._filter(value || ''))
+    map((value) => this._filter(value || ''))
     );
+ this.getSearch();
+  
+  }
+
+  getSearch():void {
+    this.dataService.getSearchData().subscribe((sucess: any)=> {
+      console.log(sucess);
+      this.searchQuery = sucess.result;
+      console.log("searchd data", this.searchQuery);
+      this.searchQuery = sucess
+    
+    });
   }
   private _filter(value: string): string[] {
     const filterValue = this._normalizeValue(value);
@@ -43,5 +57,7 @@ export class NavBgComponent implements OnInit {
   private _normalizeValue(value: string): string {
     return value.toLowerCase().replace(/\s/g, '');
   }
-  searchItem($event: any): void {}
+  searchItem($event: any): void {
+    // console.log('values', event.option.value)
+  }
 }

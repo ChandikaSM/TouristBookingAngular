@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
 
@@ -6,10 +6,12 @@ import { Observable, catchError, throwError } from 'rxjs';
   providedIn: 'root'
 })
 export class NavBgService {
-  search:any[]=[];
 
-  private apiUrl = "http://10.10.10.114/web/search";
 
-  constructor(private http: HttpClient) { }
+  private apiUrl = "http://10.10.10.132/web";
 
+  constructor(private http: HttpClient) {}
+  getSearchData(): Observable<string[]> {
+    return this.http.get<string[]>(`${this.apiUrl}/list`);
+  }
 }

@@ -11,17 +11,17 @@
       <div class="searchSpan">
         <input
           type="search"
-          placeholder="Search for a street"
+          placeholder="Search for a place"
           [formControl]="control"
           [matAutocomplete]="auto"
           class="example-input"
         />
         <button type="submit" (click)="searchItem($event)">Search</button>
       </div>
-      <mat-autocomplete #auto="matAutocomplete">
-        @for (search of filteredSearch | async; track search) {
-        <mat-option [value]="search">{{ search }}</mat-option>
-        }
+      <mat-autocomplete #auto="matAutocomplete"> 
+        <mat-option *ngFor="let search of filteredSearch | async" [value]="search">
+          {{ search }}
+        </mat-option>
       </mat-autocomplete>
     </form>
   </div>

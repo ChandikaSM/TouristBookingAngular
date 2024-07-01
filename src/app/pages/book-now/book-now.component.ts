@@ -4,13 +4,22 @@ import { DataPlacesService } from '../data-places.service';
 import { AuthComponent } from '../authentication/auth/auth.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { BookNowService } from './book-now.service';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelect } from '@angular/material/select';
+import { MatOptionModule } from '@angular/material/core';
+import { authConst } from '../authentication/authConst';
 
+interface item {
+  value: string;
+  viewValue: string;
+}
 @Component({
   selector: 'app-booking',
   templateUrl: './book-now.component.html',
   styleUrls: ['./book-now.component.scss'],
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, MatFormFieldModule, MatSelect, MatOptionModule],
 })
 export class BookNowComponent {
   name: string = '';
@@ -21,23 +30,37 @@ export class BookNowComponent {
   childQuantity = 1;
   adultQuantity = 1;
   booking: any = {};
+  headers: any;
+  items: item[] = [
+    {value: 'monday', viewValue:'09:00 a.m. - 05:00 p.m.'},
+    {value: 'tuesday', viewValue:'09:00 a.m. - 05:00 p.m.'},
+    {value: 'wednesday', viewValue:'09:00 a.m. - 05:00 p.m.'},
+    {value: 'thursday', viewValue:'09:00 a.m. - 05:00 p.m.'},
+    {value: 'friday', viewValue:'09:00 a.m. - 05:00 p.m.'},
+    {value: 'saturday',viewValue: '9:00 a.m. - 05:00 p.m.'}
+
+
+
+  ]
+
   sum = 0;
   constructor(
-    private dataService: DataPlacesService,
+    private bookNow: BookNowService,
     private dialog: MatDialog,
     private router: Router
-  ) {}
+  ) {
+    const authToken = localStorage.getItem(authConst.authToken)
+    this.headers = authToken
+  }
 
+
+  
   onSubmit(): void {
     console.log(
       'Form submitted:',
-      this.name,
-      this.email,
-      this.phone,
-      this.date,
-      this.paymentOption
+      this.booking
     );
-    this.resetForm();
+    this.onBookNow();
   }
 
   resetForm(): void {
@@ -85,8 +108,18 @@ export class BookNowComponent {
     this.sum = this.childQuantity * child + this.adultQuantity * adult;
   }
   onBookNow(): void {
-    alert('book now first');
-    this.showLoginDialog();
+    this.bookNow.processBooking(this.booking)
+    .subscribe(
+      (response) => {
+        console.log('booking success', response);
+      },
+      (error) => {
+        console.error('booking failed', error);
+      }
+    )
+
+    // alert('book now first');
+    // this.showLoginDialog();
   }
   showLoginDialog(): void {
     const dialogRef = this.dialog.open(AuthComponent, {

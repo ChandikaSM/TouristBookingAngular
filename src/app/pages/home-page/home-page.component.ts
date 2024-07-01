@@ -11,9 +11,7 @@ import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
 import { MatOption } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import {
-  MatDatepicker,
   MatDatepickerModule,
-  MatDatepickerToggleIcon,
 } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';

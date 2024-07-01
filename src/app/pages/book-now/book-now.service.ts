@@ -6,18 +6,14 @@ import { Observable, catchError, throwError } from 'rxjs';
   providedIn: 'root',
 })
 export class BookNowService {
-  private apiUrl = 'https://api.paymentgateway.com';
+  headers: any;
+  private apiUrl = 'http://10.10.10.132/web';
 
   constructor(private http: HttpClient) {}
 
-  processPayment(paymentData: any): Observable<any> {
-    return this.http
-      .post<any>(`${this.apiUrl}/process-payment`, paymentData)
-      .pipe(
-        catchError((error) => {
-          console.error('Error processing payment:', error);
-          return throwError(error);
-        })
-      );
+  processBooking(bookingData: any): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/booking/user'`, {
+      headers: this.headers
+    })
   }
 }
