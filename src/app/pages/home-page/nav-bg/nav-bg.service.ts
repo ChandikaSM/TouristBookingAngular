@@ -8,7 +8,7 @@ import { Observable, catchError, throwError } from 'rxjs';
 export class NavBgService {
 
 
-  private apiUrl = "http://10.10.10.132/web";
+  private apiUrl = "http://10.10.10.136/web";
 
   constructor(private http: HttpClient) {}
   getSearchData(): Observable<string[]> {

@@ -13,6 +13,7 @@ import { DataPlacesService } from '../data-places.service';
 import { CommonModule } from '@angular/common';
 import { MatSpinner } from '@angular/material/progress-spinner';
 import { NavBarComponent } from '../home-page/nav-bar/nav-bar.component';
+import { BreadCrumpComponent } from '../bread-crump/bread-crump.component';
 
 export interface cardItem {
   title: string;
@@ -35,6 +36,7 @@ export interface cardItem {
     CommonModule,
     MatSpinner,
     NavBarComponent,
+    BreadCrumpComponent
   ],
   templateUrl: './places.component.html',
   styleUrl: './places.component.scss',

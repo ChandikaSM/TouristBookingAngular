@@ -9,6 +9,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelect } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
 import { authConst } from '../authentication/authConst';
+import { NavBarComponent } from '../home-page/nav-bar/nav-bar.component';
 
 interface item {
   value: string;
@@ -19,29 +20,33 @@ interface item {
   templateUrl: './book-now.component.html',
   styleUrls: ['./book-now.component.scss'],
   standalone: true,
-  imports: [FormsModule, MatFormFieldModule, MatSelect, MatOptionModule],
+  imports: [
+    FormsModule,
+    MatFormFieldModule,
+    MatSelect,
+    MatOptionModule,
+    NavBarComponent,
+  ],
 })
 export class BookNowComponent {
   name: string = '';
   email: string = '';
   phone: string = '';
   date: Date | null = null;
+  heroId: string = '';
   paymentOption: string = '';
   childQuantity = 1;
   adultQuantity = 1;
   booking: any = {};
   headers: any;
   items: item[] = [
-    {value: 'monday', viewValue:'09:00 a.m. - 05:00 p.m.'},
-    {value: 'tuesday', viewValue:'09:00 a.m. - 05:00 p.m.'},
-    {value: 'wednesday', viewValue:'09:00 a.m. - 05:00 p.m.'},
-    {value: 'thursday', viewValue:'09:00 a.m. - 05:00 p.m.'},
-    {value: 'friday', viewValue:'09:00 a.m. - 05:00 p.m.'},
-    {value: 'saturday',viewValue: '9:00 a.m. - 05:00 p.m.'}
-
-
-
-  ]
+    { value: 'monday', viewValue: '09:00 a.m. - 05:00 p.m.' },
+    { value: 'tuesday', viewValue: '09:00 a.m. - 05:00 p.m.' },
+    { value: 'wednesday', viewValue: '09:00 a.m. - 05:00 p.m.' },
+    { value: 'thursday', viewValue: '09:00 a.m. - 05:00 p.m.' },
+    { value: 'friday', viewValue: '09:00 a.m. - 05:00 p.m.' },
+    { value: 'saturday', viewValue: '9:00 a.m. - 05:00 p.m.' },
+  ];
 
   sum = 0;
   constructor(
@@ -49,18 +54,25 @@ export class BookNowComponent {
     private dialog: MatDialog,
     private router: Router
   ) {
-    const authToken = localStorage.getItem(authConst.authToken)
-    this.headers = authToken
+    const authToken = localStorage.getItem(authConst.authToken);
+    this.headers = authToken;
   }
 
-
-  
   onSubmit(): void {
-    console.log(
-      'Form submitted:',
-      this.booking
-    );
-    this.onBookNow();
+    const bookingDetails = {
+      spotId: this.heroId,
+      name: this.name,
+      mobile: this.phone,
+      Email: this.email,
+      date: this.date,
+      quantity: [
+        { type: 'adult', count: this.adultQuantity },
+        { type: 'child', count: this.childQuantity },
+      ],
+      total: this.sum,
+    };
+    console.log('Form submitted:', bookingDetails);
+    this.onBookNow(bookingDetails);
   }
 
   resetForm(): void {
@@ -68,7 +80,6 @@ export class BookNowComponent {
     this.email = '';
     this.phone = '';
     this.date = null;
-    this.paymentOption = '';
   }
 
   decreaseChildQuantity() {
@@ -107,19 +118,18 @@ export class BookNowComponent {
     const adult = 40;
     this.sum = this.childQuantity * child + this.adultQuantity * adult;
   }
-  onBookNow(): void {
-    this.bookNow.processBooking(this.booking)
-    .subscribe(
+  onBookNow(bookingDetails: any): void {
+    this.bookNow.processBooking(bookingDetails).subscribe(
       (response) => {
         console.log('booking success', response);
+        alert('successful');
+        this.resetForm();
+        this.router.navigate(['/']);
       },
       (error) => {
         console.error('booking failed', error);
       }
-    )
-
-    // alert('book now first');
-    // this.showLoginDialog();
+    );
   }
   showLoginDialog(): void {
     const dialogRef = this.dialog.open(AuthComponent, {

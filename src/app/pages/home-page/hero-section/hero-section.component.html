@@ -91,8 +91,7 @@
       <button
         mat-button
         class="btn"
-        routerLink="isLoggedIn() ? ['/booknow', spot_id] : ['/auth']"
-        routerLinkActive="router-link-active"
+        (click)="bookNow(heroId)"
       >
         Book Now
       </button>

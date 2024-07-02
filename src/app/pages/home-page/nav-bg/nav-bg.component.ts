@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { Observable, map, startWith } from 'rxjs';
 import { NavBgService } from './nav-bg.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav-bg',
@@ -24,40 +25,42 @@ import { NavBgService } from './nav-bg.service';
 })
 export class NavBgComponent implements OnInit {
   control = new FormControl('');
-  searchQuery: string[] = [];
+  searchQuery: any;
 
-  constructor(private dataService: NavBgService) {}
+  constructor(private dataService: NavBgService, private router: Router) {}
   filteredSearch: Observable<string[]> = new Observable<string[]>();
 
-
   ngOnInit(): void {
-    this.filteredSearch = this.control.valueChanges.pipe(
-      startWith(''),
-    map((value) => this._filter(value || ''))
-    );
- this.getSearch();
-  
+    this.getSearch();
   }
 
-  getSearch():void {
-    this.dataService.getSearchData().subscribe((sucess: any)=> {
+  getSearch(): void {
+    this.dataService.getSearchData().subscribe((sucess: any) => {
       console.log(sucess);
       this.searchQuery = sucess.result;
-      console.log("searchd data", this.searchQuery);
-      this.searchQuery = sucess
-    
     });
   }
-  private _filter(value: string): string[] {
-    const filterValue = this._normalizeValue(value);
-    return this.searchQuery.filter((search) =>
+  private _filter(value: string): any[] {
+    const filterValue = this._normalizeValue(value || '');
+    if (!filterValue) {
+      return [];
+    }
+    return this.searchQuery.filter((search: string) =>
       this._normalizeValue(search).includes(filterValue)
     );
   }
   private _normalizeValue(value: string): string {
-    return value.toLowerCase().replace(/\s/g, '');
+    if (!value) {
+      return '';
+    }
+
+    return value.toLowerCase();
   }
-  searchItem($event: any): void {
-    // console.log('values', event.option.value)
+
+  searchItem(event: Event): void {
+    event?.preventDefault();
+    this.router.navigate(['herosection']);
+    console.log('datas', this.control.value);
+    
   }
 }

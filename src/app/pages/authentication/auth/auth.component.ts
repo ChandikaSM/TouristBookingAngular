@@ -23,18 +23,17 @@ export class AuthComponent implements OnInit {
   password: string = '';
   confirmPassword: string = '';
   redirectUrl: string = '/';
-  authTokenKey = authConst.authToken;
 
   constructor(
     private authService: AuthService,
     private router: Router,
-    private dialog: MatDialog,
-    private route: ActivatedRoute
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {}
 
   onSignUp(): void {
+    
     const userData = {
       name: this.name,
       email: this.email,
@@ -47,25 +46,17 @@ export class AuthComponent implements OnInit {
     this.authService.signUpApi(userData).subscribe(
       (response) => {
         this.storeUserData(response.userData);
-        const localUser = localStorage.getItem('authKey');
-        if (localUser != null) {
-          const users = JSON.parse(localUser);
-          users.push(this.email, this.password);
-          localStorage.setItem('authKey', JSON.stringify(users));
-        } else {
-          const users = [];
 
-          users.push(
-            this.name,
-            this.email,
-            this.mobile,
-            this.address,
-            this.password,
-            this.confirmPassword
-          );
-          localStorage.setItem('authKey', JSON.stringify(users));
-        }
-        alert('success');
+        const users = {
+          name: this.name,
+          email: this.email,
+          mobile: this.mobile,
+          address: this.address,
+          password: this.password,
+          confirmPassword: this.confirmPassword,
+        };
+        localStorage.setItem(authConst.authToken, JSON.stringify(users));
+        console.log("users", this.storeUserData);
         this.router.navigate(['/']);
         this.closeDialog();
       },
@@ -86,17 +77,14 @@ export class AuthComponent implements OnInit {
       (response) => {
         console.log(response);
         localStorage.setItem(authConst.authToken, response.result[0].token);
-        const localUser = localStorage.getItem(this.authTokenKey);
+        const localUser = localStorage.getItem(authConst.authToken);
         if (localUser != null) {
-          const users = JSON.parse(localUser);
-          const isUserPresent = users.find(
-            (user: any) => user.email == email && user.password === password
+          alert('user found');
+          localStorage.setItem(
+            'loggedUser',
+            JSON.stringify(response.result[0])
           );
-          if (isUserPresent != undefined) {
-            alert('user Found');
-            localStorage.setItem('loggedUser', JSON.stringify(isUserPresent));
-            this.router.navigate(['/status']);
-          }
+          this.router.navigate(['/']);
         } else {
           alert('No user found');
         }
@@ -109,7 +97,7 @@ export class AuthComponent implements OnInit {
       }
     );
   }
-
+ 
   closeDialog(): void {
     this.dialog.closeAll();
   }

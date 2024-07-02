@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
 import { MatIcon } from '@angular/material/icon';
 import { AuthComponent } from '../../authentication/auth/auth.component';
 import { NavBarComponent } from '../nav-bar/nav-bar.component';
+import { authConst } from '../../authentication/authConst';
 interface dates {
   month: string;
   date: Number;
@@ -34,6 +35,8 @@ export class HeroSectionComponent implements OnInit {
   datas: any;
   heroId: any;
   date: any;
+  headers: any;
+  name: any;
   daysOfWeek: string[] = [
     'Monday',
     'Tuesday',
@@ -69,19 +72,23 @@ export class HeroSectionComponent implements OnInit {
       selected: false,
     },
   ];
-
+   
   constructor(
     private dataService: DataPlacesService,
     private route: ActivatedRoute,
     private router: Router,
     private dialog: MatDialog
-  ) {}
+  ) {
+    const authToken = localStorage.getItem(authConst.authToken);
+    this.headers = authToken;
+  }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       this.heroId = params.get('id');
     });
     this.getPlaceIdWise();
+    this.getNameWiseSearch();
   }
   scroll(direction: number): void {
     const container = document.querySelector('.slider') as HTMLElement;
@@ -104,8 +111,22 @@ export class HeroSectionComponent implements OnInit {
       }
     );
   }
+
+  getNameWiseSearch(): void {
+    this.route.paramMap.subscribe(params => {
+      this.name = params.get('name');
+
+    })
+    
+  }
+ 
+  
   selectDate(selectDate: dates): void {
     this.dates.forEach((date) => (date.selected = false));
     selectDate.selected = true;
+  }
+  bookNow(heroId: string) {
+    this.router.navigate(['/booknow', heroId]);
+    console.log('heroid', heroId);
   }
 }

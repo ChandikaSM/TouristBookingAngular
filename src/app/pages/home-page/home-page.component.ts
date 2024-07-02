@@ -64,7 +64,7 @@ export class HomePageComponent implements OnInit {
     {
       img: 'https://www.myindiamyglory.com/wp-content/uploads/2017/09/Chobimura-Sculpture-Cover.jpg',
       name: 'SOUTH',
-      value: 'South',
+      value: 'South Tripura',
     },
     {
       img: 'https://www.tripuraindia.in/assets/upload_images/news_images/udaipur-matabari-700-tripura-india2.jpg',
@@ -91,6 +91,17 @@ export class HomePageComponent implements OnInit {
       name: 'DHALAI',
       value: 'Dhalai',
     },
+    {
+      img: 'https://media.assettype.com/outlooktraveller%2F2023-09%2Ff0097a3e-63bc-4bd3-ae30-7ffd77c54b31%2F33611704_917566975118088_7750874209164722176_n.jpg?w=1200&auto=format%2Ccompress&fit=max',
+      name: 'NORTH',
+      value: 'North Tripura',
+    },
+    {
+      img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAPVFjBXEHrikTrSe0wUIfB0Qxbi7LhmJ4ow&usqp=CAU',
+      name: 'KHOWAI',
+      value: 'Khowai',
+    },
+   
   ];
   displayOption: options[] = [
     {

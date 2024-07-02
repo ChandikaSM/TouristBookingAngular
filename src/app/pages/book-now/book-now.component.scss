@@ -11,6 +11,8 @@
 h2 {
   text-align: center;
   margin-bottom: 20px;
+  color: rgba(0, 0, 0, 0.9);
+  font-size: 1.8rem;
 }
 
 .form-group {
@@ -29,10 +31,16 @@ input[type="tel"],
 input[type="date"],
 select {
   width: 100%;
-  padding: 8px;
+  margin: 12px 0;
   font-size: 16px;
+  padding: 14px 2px;
   border: 1px solid #ccc;
   border-radius: 4px;
+}
+.show {
+  padding: 20px;
+  font-size: 22px;
+  font-weight: 500;
 }
 
 button {
@@ -76,10 +84,54 @@ button:hover {
       background: rgb(255, 255, 255);
       border: 1px solid black;
       border-radius: 25px;
+      cursor: pointer;
     }
   }
- 
 }
 .visit {
   width: 100%;
 }
+
+@media screen and (min-width: 300px) and (max-width: 768px) {
+  .container {
+    max-width: 350px;
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="date"],
+    select {
+      width: 100%;
+      margin: 5px 0;
+      font-size: 8px;
+      padding: 12px 1px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+  }
+  .space {
+    //  flex-direction: column;
+     justify-content: space-evenly;
+
+    padding: .5rem .8rem;
+    h5 {
+      font-size: 1.3rem;
+      font-weight: 300;
+      width: 20%;
+    }
+    .quantity {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: rgb(243, 243, 243);
+  
+      .icon {
+        margin: 1rem;
+        background: rgb(255, 255, 255);
+        border: 1px solid black;
+        border-radius: 25px;
+        cursor: pointer;
+      }
+    }
+  }
+  }
+

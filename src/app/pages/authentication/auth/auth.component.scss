@@ -207,6 +207,9 @@ body {
   .container.right-panel-active .overlay-right {
     transform: translateX(20%);
   }
+  .size {
+    font-size: 15px;
+  }
 }
 
 @media screen and (min-width: 300px) and (max-width: 768px) {
@@ -240,5 +243,9 @@ body {
       left: 0;
       width: 50%;
     }
+    .size {
+      font-size: 10px;
+    }
   }
+
 }

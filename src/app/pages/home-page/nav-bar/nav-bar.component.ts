@@ -16,6 +16,7 @@ import {
 import { MatSelect } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
 import { authConst } from '../../authentication/authConst';
+import { NavBarService } from './nav-bar.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -31,6 +32,7 @@ import { authConst } from '../../authentication/authConst';
     MatFormFieldModule,
     MatSelect,
     MatOptionModule,
+    AuthComponent
   ],
   templateUrl: './nav-bar.component.html',
   styleUrl: './nav-bar.component.scss',
@@ -41,11 +43,29 @@ export class NavBarComponent {
   title = 'tourism';
   isMenuOpen = false;
   headers: any;
-  constructor(private router: Router, authService: AuthService) {
+  name: string = '';
+  email: string = '';
+  mobile: string = '';
+  address: string = '';
+  password: string = '';
+  confirmPassword: string = '';
+  redirectUrl: string = '/';
+  authTokenKey = authConst.authToken;
+
+  constructor(private router: Router, private navService: NavBarService) {
     const authToken = localStorage.getItem(authConst.authToken)
     console.log(authToken)
     this.headers = authToken
    
+  }
+
+  login() {
+    this.openDialogSign();
+    if(this.headers) {
+      console.log('logged in', this.headers);
+    } else {
+      console.log('logged out');
+    }
   }
 
   toggleMenu() {
@@ -63,16 +83,6 @@ export class NavBarComponent {
     }
   }
 
-  myAccount() {
-    if (this.headers) {
-      console.log('User is logged in');
-      // this.router.navigate(['/status']);
-    } else {
-      console.log('User is not logged in');
-      this.openDialogSign();
-    }
-  }
-
   profile() {
     if (this.headers) {
       console.log('User is logged in');
@@ -83,19 +93,22 @@ export class NavBarComponent {
   }
   onChange(event: Event) {
     const selectedOption = (event.target as HTMLSelectElement).value;
-    if (selectedOption === 'myStatus') {
-      this.myAccount();
+    if (selectedOption === 'login') {
+     this.openDialogSign();
     } else if (selectedOption === 'profile') {
       this.profile();
+    } else if (selectedOption === 'logOut') {
+      // this.logOut();
     }
   }
-  isLoggedIn(): boolean {
-    return this.headers.isLoggedIn();
+
+
+
+  closeDialog(): void {
+    this.dialog.closeAll();
   }
 
-logOut():void {
-   localStorage.clear();
-}
+
   openDialogSign() {
     const dialogRef = this.dialog.open(AuthComponent, {
       width: window.innerWidth < 768 ? '100%' : '1000px',
@@ -107,4 +120,12 @@ logOut():void {
   closeMenu(): void {
     this.isMenuOpen = false;
   }
+  onSignOut(){
+   this.navService.logOutApi();
+   localStorage.clear();
+   console.log("called");
+  }
+
 }
+
+

@@ -9,7 +9,7 @@ import { authConst } from './authentication/authConst';
 export class DataPlacesService {
 
   headers: any;
-  private apiUrl = 'http://10.10.10.132';
+  private apiUrl = 'http://10.10.10.136';
 
   constructor(private http: HttpClient) {
     const authToken = localStorage.getItem(authConst.authToken)

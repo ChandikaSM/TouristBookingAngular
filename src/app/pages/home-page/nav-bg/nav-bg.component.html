@@ -19,8 +19,9 @@
         <button type="submit" (click)="searchItem($event)">Search</button>
       </div>
       <mat-autocomplete #auto="matAutocomplete"> 
-        <mat-option *ngFor="let search of filteredSearch | async" [value]="search">
-          {{ search }}
+        <mat-option *ngFor="let search of searchQuery">
+     
+          {{search.name}}
         </mat-option>
       </mat-autocomplete>
     </form>

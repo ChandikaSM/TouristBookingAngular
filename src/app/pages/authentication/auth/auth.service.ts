@@ -8,45 +8,29 @@ import { authConst } from '../authConst';
 })
 export class AuthService {
 
-  headers: any;
-  private apiUrl = 'http://10.10.10.132/web';
+  // headers: any;
+  private apiUrl = 'http://10.10.10.136/web';
   redirectUrl: string | null = null;
-  private loggedIn = false;
 
   constructor(private http: HttpClient) {
-    const authToken = localStorage.getItem(authConst.authToken)
-    console.log(authToken)
-    this.headers = authToken
   }
 
   signUpApi(data: any): Observable<any> {
-    // const headers = new HttpHeaders({
-    //   'Content-Type': 'application/json',
-    //   key: 'authKey',
-    // });
+     const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+
+     });
     return this.http.post(`${this.apiUrl}/sign-up`, data);
   }
 
   loginApi(data: any): Observable<any> {
-    // const headers = new HttpHeaders({
-    //   'Content-Type': 'application/json',
-    // });
-    return this.http.post(`${this.apiUrl}/sign-in`, data);
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+    return this.http.post(`${this.apiUrl}/sign-in`,data, {headers});
   }
 
-  logOut() {
-    localStorage.removeItem(this.headers);
-  }
 
-  isLoggedIn(): boolean {
-    return this.loggedIn;
-  }
 
-  setLoggedIn(status: boolean):void {
-    this.loggedIn = status;
-  }
-  // getToken(): string | null {
-  //   console.log(this.authTokenKey);
-  //   return localStorage.getItem(this.authTokenKey);
-  // }
+
 }

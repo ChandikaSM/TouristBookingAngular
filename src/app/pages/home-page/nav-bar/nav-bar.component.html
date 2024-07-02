@@ -13,13 +13,18 @@
 
     <button mat-button routerLink="/places">Places</button>
 
-    <button mat-button (click)="myAccount()">
+
+    <button mat-button (click)="login()">Login</button>
+    <button mat-button (click)="onSignOut()">Logout</button>
+    <!-- <button mat-button>
       <select class="select" (change)="onChange($event)">
-        <option value="myStatus">Login</option>
-        <option value="profile">Profile </option>
+        <option value="login" *ngIf="!headers">Login</option>
+        <option value="profile" *ngIf="headers">Profile </option>
+        <option value="logOut" *ngIf="headers">Logout </option>
       </select>
     
-    </button>
+    </button> -->
+   
   </div>
 </mat-toolbar>
 <div class="menuList" [class.open]="isMenuOpen">
@@ -29,6 +34,6 @@
   <button mat-button routerLink="/places" (click)="closeMenu()">Places</button>
   
   <hr />
-  <!-- {{ loggedUser?.email }} -->
-  <!-- <button mat-button (click)="logOut()">Log Out</button> -->
+  <button mat-button>Login</button>
+
 </div>
