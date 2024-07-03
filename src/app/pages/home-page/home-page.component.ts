@@ -10,14 +10,13 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
 import { MatOption } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
-import {
-  MatDatepickerModule,
-} from '@angular/material/datepicker';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { NavBgComponent } from './nav-bg/nav-bg.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { SliderComponent } from '../slider/slider.component';
+import { HomePageService } from './home-page.service';
 interface districtStatic {
   img: string;
   name: string;
@@ -101,7 +100,6 @@ export class HomePageComponent implements OnInit {
       name: 'KHOWAI',
       value: 'Khowai',
     },
-   
   ];
   displayOption: options[] = [
     {
@@ -132,7 +130,7 @@ export class HomePageComponent implements OnInit {
   }
   filteredItems: any[] = [];
 
-  constructor(private dataService: DataPlacesService, public router: Router) {}
+  constructor(private dataService: HomePageService, public router: Router) {}
 
   ngOnInit(): void {
     this.getSpots();

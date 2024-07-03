@@ -15,31 +15,22 @@ import { CommonModule } from '@angular/common';
   templateUrl: './place-list.component.html',
   styleUrl: './place-list.component.scss',
 })
-
-
 export class PlaceListComponent implements OnInit {
-  datas: any[]=[];
+  datas: any[] = [];
 
   constructor(private placeService: PlaceListService, private router: Router) {}
 
   ngOnInit(): void {
     this.getSpots();
-
   }
 
-  getSpots():void{
-    this.placeService.getData().subscribe(
-      (datas: any) => {
-        this.datas = datas.result
-      }
-    );
+  getSpots(): void {
+    this.placeService.getData().subscribe((datas: any) => {
+      this.datas = datas.result;
+    });
   }
 
-
- onClickPlaces (id: string): void {
-  this.router.navigate(['/herodetails', id]);
- }
+  onClickPlaces(id: string): void {
+    this.router.navigate(['/herodetails', id]);
   }
-
-
-
+}

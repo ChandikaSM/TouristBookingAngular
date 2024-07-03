@@ -1,13 +1,12 @@
-import { Component, HostListener, OnInit, inject } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenu } from '@angular/material/menu';
 
 import { FormsModule } from '@angular/forms';
-import { AuthComponent } from './pages/authentication/auth/auth.component';
 
 @Component({
   selector: 'app-root',

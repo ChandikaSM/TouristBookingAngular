@@ -13,7 +13,7 @@ import { RouterLink } from '@angular/router';
 import { Router } from '@angular/router';
 import { NavBarComponent } from '../home-page/nav-bar/nav-bar.component';
 
-export interface PeriodicElement {
+export interface Element {
   name: string;
   orderId: number;
   ticket: string;
@@ -32,7 +32,7 @@ export interface placeList {
   value: string;
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
+const statusData: Element[] = [
   {
     orderId: 1,
     name: 'Sushmita Majumder',
@@ -151,15 +151,15 @@ export class StatusUserComponent {
       value: 'Gomati',
     },
   ];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+  dataSource = new MatTableDataSource<Element>(statusData);
   filterValue = {
     name: '',
     place: '',
     date: '',
     price: '',
   };
-  completedItems: PeriodicElement[] = [];
-  upComing: PeriodicElement[] = [];
+  completedItems: Element[] = [];
+  upComing: Element[] = [];
   myControl = new FormControl('');
 
   ngOnInit(): void {
@@ -168,7 +168,7 @@ export class StatusUserComponent {
     this.autoComplete();
   }
 
-  downloadItem(element: PeriodicElement) {
+  downloadItem(element: Element) {
     console.log('Download clicked for:', element);
     const url = element.downloadUrl;
     window.open(url, '_blank');
@@ -176,11 +176,11 @@ export class StatusUserComponent {
   showCompleted(): void {
     console.log(this.dataSource);
     const today = new Date();
-    this.completedItems = ELEMENT_DATA.filter((item) => item.date < today);
+    this.completedItems = statusData.filter((item) => item.date < today);
   }
   showUpcoming(): void {
     const today = new Date();
-    this.upComing = ELEMENT_DATA.filter((item) => item.date > today);
+    this.upComing = statusData.filter((item) => item.date > today);
   }
 
   toggleItems(showCompleted: boolean, showUpcoming: boolean): void {
@@ -189,7 +189,7 @@ export class StatusUserComponent {
     } else if (showUpcoming) {
       this.dataSource.data = this.upComing;
     } else {
-      this.dataSource.data = ELEMENT_DATA;
+      this.dataSource.data = statusData;
     }
   }
   searchQuery: string = '';
@@ -202,7 +202,7 @@ export class StatusUserComponent {
     const filterValue = this.searchQuery.trim().toLowerCase();
 
     if (filterValue) {
-      this.dataSource.data = ELEMENT_DATA.filter(
+      this.dataSource.data = statusData.filter(
         (item) =>
           item.name.toLowerCase().includes(filterValue) ||
           item.place.toLowerCase().includes(filterValue) ||
@@ -210,7 +210,7 @@ export class StatusUserComponent {
           item.price.toString().toLowerCase().includes(filterValue)
       );
     } else {
-      this.dataSource.data = ELEMENT_DATA;
+      this.dataSource.data = statusData;
     }
   }
 

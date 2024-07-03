@@ -13,7 +13,7 @@ import { DataPlacesService } from '../data-places.service';
 import { CommonModule } from '@angular/common';
 import { MatSpinner } from '@angular/material/progress-spinner';
 import { NavBarComponent } from '../home-page/nav-bar/nav-bar.component';
-import { BreadCrumpComponent } from '../bread-crump/bread-crump.component';
+import { PlaceService } from './places.service';
 
 export interface cardItem {
   title: string;
@@ -36,11 +36,10 @@ export interface cardItem {
     CommonModule,
     MatSpinner,
     NavBarComponent,
-    BreadCrumpComponent
   ],
   templateUrl: './places.component.html',
   styleUrl: './places.component.scss',
-  providers: [DataPlacesService],
+  providers: [PlaceService],
 })
 export class PlacesComponent implements OnInit {
   datas: any[] = [];
@@ -50,10 +49,8 @@ export class PlacesComponent implements OnInit {
   districtList: any[] = [];
   errorMessage: string = '';
 
-
-
   constructor(
-    private dataService: DataPlacesService,
+    private dataService: PlaceService,
     public router: Router,
     private route: ActivatedRoute
   ) {}
@@ -67,22 +64,18 @@ export class PlacesComponent implements OnInit {
   }
 
   getSpots(): void {
-    this.dataService.getData().subscribe(
-      (datas: any) => {
-        this.datas = datas.result;
-      }
-    );
+    this.dataService.getData().subscribe((datas: any) => {
+      this.datas = datas.result;
+    });
   }
 
   getSpotsDetails(): void {
     const urlParam = {
       district: this.districtName,
     };
-    this.dataService.getDistrictDetails(urlParam).subscribe(
-      (success: any) => {
-        this.districtList = success.result;
-      }
-    );
+    this.dataService.getDistrictDetails(urlParam).subscribe((success: any) => {
+      this.districtList = success.result;
+    });
   }
 
   onClickPlaces(id: string): void {

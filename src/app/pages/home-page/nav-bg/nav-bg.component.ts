@@ -17,7 +17,7 @@ import { NavBarComponent } from '../nav-bar/nav-bar.component';
     HttpClientModule,
     MatAutocompleteModule,
     ReactiveFormsModule,
-    NavBarComponent
+    NavBarComponent,
   ],
   templateUrl: './nav-bg.component.html',
   styleUrl: './nav-bg.component.scss',
@@ -26,17 +26,16 @@ import { NavBarComponent } from '../nav-bar/nav-bar.component';
 })
 export class NavBgComponent implements OnInit {
   control = new FormControl('');
-  searchQuery: any[]=[];
-  filteredSearch!: Observable<any[]> ;
+  searchQuery: any[] = [];
+  filteredSearch!: Observable<any[]>;
 
   constructor(private dataService: NavBgService, private router: Router) {}
-  
 
   ngOnInit(): void {
     this.getSearch();
     this.filteredSearch = this.control.valueChanges.pipe(
       startWith(''),
-      map(value => this._filter(value || ''))
+      map((value) => this._filter(value || ''))
     );
   }
 
@@ -48,14 +47,14 @@ export class NavBgComponent implements OnInit {
   }
   private _filter(value: string): any[] {
     const filterValue = value.toLowerCase();
-    return this.searchQuery.filter(option => option.name.toLowerCase().includes(filterValue));
+    return this.searchQuery.filter((option) =>
+      option.name.toLowerCase().includes(filterValue)
+    );
   }
-
 
   searchItem(event: Event): void {
     event?.preventDefault();
     this.router.navigate(['placelist']);
     console.log('search item', this.control.value);
-    
   }
 }

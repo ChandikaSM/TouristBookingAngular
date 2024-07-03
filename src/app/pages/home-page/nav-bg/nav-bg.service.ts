@@ -3,12 +3,10 @@ import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class NavBgService {
-
-
-  private apiUrl = "http://10.10.10.136/web";
+  private apiUrl = 'http://10.10.10.136/web';
 
   constructor(private http: HttpClient) {}
   getSearchData(): Observable<string[]> {

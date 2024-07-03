@@ -6,7 +6,7 @@
     <div class="bgCenter">
       <h1>Where do you want To go ?</h1>
     </div>
-    
+
     <form class="">
       <div class="searchSpan">
         <input
@@ -18,10 +18,12 @@
         />
         <button type="submit" (click)="searchItem($event)">Search</button>
       </div>
-      <mat-autocomplete #auto="matAutocomplete"> 
-        <mat-option *ngFor="let search of filteredSearch | async" [value]="search.name">
-     
-          {{search.name}}
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option
+          *ngFor="let search of filteredSearch | async"
+          [value]="search.name"
+        >
+          {{ search.name }}
         </mat-option>
       </mat-autocomplete>
     </form>

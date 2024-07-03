@@ -7,8 +7,6 @@ import { NavBarComponent } from '../home-page/nav-bar/nav-bar.component';
   standalone: true,
   imports: [MatCardModule, NavBarComponent],
   templateUrl: './profile.component.html',
-  styleUrl: './profile.component.scss'
+  styleUrl: './profile.component.scss',
 })
-export class ProfileComponent {
-
-}
+export class ProfileComponent {}

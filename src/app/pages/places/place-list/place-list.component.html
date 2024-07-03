@@ -2,23 +2,19 @@
 
 <div class="box" *ngFor="let data of datas">
   <mat-card class="card" appearance="outlined">
-    <div  class="imgPlace">
-      <img
-        mat-card-sm-image
-        [src]="data.images[1].link" alt="images"
-      />
+    <div class="imgPlace">
+      <img mat-card-sm-image [src]="data.images[1].link" alt="images" />
     </div>
 
     <div class="details">
       <mat-card-header>
-        <mat-card-title> {{data.name}} </mat-card-title>
+        <mat-card-title> {{ data.name }} </mat-card-title>
       </mat-card-header>
       <mat-card-content>
-        {{data.description.slice(0,250)+ '...'}}
+        {{ data.description.slice(0, 250) + "..." }}
       </mat-card-content>
       <mat-card-footer class="button">
-        <button mat-button (click)="onClickPlaces(data._id)">Book Now
-          </button>
+        <button mat-button (click)="onClickPlaces(data._id)">Book Now</button>
       </mat-card-footer>
     </div>
   </mat-card>

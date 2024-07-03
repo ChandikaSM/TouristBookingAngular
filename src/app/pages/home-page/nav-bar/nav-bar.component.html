@@ -16,12 +16,15 @@
     <ng-container *ngIf="!headers">
       <button mat-button (click)="login()" (click)="closeMenu()">Login</button>
     </ng-container>
-  
+
     <ng-container *ngIf="headers">
-      <button mat-button routerLink="/status" (click)="closeMenu()">Profile</button>
-      <button mat-button (click)="onSignOut()" (click)="closeMenu()">Logout</button>
+      <button mat-button routerLink="/status" (click)="closeMenu()">
+        Profile
+      </button>
+      <button mat-button (click)="onSignOut()" (click)="closeMenu()">
+        Logout
+      </button>
     </ng-container>
-   
   </div>
 </mat-toolbar>
 <div class="menuList" [class.open]="isMenuOpen">
@@ -29,8 +32,7 @@
   <button mat-button routerLink="/" (click)="closeMenu()">Home</button>
   <hr />
   <button mat-button routerLink="/places" (click)="closeMenu()">Places</button>
-  
+
   <hr />
   <button mat-button>Login</button>
-
 </div>

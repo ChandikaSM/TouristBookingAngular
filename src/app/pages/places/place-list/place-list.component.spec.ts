@@ -8,9 +8,8 @@ describe('PlaceListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PlaceListComponent]
-    })
-    .compileComponents();
+      imports: [PlaceListComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(PlaceListComponent);
     component = fixture.componentInstance;

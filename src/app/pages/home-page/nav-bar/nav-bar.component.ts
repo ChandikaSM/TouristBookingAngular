@@ -132,8 +132,7 @@ export class NavBarComponent {
     this.isMenuOpen = false;
   }
   onSignOut() {
-     this.navService.logOutApi();
-    // authConst.authToken
+    this.navService.logOutApi();
     localStorage.removeItem(authConst.authToken);
     window.location.reload();
   }

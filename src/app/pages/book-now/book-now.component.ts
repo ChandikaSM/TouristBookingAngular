@@ -56,7 +56,7 @@ export class BookNowComponent {
     private router: Router
   ) {
     const authToken = localStorage.getItem(authConst.authToken);
-    this.headers = {Authorization: `Bearer ${authToken}`};
+    this.headers = { Authorization: `Bearer ${authToken}` };
   }
 
   onSubmit(): void {

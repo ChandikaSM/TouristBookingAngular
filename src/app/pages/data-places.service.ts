@@ -1,24 +1,21 @@
 import { Injectable } from '@angular/core';
-import { HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { authConst } from './authentication/authConst';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DataPlacesService {
-
-headers: any;
+  headers: any;
   private apiUrl = 'http://10.10.10.136';
 
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) {}
 
   getData(): Observable<any> {
     if (!navigator.onLine) {
       return throwError('Offline');
     }
-    return this.http.get<any[]>(`${this.apiUrl}/web/spots`)
+    return this.http.get<any[]>(`${this.apiUrl}/web/spots`);
   }
 
   getDataWithId(urlParam: any): Observable<any> {
@@ -26,25 +23,25 @@ headers: any;
       return throwError('Offline');
     }
     return this.http.get<any>(`${this.apiUrl}/web/spots`, {
-        params: urlParam,
-        headers: this.headers
-      })
+      params: urlParam,
+      headers: this.headers,
+    });
   }
 
   getDistrictDetails(urlParams: any): Observable<any> {
-    console.log('headers',this.headers)
+    console.log('headers', this.headers);
     if (!navigator.onLine) {
       return throwError('Offline');
     }
     return this.http.get<any>(`${this.apiUrl}/web/district`, {
-        params: urlParams,
-        headers: this.headers
-      })
+      params: urlParams,
+      headers: this.headers,
+    });
   }
   searchDistrictsByName(query: string): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/web/search`, {
       params: { name: query },
-      headers: this.headers
+      headers: this.headers,
     });
   }
   getDistrictId(urlParam: any): Observable<any> {
@@ -52,8 +49,8 @@ headers: any;
       return throwError('Offline');
     }
     return this.http.get<any>(`${this.apiUrl}/web/`, {
-        params: urlParam,
-        headers: this.headers
-      })
+      params: urlParam,
+      headers: this.headers,
+    });
   }
 }
