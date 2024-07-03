@@ -13,17 +13,14 @@
 
     <button mat-button routerLink="/places">Places</button>
 
-
-    <button mat-button (click)="login()">Login</button>
-    <button mat-button (click)="onSignOut()">Logout</button>
-    <!-- <button mat-button>
-      <select class="select" (change)="onChange($event)">
-        <option value="login" *ngIf="!headers">Login</option>
-        <option value="profile" *ngIf="headers">Profile </option>
-        <option value="logOut" *ngIf="headers">Logout </option>
-      </select>
-    
-    </button> -->
+    <ng-container *ngIf="!headers">
+      <button mat-button (click)="login()" (click)="closeMenu()">Login</button>
+    </ng-container>
+  
+    <ng-container *ngIf="headers">
+      <button mat-button routerLink="/status" (click)="closeMenu()">Profile</button>
+      <button mat-button (click)="onSignOut()" (click)="closeMenu()">Logout</button>
+    </ng-container>
    
   </div>
 </mat-toolbar>

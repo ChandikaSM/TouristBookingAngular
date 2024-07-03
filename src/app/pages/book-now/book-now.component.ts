@@ -30,8 +30,8 @@ interface item {
 })
 export class BookNowComponent {
   name: string = '';
-  email: string = '';
-  phone: string = '';
+  Email: string = '';
+  mobile: string = '';
   date: Date | null = null;
   heroId: string = '';
   paymentOption: string = '';
@@ -39,6 +39,7 @@ export class BookNowComponent {
   adultQuantity = 1;
   booking: any = {};
   headers: any;
+
   items: item[] = [
     { value: 'monday', viewValue: '09:00 a.m. - 05:00 p.m.' },
     { value: 'tuesday', viewValue: '09:00 a.m. - 05:00 p.m.' },
@@ -55,15 +56,15 @@ export class BookNowComponent {
     private router: Router
   ) {
     const authToken = localStorage.getItem(authConst.authToken);
-    this.headers = authToken;
+    this.headers = {Authorization: `Bearer ${authToken}`};
   }
 
   onSubmit(): void {
-    const bookingDetails = {
+    const booking = {
       spotId: this.heroId,
       name: this.name,
-      mobile: this.phone,
-      Email: this.email,
+      mobile: this.mobile,
+      Email: this.Email,
       date: this.date,
       quantity: [
         { type: 'adult', count: this.adultQuantity },
@@ -71,14 +72,14 @@ export class BookNowComponent {
       ],
       total: this.sum,
     };
-    console.log('Form submitted:', bookingDetails);
-    this.onBookNow(bookingDetails);
+    console.log('Form submitted:', booking);
+    this.onBookNow(booking, this.headers);
   }
 
   resetForm(): void {
     this.name = '';
-    this.email = '';
-    this.phone = '';
+    this.Email = '';
+    this.mobile = '';
     this.date = null;
   }
 
@@ -118,13 +119,14 @@ export class BookNowComponent {
     const adult = 40;
     this.sum = this.childQuantity * child + this.adultQuantity * adult;
   }
-  onBookNow(bookingDetails: any): void {
-    this.bookNow.processBooking(bookingDetails).subscribe(
+  onBookNow(booking: any, headers: any): void {
+    this.bookNow.processBooking(booking, headers).subscribe(
       (response) => {
         console.log('booking success', response);
         alert('successful');
         this.resetForm();
         this.router.navigate(['/']);
+        localStorage.setItem('bookingDetails', JSON.stringify(booking));
       },
       (error) => {
         console.error('booking failed', error);

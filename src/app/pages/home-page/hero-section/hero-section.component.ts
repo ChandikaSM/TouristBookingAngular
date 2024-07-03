@@ -77,7 +77,6 @@ export class HeroSectionComponent implements OnInit {
     private dataService: DataPlacesService,
     private route: ActivatedRoute,
     private router: Router,
-    private dialog: MatDialog
   ) {
     const authToken = localStorage.getItem(authConst.authToken);
     this.headers = authToken;
@@ -88,7 +87,6 @@ export class HeroSectionComponent implements OnInit {
       this.heroId = params.get('id');
     });
     this.getPlaceIdWise();
-    this.getNameWiseSearch();
   }
   scroll(direction: number): void {
     const container = document.querySelector('.slider') as HTMLElement;
@@ -105,20 +103,16 @@ export class HeroSectionComponent implements OnInit {
     this.dataService.getDataWithId(urlParam).subscribe(
       (success) => {
         this.datas = success.result[0];
+      
       },
       (error) => {
+        console.log("datas 109", this.datas);
         console.error('Error fetching place details', error);
       }
     );
   }
 
-  getNameWiseSearch(): void {
-    this.route.paramMap.subscribe(params => {
-      this.name = params.get('name');
-
-    })
-    
-  }
+  
  
   
   selectDate(selectDate: dates): void {

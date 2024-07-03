@@ -17,6 +17,7 @@ import { MatSelect } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
 import { authConst } from '../../authentication/authConst';
 import { NavBarService } from './nav-bar.service';
+import { ForgetPasswordComponent } from '../../authentication/auth/forget-password/forget-password.component';
 
 @Component({
   selector: 'app-nav-bar',
@@ -32,7 +33,7 @@ import { NavBarService } from './nav-bar.service';
     MatFormFieldModule,
     MatSelect,
     MatOptionModule,
-    AuthComponent
+    AuthComponent,
   ],
   templateUrl: './nav-bar.component.html',
   styleUrl: './nav-bar.component.scss',
@@ -53,15 +54,14 @@ export class NavBarComponent {
   authTokenKey = authConst.authToken;
 
   constructor(private router: Router, private navService: NavBarService) {
-    const authToken = localStorage.getItem(authConst.authToken)
-    console.log(authToken)
-    this.headers = authToken
-   
+    const authToken = localStorage.getItem(authConst.authToken);
+    console.log(authToken);
+    this.headers = authToken;
   }
 
   login() {
     this.openDialogSign();
-    if(this.headers) {
+    if (this.headers) {
       console.log('logged in', this.headers);
     } else {
       console.log('logged out');
@@ -94,7 +94,7 @@ export class NavBarComponent {
   onChange(event: Event) {
     const selectedOption = (event.target as HTMLSelectElement).value;
     if (selectedOption === 'login') {
-     this.openDialogSign();
+      this.openDialogSign();
     } else if (selectedOption === 'profile') {
       this.profile();
     } else if (selectedOption === 'logOut') {
@@ -102,12 +102,14 @@ export class NavBarComponent {
     }
   }
 
-
+  forget(): void {
+    // this.openDialogForget();
+    this.router.navigate(['/forget']);
+  }
 
   closeDialog(): void {
     this.dialog.closeAll();
   }
-
 
   openDialogSign() {
     const dialogRef = this.dialog.open(AuthComponent, {
@@ -117,15 +119,22 @@ export class NavBarComponent {
       maxHeight: '80%',
     });
   }
+
+  openDialogForget() {
+    this.dialog.open(ForgetPasswordComponent, {
+      width: window.innerWidth < 768 ? '100%' : '800px',
+      maxWidth: '90%',
+      height: window.innerWidth < 768 ? '500px' : '',
+      maxHeight: '80%',
+    });
+  }
   closeMenu(): void {
     this.isMenuOpen = false;
   }
-  onSignOut(){
-   this.navService.logOutApi();
-   localStorage.clear();
-   console.log("called");
+  onSignOut() {
+     this.navService.logOutApi();
+    // authConst.authToken
+    localStorage.removeItem(authConst.authToken);
+    window.location.reload();
   }
-
 }
-
-

@@ -8,21 +8,17 @@ import { authConst } from './authentication/authConst';
 })
 export class DataPlacesService {
 
-  headers: any;
+headers: any;
   private apiUrl = 'http://10.10.10.136';
 
   constructor(private http: HttpClient) {
-    const authToken = localStorage.getItem(authConst.authToken)
-    console.log(authToken)
-    this.headers = authToken
   }
 
   getData(): Observable<any> {
     if (!navigator.onLine) {
       return throwError('Offline');
     }
-    return this.http.get<any[]>(`${this.apiUrl}/web/spots`
-    )
+    return this.http.get<any[]>(`${this.apiUrl}/web/spots`)
   }
 
   getDataWithId(urlParam: any): Observable<any> {

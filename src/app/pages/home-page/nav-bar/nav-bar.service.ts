@@ -11,6 +11,7 @@ export class NavBarService {
   logOutApi(): void{
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
+      
 
     });
      this.http.post(`${this.apiUrl}/sign-out`, {headers});

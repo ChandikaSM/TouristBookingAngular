@@ -15,14 +15,18 @@ import { OrderAdminComponent } from './admin/order-admin/order-admin.component';
 import { ManageComponent } from './admin/manage/manage.component';
 import { SettingComponent } from './admin/setting/setting.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { PlaceholderAnimationDirective } from '@coreui/angular';
+import { PlaceListComponent } from './pages/places/place-list/place-list.component';
+import { ForgetPasswordComponent } from './pages/authentication/auth/forget-password/forget-password.component';
 
 export const routes: Routes = [
   { path: '', component: HomePageComponent },
   { path: 'places/:value', component: PlacesComponent },
   { path: 'places', component: PlacesComponent },
   { path: 'herodetails/:id', component: HeroSectionComponent },
-  { path: 'herodetails/:name', component: HeroSectionComponent },
+  { path: 'placelist', component: PlaceListComponent },
   { path: 'booknow/:heroId', component: BookNowComponent },
+  { path: 'forget', component: ForgetPasswordComponent },
 
   { path: 'profile', component: ProfileComponent },
   { path: 'status', component: StatusUserComponent },

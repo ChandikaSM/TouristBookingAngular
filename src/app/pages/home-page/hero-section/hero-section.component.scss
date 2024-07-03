@@ -154,7 +154,7 @@
   }
 }
 
-@media screen and (max-width: 300px) and (max-width: 768px) {
+@media screen and (min-width: 300px) and (max-width: 768px) {
   .gridDetails {
     grid-template-columns: repeat(1, 1fr);
     overflow-x: hidden;

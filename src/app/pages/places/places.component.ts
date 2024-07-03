@@ -50,9 +50,7 @@ export class PlacesComponent implements OnInit {
   districtList: any[] = [];
   errorMessage: string = '';
 
-  trackBy(index: number, data: any): number {
-    return data.id;
-  }
+
 
   constructor(
     private dataService: DataPlacesService,
@@ -72,10 +70,6 @@ export class PlacesComponent implements OnInit {
     this.dataService.getData().subscribe(
       (datas: any) => {
         this.datas = datas.result;
-      },
-      (error) => { 
-        console.error('Error fetching  data', error);
-        this.errorMessage = "failed to load details .please try again";
       }
     );
   }
@@ -87,9 +81,6 @@ export class PlacesComponent implements OnInit {
     this.dataService.getDistrictDetails(urlParam).subscribe(
       (success: any) => {
         this.districtList = success.result;
-      },
-      (error) => {
-        console.error('Error fetching  data', error);
       }
     );
   }
