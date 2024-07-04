@@ -1,11 +1,11 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
-export class DataPlacesService {
+export class SliderService {
   headers: any;
   private apiUrl = 'http://10.10.10.136';
 
@@ -29,7 +29,6 @@ export class DataPlacesService {
   }
 
   getDistrictDetails(urlParams: any): Observable<any> {
-    console.log('headers', this.headers);
     if (!navigator.onLine) {
       return throwError('Offline');
     }

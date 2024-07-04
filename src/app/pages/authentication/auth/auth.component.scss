@@ -126,6 +126,13 @@ body {
     z-index: 5;
     animation: show 0.6s;
   }
+  ul {
+    margin: 0rem;
+    padding: 0rem;
+    li {
+      font-size: .7rem;
+    }
+  }
 
   @keyframes show {
     0%,
@@ -217,16 +224,15 @@ body {
     display: block;
     .container {
       h1 {
-        background: yellow;
-        font-size: 1rem;
+        font-size: .5rem;
       }
       p {
-        font-size: 12px;
-        margin: 10px 0 10px;
+        font-size: 8px;
+        margin: 5px 0 5px;
       }
     }
     form {
-      padding: 7px;
+      padding: 6px;
       margin-right: 0rem;
     }
 
@@ -236,7 +242,7 @@ body {
     }
 
     .container .right-panel-active .sign-in-container {
-      transform: translateX(50%);
+      transform: translateX(100%);
     }
 
     .sign-up-container {

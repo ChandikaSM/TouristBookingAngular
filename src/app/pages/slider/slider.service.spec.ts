@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DataPlacesService } from './data-places.service';
+import { SliderService } from './slider.service';
 
-describe('DataPlacesService', () => {
-  let service: DataPlacesService;
+describe('SliderService', () => {
+  let service: SliderService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(DataPlacesService);
+    service = TestBed.inject(SliderService);
   });
 
   it('should be created', () => {

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './auth.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgIf } from '@angular/common';
@@ -23,17 +23,22 @@ export class AuthComponent implements OnInit {
   password: string = '';
   confirmPassword: string = '';
   redirectUrl: string = '/';
+  headers: any;
 
   constructor(
     private authService: AuthService,
     private router: Router,
     private dialog: MatDialog
-  ) {}
+  ) {
+    const authToken = localStorage.getItem(authConst.authToken)
+    console.log(authToken)
+    this.headers = authToken
+   
+  }
 
   ngOnInit(): void {}
 
   onSignUp(): void {
-    
     const userData = {
       name: this.name,
       email: this.email,
@@ -55,8 +60,6 @@ export class AuthComponent implements OnInit {
           password: this.password,
           confirmPassword: this.confirmPassword,
         };
-        localStorage.setItem(authConst.authToken, JSON.stringify(users));
-        console.log("users", this.storeUserData);
         this.router.navigate(['/']);
         this.closeDialog();
       },
@@ -68,25 +71,21 @@ export class AuthComponent implements OnInit {
   storeUserData(userData: any): void {
     localStorage.setItem('userData', JSON.stringify(userData));
   }
+
   onSignIn(email: string, password: string): void {
     const loginData = {
-      email: email,
-      password: password,
+      email: this.email,
+      password: this.password,
     };
     this.authService.loginApi(loginData).subscribe(
       (response) => {
         console.log(response);
+        
         localStorage.setItem(authConst.authToken, response.result[0].token);
-        const localUser = localStorage.getItem(authConst.authToken);
-        if (localUser != null) {
-          alert('user found');
-          localStorage.setItem(
-            'loggedUser',
-            JSON.stringify(response.result[0])
-          );
-          this.router.navigate(['/']);
-        } else {
-          alert('No user found');
+        console.log(response.result[0].token)
+        if(response && response.status) {
+          localStorage.setItem('token', response.token);
+          localStorage.setItem('loggedUser', JSON.stringify(response.userData))
         }
         this.closeDialog();
         const redirectUrl = this.authService.redirectUrl || '/';
@@ -97,7 +96,7 @@ export class AuthComponent implements OnInit {
       }
     );
   }
- 
+
   closeDialog(): void {
     this.dialog.closeAll();
   }

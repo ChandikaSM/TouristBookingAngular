@@ -2,8 +2,8 @@ import { CommonModule } from '@angular/common';
 import { CUSTOM_ELEMENTS_SCHEMA, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { register } from 'swiper/element-bundle';
-import { DataPlacesService } from '../data-places.service';
 import { MatButtonModule } from '@angular/material/button';
+import { SliderService } from './slider.service';
 
 register();
 
@@ -16,7 +16,7 @@ register();
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class SliderComponent implements OnInit {
-  constructor(private router: Router, private dataService: DataPlacesService) {}
+  constructor(private router: Router, private dataService: SliderService) {}
   images: any[] = [];
   trackById(index: number, item: any): any {
     return item.id;
@@ -29,7 +29,6 @@ export class SliderComponent implements OnInit {
     this.dataService.getData().subscribe(
       (images: any) => {
         this.images = images.result;
-        console.log(images, 'images');
       },
       (error) => {
         console.error('Error fetching  data', error);

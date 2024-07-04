@@ -28,7 +28,6 @@ export class HomePageService {
   }
 
   getDistrictDetails(urlParams: any): Observable<any> {
-    console.log('headers', this.headers);
     if (!navigator.onLine) {
       return throwError('Offline');
     }

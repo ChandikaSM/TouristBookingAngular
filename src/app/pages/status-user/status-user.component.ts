@@ -169,12 +169,10 @@ export class StatusUserComponent {
   }
 
   downloadItem(element: Element) {
-    console.log('Download clicked for:', element);
     const url = element.downloadUrl;
     window.open(url, '_blank');
   }
   showCompleted(): void {
-    console.log(this.dataSource);
     const today = new Date();
     this.completedItems = statusData.filter((item) => item.date < today);
   }

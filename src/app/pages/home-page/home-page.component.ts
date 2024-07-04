@@ -3,12 +3,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
-import { DataPlacesService } from '../data-places.service';
 import { MatChip, MatChipSet } from '@angular/material/chips';
 
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
-import { MatOption } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
@@ -77,7 +75,7 @@ export class HomePageComponent implements OnInit {
     },
     {
       img: 'https://hblimg.mmtcdn.com/content/hubble/img/tvdestinationimages/mmt/activities/m_Agartala_tv_destination_img_7_l_750_1000.jpg',
-      name: 'West Tripura',
+      name: 'WEST TRIPURA',
       value: 'West Tripura',
     },
     {
@@ -166,7 +164,6 @@ export class HomePageComponent implements OnInit {
   }
 
   decreaseChildQuantity() {
-    console.log('true');
     if (this.childQuantity > 0) {
       this.childQuantity--;
     }
@@ -178,7 +175,6 @@ export class HomePageComponent implements OnInit {
   }
 
   increaseChildQuantity() {
-    console.log('true');
     if (this.childQuantity < 10) {
       this.childQuantity++;
     } else {

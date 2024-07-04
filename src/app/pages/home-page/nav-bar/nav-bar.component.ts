@@ -55,17 +55,11 @@ export class NavBarComponent {
 
   constructor(private router: Router, private navService: NavBarService) {
     const authToken = localStorage.getItem(authConst.authToken);
-    console.log(authToken);
     this.headers = authToken;
   }
 
   login() {
     this.openDialogSign();
-    if (this.headers) {
-      console.log('logged in', this.headers);
-    } else {
-      console.log('logged out');
-    }
   }
 
   toggleMenu() {
@@ -85,10 +79,8 @@ export class NavBarComponent {
 
   profile() {
     if (this.headers) {
-      console.log('User is logged in');
       this.router.navigate(['/profile']);
     } else {
-      console.log('User is not logged in');
     }
   }
   onChange(event: Event) {
@@ -103,7 +95,6 @@ export class NavBarComponent {
   }
 
   forget(): void {
-    // this.openDialogForget();
     this.router.navigate(['/forget']);
   }
 
@@ -113,11 +104,12 @@ export class NavBarComponent {
 
   openDialogSign() {
     const dialogRef = this.dialog.open(AuthComponent, {
-      width: window.innerWidth < 768 ? '100%' : '1000px',
+      width: window.innerWidth < 768 ? '700px' : '1000px',
       maxWidth: '90%',
-      height: window.innerWidth < 768 ? '500px' : '',
-      maxHeight: '80%',
+      height: window.innerWidth < 768 ? '600px' : '',
+      maxHeight: '100%',
     });
+
   }
 
   openDialogForget() {

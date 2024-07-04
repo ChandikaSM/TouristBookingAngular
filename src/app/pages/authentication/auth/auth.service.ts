@@ -16,11 +16,11 @@ export class AuthService {
   }
 
   signUpApi(data: any): Observable<any> {
+     const authToken =localStorage.getItem(authConst.authToken);
      const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-
-     });
-    return this.http.post(`${this.apiUrl}/sign-up`, data);
+      Authorization: `Bearer ${authToken}`
+     })
+    return this.http.post(`${this.apiUrl}/sign-up`, data, { headers });
   }
 
   loginApi(data: any): Observable<any> {

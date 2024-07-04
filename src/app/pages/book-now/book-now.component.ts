@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
-import { DataPlacesService } from '../data-places.service';
 import { AuthComponent } from '../authentication/auth/auth.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
@@ -50,13 +49,14 @@ export class BookNowComponent {
   ];
 
   sum = 0;
+
   constructor(
     private bookNow: BookNowService,
     private dialog: MatDialog,
     private router: Router
   ) {
     const authToken = localStorage.getItem(authConst.authToken);
-    this.headers = { Authorization: `Bearer ${authToken}` };
+    this.headers = {Authorization: `Bearer ${authToken}`}
   }
 
   onSubmit(): void {
@@ -72,8 +72,7 @@ export class BookNowComponent {
       ],
       total: this.sum,
     };
-    console.log('Form submitted:', booking);
-    this.onBookNow(booking, this.headers);
+    this.onBookNow(booking);
   }
 
   resetForm(): void {
@@ -89,7 +88,7 @@ export class BookNowComponent {
       this.total();
     }
   }
-  decreaseAdultQuantity() {
+  decreaseAdultQuantity(): void {
     if (this.adultQuantity > 0) {
       this.adultQuantity--;
       this.total();
@@ -97,7 +96,6 @@ export class BookNowComponent {
   }
 
   increaseChildQuantity() {
-    console.log('true');
     if (this.childQuantity < 10) {
       this.childQuantity++;
       this.total();
@@ -119,20 +117,24 @@ export class BookNowComponent {
     const adult = 40;
     this.sum = this.childQuantity * child + this.adultQuantity * adult;
   }
-  onBookNow(booking: any, headers: any): void {
-    this.bookNow.processBooking(booking, headers).subscribe(
+
+  onBookNow(booking: any): void {
+
+    this.bookNow.processBooking(booking).subscribe(
       (response) => {
-        console.log('booking success', response);
-        alert('successful');
+        console.log(response);
+        
+       if(response.status){
         this.resetForm();
         this.router.navigate(['/']);
-        localStorage.setItem('bookingDetails', JSON.stringify(booking));
+       }
       },
       (error) => {
-        console.error('booking failed', error);
+        console.error('error', error);
       }
     );
   }
+
   showLoginDialog(): void {
     const dialogRef = this.dialog.open(AuthComponent, {
       width: window.innerWidth < 768 ? '100%' : '1000px',

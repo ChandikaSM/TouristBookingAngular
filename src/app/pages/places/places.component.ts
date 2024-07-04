@@ -9,7 +9,6 @@ import {
   MatCardTitle,
 } from '@angular/material/card';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { DataPlacesService } from '../data-places.service';
 import { CommonModule } from '@angular/common';
 import { MatSpinner } from '@angular/material/progress-spinner';
 import { NavBarComponent } from '../home-page/nav-bar/nav-bar.component';

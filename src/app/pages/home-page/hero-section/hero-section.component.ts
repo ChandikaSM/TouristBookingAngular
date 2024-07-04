@@ -2,14 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { MatButton } from '@angular/material/button';
 
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { DataPlacesService } from '../../data-places.service';
 import { HttpClientModule } from '@angular/common/http';
-import { MatDialog } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
 import { MatIcon } from '@angular/material/icon';
-import { AuthComponent } from '../../authentication/auth/auth.component';
 import { NavBarComponent } from '../nav-bar/nav-bar.component';
 import { authConst } from '../../authentication/authConst';
+import { HeroSectionService } from './hero-section.service';
 interface dates {
   month: string;
   date: Number;
@@ -74,7 +72,7 @@ export class HeroSectionComponent implements OnInit {
   ];
 
   constructor(
-    private dataService: DataPlacesService,
+    private dataService: HeroSectionService,
     private route: ActivatedRoute,
     private router: Router
   ) {
@@ -105,7 +103,6 @@ export class HeroSectionComponent implements OnInit {
         this.datas = success.result[0];
       },
       (error) => {
-        console.log('datas 109', this.datas);
         console.error('Error fetching place details', error);
       }
     );
@@ -117,6 +114,5 @@ export class HeroSectionComponent implements OnInit {
   }
   bookNow(heroId: string) {
     this.router.navigate(['/booknow', heroId]);
-    console.log('heroid', heroId);
   }
 }

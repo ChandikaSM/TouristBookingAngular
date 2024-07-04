@@ -10,7 +10,7 @@
         class="form-control"
         id="name"
         name="name"
-        [(ngModel)]="booking.name"
+        [(ngModel)]="name"
         required
       />
     </div>
@@ -22,7 +22,7 @@
         class="form-control"
         id="email"
         name="email"
-        [(ngModel)]="booking.Email"
+        [(ngModel)]="Email"
         required
       />
     </div>
@@ -34,7 +34,7 @@
         class="form-control"
         id="phone"
         name="phone"
-        [(ngModel)]="booking.mobile"
+        [(ngModel)]="mobile"
         required
       />
     </div>
@@ -46,7 +46,7 @@
         class="form-control"
         id="date"
         name="date"
-        [(ngModel)]="booking.date"
+        [(ngModel)]="date"
         required
       />
     </div>
@@ -102,7 +102,12 @@
       </span>
     </div>
 
-    <div class="show">total: {{ sum }}</div>
+    <div class="show">total:
+      <span class="material-symbols-outlined icon">
+        currency_rupee
+        </span>
+      
+      {{ sum }}</div>
 
     <button type="submit" class="btn btn-primary">Book Now</button>
   </form>

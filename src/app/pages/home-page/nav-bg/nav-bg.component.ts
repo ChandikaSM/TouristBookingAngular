@@ -41,7 +41,6 @@ export class NavBgComponent implements OnInit {
 
   getSearch(): void {
     this.dataService.getSearchData().subscribe((sucess: any) => {
-      console.log(sucess);
       this.searchQuery = sucess.result;
     });
   }
@@ -55,6 +54,5 @@ export class NavBgComponent implements OnInit {
   searchItem(event: Event): void {
     event?.preventDefault();
     this.router.navigate(['placelist']);
-    console.log('search item', this.control.value);
   }
 }

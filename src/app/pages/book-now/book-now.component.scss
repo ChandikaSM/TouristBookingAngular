@@ -41,7 +41,11 @@ select {
   padding: 20px;
   font-size: 22px;
   font-weight: 500;
+  display: flex;
+  justify-content: center;
+
 }
+
 
 button {
   display: block;
@@ -109,7 +113,6 @@ button:hover {
     }
   }
   .space {
-    //  flex-direction: column;
     justify-content: space-evenly;
 
     padding: 0.5rem 0.8rem;

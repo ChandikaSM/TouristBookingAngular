@@ -24,6 +24,7 @@
             [(ngModel)]="mobile"
             name="mobile"
           />
+       
           <input
             type="text"
             placeholder="Address"
@@ -39,6 +40,19 @@
             required
             minlength="8"
           />
+
+         
+              <ul >
+                <li>
+                  Password must contain one Capital alphabet
+                </li>
+                <li>
+                  Password must contain one special character
+                </li>
+                <li>
+                  Password length must be 8
+                </li>
+              </ul>
           <input
             type="password"
             id="confirmPassword"
@@ -93,7 +107,7 @@
           </div>
           <div class="overlay-panel overlay-right">
             <h1>Hello, Friend!</h1>
-            <p>Enter your personal details and start journey with us</p>
+            <p>Enter your personal details and start exploring Tripura</p>
             <button class="ghost" (click)="showSignUp()">Sign Up</button>
           </div>
         </div>

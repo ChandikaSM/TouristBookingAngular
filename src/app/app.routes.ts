@@ -13,6 +13,7 @@ import { OrderAdminComponent } from './admin/order-admin/order-admin.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { PlaceListComponent } from './pages/places/place-list/place-list.component';
 import { ForgetPasswordComponent } from './pages/authentication/auth/forget-password/forget-password.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 export const routes: Routes = [
   { path: '', component: HomePageComponent },
@@ -27,6 +28,7 @@ export const routes: Routes = [
   { path: 'status', component: StatusUserComponent },
   { path: 'slider', component: SliderComponent },
   { path: 'auth', component: AuthComponent },
+  { path: 'notfound', component: NotFoundComponent},
   {
     path: 'admin',
     component: AdminComponent,
