@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { authConst } from '../../authentication/authConst';
 import { Observable } from 'rxjs';
@@ -24,4 +24,9 @@ export class PlaceListService {
       headers: this.headers,
     });
   }
+  getPlacesByName(name: string): Observable<any[]> {
+    const params = new HttpParams().set('name', name);
+    return this.http.get<any[]>(`${this.apiUrl}/web/spots`, { params, headers: this.headers });
+  }
+  
 }

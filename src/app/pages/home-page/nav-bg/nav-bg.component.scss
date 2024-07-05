@@ -13,16 +13,16 @@
   height: 50vh;
   object-fit: cover;
   background-size: cover;
-  background-image: url("https://assets.cntraveller.in/photos/61f7e7522a4c3abc8e111e00/16:9/w_960,c_limit/unakoti%20tripura%20lead.jpg");
+  background-image: url("../../../../../public/assets/two.jpg");
   border-radius: 0rem 0rem 2rem 2rem;
   &::before {
     content: "";
     position: absolute;
-    top: 0;
+    top: 8vh;
     left: 0;
     width: 100%;
-    height: 60%;
-    background-color: rgba(0, 0, 0, 0.5);
+    height: 50%;
+    background-color: rgba(16, 16, 16, 0.3);
     border-radius: 0rem 0rem 2rem 2rem;
     mix-blend-mode: darken;
   }
@@ -68,8 +68,9 @@
   button {
     padding: 1.4rem;
     font-size: 16px;
-    background-color: #b3b4b6;
-    color: white;
+    background: rgb(35, 83, 137);
+    color: rgb(232, 226, 226);
+    font-size: 1.2rem;
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -79,7 +80,7 @@
 }
 
 .searchSpan button:hover {
-  background-color: #c1c1c14f;
+  background-color: rgb(70, 99, 130);
 }
 
 @media screen and (max-width: 649px) {
@@ -96,6 +97,12 @@
       opacity: 0.2;
       z-index: 0;
       background: linear-gradient(to bottom, rgba(98, 97, 97, 0) 50%);
+    }
+    .bgCenter{
+      h1 {
+        font-size: 1rem;
+        color: rgb(0, 0, 0);
+      }
     }
   }
   .overlay {

@@ -166,6 +166,7 @@
       font-size: 2rem;
     }
   }
+
 }
 @media screen and (max-width: 976px) {
   .homePage {
@@ -252,6 +253,7 @@
   .btn {
     display: flex;
     justify-content: center;
+   
   }
   img {
     aspect-ratio: 16 / 12;
@@ -358,5 +360,26 @@
     padding: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     border-radius: 4px;
+  }
+}
+
+
+.districtGrid {
+  display: flex;
+  flex-wrap: wrap; 
+}
+
+.dis {
+  margin: 10px;
+  justify-content: center;
+}
+
+.btn {
+  .buttonBtn {
+    padding: 1rem;
+    margin: 1rem;
+    color: white;
+    background-color: rgb(133, 156, 183);
+  
   }
 }

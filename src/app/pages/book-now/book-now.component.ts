@@ -1,19 +1,27 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { AuthComponent } from '../authentication/auth/auth.component';
 import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BookNowService } from './book-now.service';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelect } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
 import { authConst } from '../authentication/authConst';
 import { NavBarComponent } from '../home-page/nav-bar/nav-bar.component';
-
+import { DatePipe } from '@angular/common';
+import {
+  MatSnackBar,
+  MatSnackBarAction,
+  MatSnackBarActions,
+  MatSnackBarLabel,
+  MatSnackBarRef,
+} from '@angular/material/snack-bar';
 interface item {
   value: string;
   viewValue: string;
 }
+
 @Component({
   selector: 'app-booking',
   templateUrl: './book-now.component.html',
@@ -25,19 +33,24 @@ interface item {
     MatSelect,
     MatOptionModule,
     NavBarComponent,
+  
   ],
+  providers: [DatePipe],
 })
-export class BookNowComponent {
+
+export class BookNowComponent implements OnInit {
+
   name: string = '';
   Email: string = '';
   mobile: string = '';
-  date: Date | null = null;
+  date: string = '';
   heroId: string = '';
   paymentOption: string = '';
   childQuantity = 1;
   adultQuantity = 1;
   booking: any = {};
   headers: any;
+  durationInSeconds = 5;
 
   items: item[] = [
     { value: 'monday', viewValue: '09:00 a.m. - 05:00 p.m.' },
@@ -53,25 +66,42 @@ export class BookNowComponent {
   constructor(
     private bookNow: BookNowService,
     private dialog: MatDialog,
-    private router: Router
+    private router: Router,
+    private activeRouter: ActivatedRoute,
+    private datePipe: DatePipe,
+    private _snackBar: MatSnackBar
   ) {
     const authToken = localStorage.getItem(authConst.authToken);
-    this.headers = {Authorization: `Bearer ${authToken}`}
+    this.headers = { Authorization: `Bearer ${authToken}` };
+  }
+
+  ngOnInit(): void {
+    this.activeRouter.queryParams.subscribe((params) => {
+      if (params['heroId']) {
+        this.heroId = params['heroId'];
+        console.log('Hero ID:', this.heroId); // Check if heroId is printed correctly
+      } else {
+        console.error('Hero ID is null or undefined');
+      }
+    });
   }
 
   onSubmit(): void {
+    this.date = this.datePipe.transform(this.date, 'dd-MM-yyyy') || '';
     const booking = {
       spotId: this.heroId,
       name: this.name,
       mobile: this.mobile,
       Email: this.Email,
       date: this.date,
-      quantity: [
-        { type: 'adult', count: this.adultQuantity },
-        { type: 'child', count: this.childQuantity },
-      ],
+      quantity: {
+        adult: this.adultQuantity,
+        child: this.childQuantity,
+      },
       total: this.sum,
     };
+    console.log('date', this.date);
+
     this.onBookNow(booking);
   }
 
@@ -79,7 +109,7 @@ export class BookNowComponent {
     this.name = '';
     this.Email = '';
     this.mobile = '';
-    this.date = null;
+    this.date = '';
   }
 
   decreaseChildQuantity() {
@@ -119,15 +149,15 @@ export class BookNowComponent {
   }
 
   onBookNow(booking: any): void {
-
+    console.log('bokking ', booking);
     this.bookNow.processBooking(booking).subscribe(
       (response) => {
         console.log(response);
-        
-       if(response.status){
-        this.resetForm();
-        this.router.navigate(['/']);
-       }
+
+        if (response.status) {
+          this.resetForm();
+          this.openSnackBar();
+        }
       },
       (error) => {
         console.error('error', error);
@@ -144,8 +174,22 @@ export class BookNowComponent {
     dialogRef.afterClosed().subscribe((result: any) => {
       if (result === 'success') {
         alert('Your booking has been initiated.');
-        this.router.navigate(['/booknow']);
+      
       }
     });
   }
+
+
+  openSnackBar() {
+    this._snackBar.open('Your booking has been initiated. Thank you', 'Dismiss', {
+      duration: this.durationInSeconds * 1000,
+    });
+    this.navigating()
+    
+  }
+  navigating(): void {
+    console.log("navigating");
+    
+    this.router.navigate(['']);
+   }
 }

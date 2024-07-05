@@ -112,7 +112,13 @@ export class HeroSectionComponent implements OnInit {
     this.dates.forEach((date) => (date.selected = false));
     selectDate.selected = true;
   }
-  bookNow(heroId: string) {
-    this.router.navigate(['/booknow', heroId]);
+  bookNow(id: string) {
+    if (this.heroId) {
+      this.router.navigate(['/booknow', id], {
+        queryParams: { heroId: this.heroId },
+      });
+    } else {
+      console.error('Hero id not defined')
+    }
   }
 }

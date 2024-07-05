@@ -53,6 +53,6 @@ export class NavBgComponent implements OnInit {
 
   searchItem(event: Event): void {
     event?.preventDefault();
-    this.router.navigate(['placelist']);
+    this.router.navigate(['placelist'], {queryParams: {search: this.searchItem}});
   }
 }

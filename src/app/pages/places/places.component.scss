@@ -3,11 +3,14 @@
   margin: 3rem;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+
   .box {
     display: flex;
+
     img {
+      border-radius: 20px;
       aspect-ratio: 16 /9;
-      padding: 0.2rem;
+      padding: 0rem;
       height: 30vh;
       width: 100%;
       object-fit: fill;
@@ -15,13 +18,22 @@
     }
     .desc {
       padding-top: 1rem;
+      padding: 1rem;
+      display: flex;
+      justify-content: center;
+      text-align: justify;
     }
+  }
+  .head {
+    height: 100px;
+  }
+  .desc {
+    height: 5vh;
   }
 }
 .line {
   border-bottom: 1px solid #ccc;
   padding-bottom: 1rem;
-  margin-bottom: 20px;
   padding: 1rem;
   margin: 0rem 1rem;
 }
@@ -51,4 +63,17 @@
   font-size: 1.5rem;
   display: flex;
   justify-content: center;
+}
+.Details {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  margin: 0;
+  padding: 0rem;
+  button {
+    padding: 1rem;
+    margin: 1rem;
+    color: white;
+    background-color: rgb(133, 156, 183);
+  }
 }

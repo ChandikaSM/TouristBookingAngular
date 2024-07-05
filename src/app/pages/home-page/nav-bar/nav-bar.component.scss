@@ -1,9 +1,9 @@
 .navBar {
-  background: black;
-  height: 10vh;
+  background: rgb(133, 156, 183);
+  height: 8vh;
   overflow-y: hidden;
   padding: 1rem 2rem;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.34);
 
   .spaceAround {
     flex: 1 1 auto;
@@ -21,14 +21,15 @@
 
   img {
     width: 100%;
-    height: 100px;
-
+    height: 70px;
+    background-color: white;
     border-radius: 80px;
+  
   }
 
   button {
     font-size: 1.3rem;
-    color: #fcf9f9;
+    color: #ffffff;
     font-weight: bolder;
     letter-spacing: 1px;
   }

@@ -21,7 +21,7 @@ export const routes: Routes = [
   { path: 'places', component: PlacesComponent },
   { path: 'herodetails/:id', component: HeroSectionComponent },
   { path: 'placelist', component: PlaceListComponent },
-  { path: 'booknow/:heroId', component: BookNowComponent },
+  { path: 'booknow/:id', component: BookNowComponent },
   { path: 'forget', component: ForgetPasswordComponent },
 
   { path: 'profile', component: ProfileComponent },

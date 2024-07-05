@@ -64,10 +64,12 @@
       font-weight: 500;
     }
     p {
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       font-weight: 400;
       line-height: 1.8rem;
       text-align: justify;
+      color: #000;
+      font-weight: 500;
     }
   }
 
@@ -77,7 +79,8 @@
     padding: 1rem;
     .btn {
       width: 300px;
-      background: #eee;
+      background: rgb(86, 125, 169);
+      color: white;
       padding: 2rem 1.5rem;
       font-size: 1.3rem;
     }
@@ -129,12 +132,13 @@
       font-family: Arial, Helvetica, sans-serif;
       .btnNot {
         width: 30%;
-        background: #eee;
-        padding: 0.4rem 1rem;
+        background: rgb(86, 125, 169);
+        color: white;
         border-radius: 12px;
         display: flex;
         align-items: center;
         justify-content: space-around;
+        margin: 0;
         h2 {
           font-size: 1.5rem;
           font-weight: 500;
@@ -163,12 +167,9 @@
       padding: 0.5rem;
     }
     .innerDiv {
-      //  width: 80%;
        gap: 0rem;
-      //  background: yellow;
       img {
         display: flex;
-        // height: 10px;
         width: 20%;
         margin-right: -1rem;
         border-radius: 30px;
@@ -200,6 +201,9 @@
       }
     }
     }
+  }
+  .heroSectionOverlay {
+    display: none;
   }
 }
 
@@ -283,6 +287,18 @@
     }
   }
   .selected {
-    background: rgb(110, 110, 108);
+    background: rgb(178, 178, 178);
   }
+}
+
+
+
+
+.heroSectionOverlay{
+  position: absolute;
+  opacity: 0.1;
+  height: 100%;
+  bottom: 0;
+  right: 0;
+  top: 0;
 }

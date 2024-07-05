@@ -94,7 +94,7 @@ export class HomePageComponent implements OnInit {
       value: 'North Tripura',
     },
     {
-      img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAPVFjBXEHrikTrSe0wUIfB0Qxbi7LhmJ4ow&usqp=CAU',
+      img: 'https://pbs.twimg.com/media/CIL8hbSVEAERaOK?format=jpg&name=small',
       name: 'KHOWAI',
       value: 'Khowai',
     },
