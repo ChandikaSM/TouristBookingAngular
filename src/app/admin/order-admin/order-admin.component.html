@@ -1,1 +1,123 @@
-<p>order-admin works!</p>
+<div class="addingSpot">
+  <button mat-button (click)="addingItems()">Add</button>
+
+  <div class="admin-page" *ngIf="isOpenAdding">
+    <h1>Add New Spot</h1>
+    <form #spotForm="ngForm" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" required [(ngModel)]="spot.name" name="name">
+      </div>
+      <div>
+        <label for="description">Description:</label>
+        <textarea id="description" required [(ngModel)]="spot.description" name="description"></textarea>
+      </div>
+      <div>
+        <label for="location">Location:</label>
+        <input type="text" id="location" required [(ngModel)]="spot.location" name="location">
+      </div>
+      <div>
+        <label for="district">District:</label>
+        <input type="text" id="district" required [(ngModel)]="spot.district" name="district">
+      </div>
+      <div>
+        <label for="category">Category:</label>
+        <input type="text" id="category" required [(ngModel)]="spot.category" name="category">
+      </div>
+      <div>
+        <label for="entry_fee_adult">Entry Fee (Adult):</label>
+        <input type="number" id="entry_fee_adult" required [(ngModel)]="spot.entry_fee.adult" name="entry_fee_adult">
+      </div>
+      <div>
+        <label for="entry_fee_child">Entry Fee (Child):</label>
+        <input type="number" id="entry_fee_child" required [(ngModel)]="spot.entry_fee.child" name="entry_fee_child">
+      </div>
+      <div>
+        <label for="images">Images:</label>
+        <input type="file" id="images" (change)="onFileChange($event)" multiple accept="image/*">
+        <div *ngIf="imageError">
+          <p style="color: red;">Please upload exactly 3 images.</p>
+        </div>
+        <div *ngIf="fileNames.length">
+          <p>Selected files: {{ fileNames.join(', ') }}</p>
+        </div>
+      </div>
+      <div *ngFor="let day of days">
+        <label for="{{day}}">{{day.charAt(0).toUpperCase() + day.slice(1)}}:</label>
+        <input type="text" id="{{day}}" required [(ngModel)]="spot.visiting_hours[day]" name="{{day}}">
+      </div>
+      <button type="submit" [disabled]="!spotForm.form.valid">Submit</button>
+    </form>
+  </div>
+
+  <div *ngIf="!isOpenAdding">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef> Description </th>
+        <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="location">
+        <th mat-header-cell *matHeaderCellDef> Location </th>
+        <td mat-cell *matCellDef="let element"> {{element.location}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="district">
+        <th mat-header-cell *matHeaderCellDef> District </th>
+        <td mat-cell *matCellDef="let element"> {{element.district}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="category">
+        <th mat-header-cell *matHeaderCellDef> Category </th>
+        <td mat-cell *matCellDef="let element"> {{element.category}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="entry_fee_adult">
+        <th mat-header-cell *matHeaderCellDef> Entry Fee (Adult) </th>
+        <td mat-cell *matCellDef="let element"> {{element.entry_fee.adult}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="entry_fee_child">
+        <th mat-header-cell *matHeaderCellDef> Entry Fee (Child) </th>
+        <td mat-cell *matCellDef="let element"> {{element.entry_fee.child}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="edit">
+        <th mat-header-cell *matHeaderCellDef>Edit</th>
+        <td mat-cell *matCellDef="let element">
+          <div mat-icon-button color="warn" (click)="updatespots(element._id)" class="delete">
+            <span class="material-symbols-outlined">
+              edit
+              </span>
+            </div>
+          
+        </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef>Delete</th>
+        <td mat-cell *matCellDef="let element">
+          <div mat-icon-button color="warn" (click)="deleteSpots(element._id)" class="delete">
+            <span class="material-symbols-outlined">
+              delete
+              </span>
+            </div>
+          
+        </td>
+      </ng-container>
+
+     
+
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+  
+</div>

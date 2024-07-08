@@ -42,20 +42,10 @@ export class AdminComponent {
       routing: '/admin/order',
     },
     {
-      icons: 'manage_history',
-      name: 'Manage',
-      routing: '/admin/manage',
-    },
-    {
-      icons: 'settings',
-      name: 'Setting',
-      routing: '/admin/setting',
-    },
-    {
-      icons: 'logout',
-      name: 'Signout',
-      routing: 'signout',
-    },
+      icons: 'admin_panel_settings',
+      name: 'Login',
+      routing:'/auth'
+    }
   ];
   selectedItem: items | null = null;
 
