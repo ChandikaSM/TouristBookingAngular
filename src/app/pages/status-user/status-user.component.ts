@@ -12,6 +12,7 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { RouterLink } from '@angular/router';
 import { Router } from '@angular/router';
 import { NavBarComponent } from '../home-page/nav-bar/nav-bar.component';
+import { StatusBarService } from './status-bar.service';
 
 export interface Element {
   name: string;
@@ -92,7 +93,7 @@ const statusData: Element[] = [
   styleUrl: './status-user.component.scss',
 })
 export class StatusUserComponent {
-  constructor(private router: Router) {}
+  constructor(private router: Router, private dataService: StatusBarService) {}
   displayedColumns: string[] = [
     'Order Id',
     'name',
@@ -161,6 +162,7 @@ export class StatusUserComponent {
   completedItems: Element[] = [];
   upComing: Element[] = [];
   myControl = new FormControl('');
+  datas: any;
 
   ngOnInit(): void {
     this.showCompleted();
@@ -177,8 +179,13 @@ export class StatusUserComponent {
     this.completedItems = statusData.filter((item) => item.date < today);
   }
   showUpcoming(): void {
-    const today = new Date();
-    this.upComing = statusData.filter((item) => item.date > today);
+    // const today = new Date();
+    // this.upComing = statusData.filter((item) => item.date > today);
+    this.dataService.getStatusUpcoming().subscribe(
+      (response) => {
+        this.upComing = response.result;
+      }
+    )
   }
 
   toggleItems(showCompleted: boolean, showUpcoming: boolean): void {
@@ -218,4 +225,7 @@ export class StatusUserComponent {
   onClickDistrict(value: string): void {
     this.router.navigate(['/places', value]);
   }
-}
+
+
+   }
+

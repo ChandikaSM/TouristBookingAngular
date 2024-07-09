@@ -1,24 +1,28 @@
 .example-container {
   width: auto;
   height: 100vh;
-
   background: #eee;
+
   .firstDrawer {
     scroll-behavior: smooth;
+
     button {
       font-size: 1.2rem;
       color: rgb(86, 58, 58);
     }
+
     ol {
       li {
         padding: 0.9rem;
         font-size: 1rem;
         cursor: pointer;
+
         ol {
           li {
             padding: 0.5rem;
           }
         }
+
         &:hover {
           font-size: 1.3rem;
         }
@@ -29,9 +33,15 @@
       padding: 0.5rem;
       height: 10vh;
       display: flex;
-      justify-content: center;
+      align-items: center;
+      justify-content: space-around;
       color: #eee;
       background: rgba(0, 0, 0, 0.5);
+
+      span {
+        font-size: 3rem;
+      }
+
       h5 {
         font-size: 1.5rem;
       }
@@ -41,26 +51,31 @@
   .secondDrawer {
     .searchSpan {
       margin: 1rem;
+
       input[type="search"] {
         width: 50%;
         padding: 1rem;
         border-radius: 10px;
       }
+
       button {
         width: 20%;
         padding: 1rem;
         border-radius: 1rem;
       }
     }
+
     .searchStatus {
       mat-chip {
         padding: 0.7rem;
       }
+
       .icon {
         justify-content: space-around;
         text-align: center;
       }
     }
+
     .secondDrawerSub1 {
       padding: 0 1rem;
 
@@ -81,13 +96,13 @@
   .firstDrawer {
     display: none;
   }
+
   .secondDrawer {
     .searchStatus {
       mat-chip {
         display: flex;
         flex-direction: column;
         width: 25%;
-
         padding: 1rem;
         margin-top: 1rem;
         margin-bottom: 1rem;

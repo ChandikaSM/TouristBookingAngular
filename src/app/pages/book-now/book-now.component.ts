@@ -33,13 +33,182 @@ interface item {
     MatSelect,
     MatOptionModule,
     NavBarComponent,
-  
   ],
   providers: [DatePipe],
 })
+// export class BookNowComponent implements OnInit {
+//   name: string = '';
+//   Email: string = '';
+//   mobile: string = '';
+//   date: string = '';
+//   heroId: string = '';
+//   paymentOption: string = '';
+//   childQuantity = 1;
+//   adultQuantity = 1;
+//   booking: any = {};
+//   headers: any;
+//   durationInSeconds = 5;
+//   minDate: string = '';
+
+//   items: item[] = [
+//     { value: 'monday', viewValue: '09:00 a.m. - 05:00 p.m.' },
+//     { value: 'tuesday', viewValue: '09:00 a.m. - 05:00 p.m.' },
+//     { value: 'wednesday', viewValue: '09:00 a.m. - 05:00 p.m.' },
+//     { value: 'thursday', viewValue: '09:00 a.m. - 05:00 p.m.' },
+//     { value: 'friday', viewValue: '09:00 a.m. - 05:00 p.m.' },
+//     { value: 'saturday', viewValue: '9:00 a.m. - 05:00 p.m.' },
+//   ];
+
+//   sum = 0;
+
+//   constructor(
+//     private bookNow: BookNowService,
+//     private dialog: MatDialog,
+//     private router: Router,
+//     private activeRouter: ActivatedRoute,
+//     private datePipe: DatePipe,
+//     private _snackBar: MatSnackBar
+//   ) {
+//     const authToken = localStorage.getItem(authConst.authToken);
+//     this.headers = { Authorization: `Bearer ${authToken}` };
+//   }
+
+//   ngOnInit(): void {
+//     this.activeRouter.queryParams.subscribe((params) => {
+//       if (params['heroId']) {
+//         this.heroId = params['heroId'];
+//       }
+//     });
+//     this.setMinDate();
+//   }
+
+
+//   setMinDate():void {
+//     const currentDate = new Date();
+//     this.minDate = this.datePipe.transform(this.date, 'dd-MM-yyyy') || '';
+
+  
+
+//   }
+//   onSubmit(): void {
+
+//     const booking = {
+//       spotId: this.heroId,
+//       name: this.name,
+//       mobile: this.mobile,
+//       Email: this.Email,
+//       date: this.date,
+//       quantity: {
+//         adult: this.adultQuantity,
+//         child: this.childQuantity,
+//       },
+//       total: this.sum,
+//     };
+//     console.log('date', this.date);
+
+//     this.onBookNow(booking);
+//   }
+
+//   validateDate(event: any): void {
+//     const selectedDate = new Date(event.target.value);
+//     const currentDate = new Date();
+//     if (selectedDate < currentDate) {
+//       this.date = '';
+//     }
+//   }
+
+//   resetForm(): void {
+//     this.name = '';
+//     this.Email = '';
+//     this.mobile = '';
+//     this.date = '';
+//   }
+
+//   decreaseChildQuantity() {
+//     if (this.childQuantity > 0) {
+//       this.childQuantity--;
+//       this.total();
+//     }
+//   }
+//   decreaseAdultQuantity(): void {
+//     if (this.adultQuantity > 0) {
+//       this.adultQuantity--;
+//       this.total();
+//     }
+//   }
+
+//   increaseChildQuantity() {
+//     if (this.childQuantity < 10) {
+//       this.childQuantity++;
+//       this.total();
+//     } else {
+//       alert('Maximum Limit Reached');
+//     }
+//   }
+
+//   increaseAdultQuantity() {
+//     if (this.adultQuantity < 10) {
+//       this.adultQuantity++;
+//       this.total();
+//     } else {
+//       alert('max');
+//     }
+//   }
+//   total(): void {
+//     const child = 20;
+//     const adult = 40;
+//     this.sum = this.childQuantity * child + this.adultQuantity * adult;
+//   }
+
+//   onBookNow(booking: any): void {
+//     console.log('bokking ', booking);
+//     this.bookNow.processBooking(booking).subscribe(
+//       (response) => {
+//         console.log(response);
+
+//         if (response.status) {
+//           this.resetForm();
+//           this.openSnackBar();
+//         }
+//       },
+//       (error) => {
+//         console.error('error', error);
+//       }
+//     );
+//   }
+
+//   showLoginDialog(): void {
+//     const dialogRef = this.dialog.open(AuthComponent, {
+//       width: window.innerWidth < 768 ? '100%' : '1000px',
+//       maxWidth: '90%',
+//     });
+
+//     dialogRef.afterClosed().subscribe((result: any) => {
+//       if (result === 'success') {
+//         alert('Your booking has been initiated.');
+//       }
+//     });
+//   }
+
+//   openSnackBar() {
+//     this._snackBar.open(
+//       'Your booking has been initiated. Thank you',
+//       'Dismiss',
+//       {
+//         duration: this.durationInSeconds * 1000,
+//       }
+//     );
+//     this.navigating();
+//   }
+//   navigating(): void {
+//     console.log('navigating');
+
+//     this.router.navigate(['']);
+//   }
+// }
+
 
 export class BookNowComponent implements OnInit {
-
   name: string = '';
   Email: string = '';
   mobile: string = '';
@@ -51,8 +220,9 @@ export class BookNowComponent implements OnInit {
   booking: any = {};
   headers: any;
   durationInSeconds = 5;
+  minDate: string = '';
 
-  items: item[] = [
+  items = [
     { value: 'monday', viewValue: '09:00 a.m. - 05:00 p.m.' },
     { value: 'tuesday', viewValue: '09:00 a.m. - 05:00 p.m.' },
     { value: 'wednesday', viewValue: '09:00 a.m. - 05:00 p.m.' },
@@ -63,31 +233,26 @@ export class BookNowComponent implements OnInit {
 
   sum = 0;
 
-  constructor(
-    private bookNow: BookNowService,
-    private dialog: MatDialog,
-    private router: Router,
-    private activeRouter: ActivatedRoute,
-    private datePipe: DatePipe,
-    private _snackBar: MatSnackBar
-  ) {
-    const authToken = localStorage.getItem(authConst.authToken);
-    this.headers = { Authorization: `Bearer ${authToken}` };
-  }
+  constructor(private datePipe: DatePipe) {}
 
   ngOnInit(): void {
-    this.activeRouter.queryParams.subscribe((params) => {
-      if (params['heroId']) {
-        this.heroId = params['heroId'];
-        console.log('Hero ID:', this.heroId); // Check if heroId is printed correctly
-      } else {
-        console.error('Hero ID is null or undefined');
-      }
-    });
+    this.setMinDate();
+  }
+
+  setMinDate(): void {
+    const currentDate = new Date();
+    this.minDate = this.datePipe.transform(currentDate, 'yyyy-MM-dd') || '';
+  }
+
+  validateDate(event: any): void {
+    const selectedDate = new Date(event.target.value);
+    const currentDate = new Date();
+    if (selectedDate < currentDate) {
+      this.date = '';
+    }
   }
 
   onSubmit(): void {
-    this.date = this.datePipe.transform(this.date, 'dd-MM-yyyy') || '';
     const booking = {
       spotId: this.heroId,
       name: this.name,
@@ -102,7 +267,8 @@ export class BookNowComponent implements OnInit {
     };
     console.log('date', this.date);
 
-    this.onBookNow(booking);
+    // Call your booking service or method here
+    // this.onBookNow(booking);
   }
 
   resetForm(): void {
@@ -112,12 +278,13 @@ export class BookNowComponent implements OnInit {
     this.date = '';
   }
 
-  decreaseChildQuantity() {
+  decreaseChildQuantity(): void {
     if (this.childQuantity > 0) {
       this.childQuantity--;
       this.total();
     }
   }
+
   decreaseAdultQuantity(): void {
     if (this.adultQuantity > 0) {
       this.adultQuantity--;
@@ -125,7 +292,7 @@ export class BookNowComponent implements OnInit {
     }
   }
 
-  increaseChildQuantity() {
+  increaseChildQuantity(): void {
     if (this.childQuantity < 10) {
       this.childQuantity++;
       this.total();
@@ -134,62 +301,18 @@ export class BookNowComponent implements OnInit {
     }
   }
 
-  increaseAdultQuantity() {
+  increaseAdultQuantity(): void {
     if (this.adultQuantity < 10) {
       this.adultQuantity++;
       this.total();
     } else {
-      alert('max');
+      alert('Maximum Limit Reached');
     }
   }
+
   total(): void {
     const child = 20;
     const adult = 40;
     this.sum = this.childQuantity * child + this.adultQuantity * adult;
   }
-
-  onBookNow(booking: any): void {
-    console.log('bokking ', booking);
-    this.bookNow.processBooking(booking).subscribe(
-      (response) => {
-        console.log(response);
-
-        if (response.status) {
-          this.resetForm();
-          this.openSnackBar();
-        }
-      },
-      (error) => {
-        console.error('error', error);
-      }
-    );
-  }
-
-  showLoginDialog(): void {
-    const dialogRef = this.dialog.open(AuthComponent, {
-      width: window.innerWidth < 768 ? '100%' : '1000px',
-      maxWidth: '90%',
-    });
-
-    dialogRef.afterClosed().subscribe((result: any) => {
-      if (result === 'success') {
-        alert('Your booking has been initiated.');
-      
-      }
-    });
-  }
-
-
-  openSnackBar() {
-    this._snackBar.open('Your booking has been initiated. Thank you', 'Dismiss', {
-      duration: this.durationInSeconds * 1000,
-    });
-    this.navigating()
-    
-  }
-  navigating(): void {
-    console.log("navigating");
-    
-    this.router.navigate(['']);
-   }
 }

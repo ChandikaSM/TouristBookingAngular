@@ -72,7 +72,7 @@ export class AuthComponent implements OnInit {
     localStorage.setItem('userData', JSON.stringify(userData));
   }
 
-  onSignIn(email: string, password: string): void {
+  onSignIn(): void {
     const loginData = {
       email: this.email,
       password: this.password,
@@ -88,6 +88,7 @@ export class AuthComponent implements OnInit {
           localStorage.setItem('loggedUser', JSON.stringify(response.userData))
         }
         this.closeDialog();
+        window.location.reload();
         const redirectUrl = this.authService.redirectUrl || '/';
         this.router.navigateByUrl(redirectUrl);
       },

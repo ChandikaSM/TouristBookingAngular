@@ -39,8 +39,8 @@ export class OrderAdminService {
 
   }
 
-  updatespot(urlParam: any): Observable<any> {
-    return this.http.put<any>(`${this.apiUrl}/spots`, {
+  updatespot(urlParam: any, spotData: any): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}/spots`, spotData,{
       params: urlParam,
       headers: this.headers
     })

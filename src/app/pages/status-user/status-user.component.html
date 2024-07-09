@@ -3,7 +3,10 @@
 <mat-drawer-container class="example-container">
   <mat-drawer mode="side" opened class="firstDrawer">
     <div class="status">
-      <h5>Places</h5>
+      <span class="material-symbols-outlined">
+        account_circle
+        </span>
+      <h5 @if=""></h5>
     </div>
 
     <ol>
@@ -15,14 +18,6 @@
         <button mat-button routerLink="/places">Places</button>
       </li>
 
-      <li>
-        Districts:
-        <ul *ngFor="let district of displayPlaces">
-          <li (click)="onClickDistrict(district.value)">
-            {{ district.name }}
-          </li>
-        </ul>
-      </li>
     </ol>
   </mat-drawer>
 
